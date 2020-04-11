@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1583576026 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_child.cpp
+	"list_child.h"
+
+1583575990 d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_child.h
+	<iostream>
+
+1583576148 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_parent.cpp
+	"list_parent.h"
+
+1583576097 d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_parent.h
+	<iostream>
+
+1583576252 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_relasi.cpp
+	"list_relasi.h"
+
+1583576214 d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1583576292 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+
+1586154152 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
+	"list_child.h"
+
+1586154574 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
+	<iostream>
+
+1583576148 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
+	"list_parent.h"
+
+1583576097 d:\kuliah\semester 2\tubes-struktur-data\list_parent.h
+	<iostream>
+
+1583576252 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
+	"list_relasi.h"
+
+1583576214 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1583576292 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+
