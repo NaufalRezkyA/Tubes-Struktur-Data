@@ -5,8 +5,12 @@ using namespace std;
 #include "list_parent.h"
 #include "list_relasi.h"
 
-void menu(){
-    int pil;
+void mainMenu();
+
+void mainMenu()
+{
+    int choice;
+    DataPeminjam DataPeminjam;
     do
     {
         cout << "Menu Peminjaman Motor" << endl;
@@ -21,63 +25,47 @@ void menu(){
         cout << "5. Reset Data" << endl;
         cout << "0. Quit" << endl;
         cout << "Masukan angka:";
-        cin >> pil;
-        runMenu(pil);
-    } while (pil != 0);
-    
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout<<"hello"<<endl;
+            inputDataPeminjam(DataPeminjam);
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
+
+            break;
+        }
+        if (choice == 0)
+        {
+            break;
+        }
+    } while (true);
+
+    //----------------------------------------
 }
 
-void runMenu(int menu)
+
+
+
+int main()
 {
-    List_parent LP;
-    infotype_parent data;
-    createListParent(LP);
-    switch (menu)
-    {
-    case 1:
-        inputDataPeminjam(data);
-        insertLastParent(LP, alokasiParent(data));
-        break;
-    case 2:
-        
-        break;
+    mainMenu();
 
-    case 3:
-        
-        break;
-
-    case 4:
-        
-        break;
-
-    case 5:
-        
-        break;
-
-    case 6:
-        
-        break;
-
-    case 7:
-        
-        break;
-
-    case 8:
-        
-        break;
-
-    case 9:
-        
-        break;
-
-    case 10:
-        
-        break;
-    
-    case 0:
-        cout << "thank you" << endl;
-        break;
-    default:
-        cout << "wrong input" << endl;
-    }
+    return 0;
 }

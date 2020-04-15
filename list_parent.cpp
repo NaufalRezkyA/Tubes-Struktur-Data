@@ -6,23 +6,34 @@ int randomInt(int ID)
     return ID;
 }
 
+void printDate(Date x){
+    cout<<x.tanggal<<":"<<x.bulan<<":"<<x.tahun<<endl;
+    cout<<x.jam<<":"<<x.menit<<endl;
+}
+
 void inputDataPeminjam(infotype_parent &x)
 {
+    cout<<"Masukkan Nomor identitas anda: ";
     cin >> x.nomorIdentitas;
+    cout<<endl;
     x.ID = randomInt(x.nomorIdentitas);
+
+    cout<<"Masukkan Nama: ";
     cin >> x.namaPeminjam;
+    cout<<endl;
     time_t now = time(0);
     tm *ltm = localtime(&now);
 
     x.waktuPeminjaman.tanggal= ltm->tm_mday;
-    x.waktuPeminjaman.bulan= 1+ltm->tm_mday;
-    x.waktuPeminjaman.tahun= 1900+ltm->tm_mday;
-    x.waktuPeminjaman.jam = 1 + ltm->tm_hour;
+    x.waktuPeminjaman.bulan= 1+ltm->tm_mon;
+    x.waktuPeminjaman.tahun= 1900+ltm->tm_year;
+    x.waktuPeminjaman.jam = ltm->tm_hour;
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
     x.waktuPeminjaman.detik = 1 + ltm->tm_sec;
 
     cout<<"durasi peminjaman(jam):"<<endl;
     cin >> x.durasiPeminjaman;
+    printDate(x.waktuPeminjaman);
 
     cout<<"masukan id motor yang akan dipinjam:"<<endl;
     cin>> x.IDmotor;
@@ -33,7 +44,7 @@ void inputDataPeminjam(infotype_parent &x)
     cin >> x.waktucheckIn.tahun;
     cin >> x.waktucheckIn.jam;
     cin >> x.waktucheckIn.menit;
-    PrintDate(x.waktucheckIn);
+    printDate(x.waktucheckIn);
 
     cout<<"waktu checkout"<<endl;
     x.waktucheckOut.tanggal = x.waktucheckIn.tanggal;
@@ -41,13 +52,8 @@ void inputDataPeminjam(infotype_parent &x)
     x.waktucheckOut.tahun = x.waktucheckIn.tahun;
     x.waktucheckOut.jam= x.waktucheckIn.jam;
     x.waktucheckOut.menit= x.waktucheckIn.menit;
-    PrintDate(x.waktucheckOut);
+    //PrintDate(x.waktucheckOut);
 
-}
-
-void printDate(Date x){
-    cout<<x.tanggal<<":"<<x.bulan<<":"<<x.tahun<<endl;
-    cout<<x.jam<<":"<<x.menit<<endl;
 }
 
 void createListParent(List_parent &L) {

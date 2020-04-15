@@ -73,7 +73,10 @@ void deleteAfter(address_relasi Prec, address_relasi &P){
 void printInfo(List_relasi L) {
     address_relasi P = first(L);
     while(P !=NULL) {
-        cout<<info(parent(P))<<"->"<<info(child(P))<<endl;
+        cout<<info(parent(P)).ID<<"->"<<info(child(P))<<endl;
+        cout<<info(parent(P)).IDmotor<<"->"<<info(child(P))<<endl;
+        cout<<info(parent(P)).namaPeminjam<<"->"<<info(child(P))<<endl;
+        cout<<info(parent(P)).nomorIdentitas<<"->"<<info(child(P))<<endl;
         P = next(P);
     }
 }
