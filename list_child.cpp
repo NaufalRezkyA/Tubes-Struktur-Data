@@ -1,10 +1,35 @@
 #include "list_child.h"
 
-void createList(List_child &L) {
+void inputDataMotor(infotype_child &x){
+    cout<<"Nama Motor: ";
+    cin>>x.NamaMotor;
+    cout<<"Tahun Motor: ";
+    cin>>x.tahunMotor;
+    cout<<"ID: ";
+    cin>>x.ID;
+}
+
+void DataM(List_child LC){
+    infotype_child x;
+    x.ID = "BT20";
+    x.NamaMotor = "BEAT F1";
+    x.tahunMotor = 2020;
+    insertLastChild(LC, alokasiChild(x));
+    x.ID = "BT12";
+    x.NamaMotor = "BEAT A1";
+    x.tahunMotor = 2012;
+    insertLastChild(LC, alokasiChild(x));
+    x.ID = "BT10";
+    x.NamaMotor = "BEAT A0";
+    x.tahunMotor = 2010;
+    insertLastChild(LC, alokasiChild(x));
+}
+
+void createListChild(List_child &L) {
     first(L) = NULL;
 }
 
-address_child alokasi(infotype_child x) {
+address_child alokasiChild(infotype_child x) {
     address_child P = new elmlist_child;
     info(P) = x;
     next(P) = NULL;
@@ -12,11 +37,11 @@ address_child alokasi(infotype_child x) {
     return P;
 }
 
-void dealokasi(address_child &P){
+void dealokasiChild(address_child &P){
     delete P;
 }
 
-void insertFirst(List_child &L, address_child P) {
+void insertFirstChild(List_child &L, address_child P) {
     if (first(L) != NULL)
     {
         next(P) = first(L);
@@ -33,7 +58,7 @@ void insertFirst(List_child &L, address_child P) {
     }
 }
 
-void insertLast(List_child &L, address_child P){
+void insertLastChild(List_child &L, address_child P){
     if (first(L) != NULL)
     {
         next(P) = first(L);
@@ -49,11 +74,11 @@ void insertLast(List_child &L, address_child P){
     }
 }
 
-void insertAfter(List_child &L, address_child &Prec, address_child P)
+void insertAfterChild(List_child &L, address_child &Prec, address_child P)
 {
     if (first(L) == NULL)
     {
-        insertFirst(L, P);
+        insertFirstChild(L, P);
     }
     else
     {
@@ -64,7 +89,7 @@ void insertAfter(List_child &L, address_child &Prec, address_child P)
     }
 }
 
-void deleteFirst(List_child &L, address_child &P){
+void deleteFirstChild(List_child &L, address_child &P){
     P = first(L);
     if (next(first(L)) != P)
     {
@@ -82,7 +107,7 @@ void deleteFirst(List_child &L, address_child &P){
     }
 }
 
-void deleteLast(List_child &L, address_child &P){
+void deleteLastChild(List_child &L, address_child &P){
     P = prev(first(L));
     next(prev(P)) = first(L);
     prev(first(L)) = prev(prev(P));
@@ -90,7 +115,7 @@ void deleteLast(List_child &L, address_child &P){
     prev(P) = NULL;
 }
 
-void deleteAfter(List_child &L, address_child Prec, address_child &P){
+void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
     P = next(Prec);
     if (next(Prec) != first(L))
     {
@@ -107,19 +132,21 @@ void deleteAfter(List_child &L, address_child Prec, address_child &P){
     }
 }
 
-void printInfo(List_child L) {
+void printInfoChild(List_child L) {
     address_child P = first(L);
     do{
-        cout<<"->"<<info(P)<<endl;
+        cout<<"->"<<info(P).ID<<endl;
+        cout<<"->"<<info(P).NamaMotor<<endl;
+        cout<<"->"<<info(P).tahunMotor<<endl;
         P = next(P);
     }while (P != first(L));
 }
 
 
-address_child findElm(List_child L, infotype_child x) {
+address_child findElmChild(List_child L, string x) {
     address_child P = first(L);
     do{
-        if(info(P)==x) {
+        if(info(P).ID==x) {
             return P;
         }
         P = next(P);
@@ -127,4 +154,20 @@ address_child findElm(List_child L, infotype_child x) {
     return NULL;
 }
 
-
+void DataM()
+{
+    List_child LC;
+    infotype_child x;
+    x.ID = "BT20";
+    x.NamaMotor = "BEAT F1";
+    x.tahunMotor = 2020;
+    insertLastChild(LC, alokasiChild(x));
+    x.ID = "BT12";
+    x.NamaMotor = "BEAT A1";
+    x.tahunMotor = 2012;
+    insertLastChild(LC, alokasiChild(x));
+    x.ID = "BT10";
+    x.NamaMotor = "BEAT A0";
+    x.tahunMotor = 2010;
+    insertLastChild(LC, alokasiChild(x));
+}

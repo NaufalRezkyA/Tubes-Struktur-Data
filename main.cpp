@@ -10,33 +10,38 @@ void mainMenu();
 void mainMenu()
 {
     int choice;
+    List_parent LP;
+    List_child LC;
     DataPeminjam DataPeminjam;
+    DataMotor DataMtr;
+    DataM(LC);
     do
     {
         cout << "Menu Peminjaman Motor" << endl;
         cout << "1. Menginput Peminjaman Motor" << endl;
-        cout << "1. Menginput Data Motor" << endl;
-        cout << "2. Daftar motor yang ada" << endl;
-        cout << "3. Daftar motor yang tersedia" << endl;
-        cout << "4. Catatan peminjaman motor" << endl;
-        cout << "5. Edit data peminjama motor" << endl;
-        cout << "6. Delete Data Peminjaman" << endl;
-        cout << "6. Delete Data Motor" << endl;
-        cout << "5. Reset Data" << endl;
+        cout << "2. Menginput Data Motor" << endl;
+        cout << "3. Daftar motor yang ada" << endl;
+        cout << "4. Daftar motor yang tersedia" << endl;
+        cout << "5. Catatan peminjaman motor" << endl;
+        cout << "6. Edit data peminjama motor" << endl;
+        cout << "7. Delete Data Peminjaman" << endl;
+        cout << "8. Delete Data Motor" << endl;
+        cout << "9. Reset Data" << endl;
         cout << "0. Quit" << endl;
         cout << "Masukan angka:";
         cin >> choice;
         switch (choice)
         {
         case 1:
-            cout<<"hello"<<endl;
             inputDataPeminjam(DataPeminjam);
+            insertLastParent(LP, alokasiParent(DataPeminjam));
             break;
         case 2:
-
+            inputDataMotor(DataMtr);
+            insertLastChild(LC, alokasiChild(DataMtr));
             break;
         case 3:
-
+            printInfoChild(LC);
             break;
         case 4:
 

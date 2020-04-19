@@ -10,7 +10,14 @@ using namespace std;
 #define last(L) L.last
 #define info(P) P->info
 
-typedef string infotype_child;
+struct DataMotor
+{
+    int tahunMotor;
+    string NamaMotor, ID;
+};
+
+
+typedef DataMotor infotype_child;
 typedef struct elmlist_child *address_child;
 
 struct elmlist_child{
@@ -24,18 +31,21 @@ struct List_child{
 };
 
 
-void createList(List_child &L);
-void insertFirst(List_child &L, address_child P);
-void insertLast(List_child &L, address_child P);
-void insertAfter(List_child &L, address_child Prec, address_child P);
-void deleteFirst(List_child &L, address_child &P);
-void deleteLast(List_child &L, address_child &P);
-void deleteAfter(List_child &L, address_child Prec, address_child &P);
+void createListChild(List_child &L);
+void insertFirstChild(List_child &L, address_child P);
+void insertLastChild(List_child &L, address_child P);
+void insertAfterChild(List_child &L, address_child Prec, address_child P);
+void deleteFirstChild(List_child &L, address_child &P);
+void deleteLastChild(List_child &L, address_child &P);
+void deleteAfterChild(List_child &L, address_child Prec, address_child &P);
 
-address_child alokasi(infotype_child x);
-void dealokasi(address_child &P);
-address_child findElm(List_child L, infotype_child x);
-void printInfo(List_child L);
+void inputDataMotor(infotype_child &x);
 
+address_child alokasiChild(infotype_child x);
+void dealokasiChild(address_child &P);
+address_child findElmChild(List_child L, infotype_child x);
+void printInfoChild(List_child L);
+
+void DataM(List_child LC);
 
 #endif // LIST_CHILD_H_INCLUDED

@@ -29,10 +29,14 @@ void inputDataPeminjam(infotype_parent &x)
     x.waktuPeminjaman.tahun= 1900+ltm->tm_year;
     x.waktuPeminjaman.jam = ltm->tm_hour;
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
-    x.waktuPeminjaman.detik = 1 + ltm->tm_sec;
 
-    cout<<"durasi peminjaman(jam):"<<endl;
-    cin >> x.durasiPeminjaman;
+    string waktu;
+    cout<<"durasi peminjaman(jam/hari):"<<endl;
+    cin >> x.durasiPeminjaman >> waktu;
+    if (waktu == "hari"){
+        x.durasiPeminjaman= x.durasiPeminjaman*24;
+    }
+    cout<<x.durasiPeminjaman<<endl;
     printDate(x.waktuPeminjaman);
 
     cout<<"masukan id motor yang akan dipinjam:"<<endl;
@@ -50,19 +54,32 @@ void inputDataPeminjam(infotype_parent &x)
     x.waktucheckOut.tanggal = x.waktucheckIn.tanggal;
     x.waktucheckOut.bulan = x.waktucheckIn.bulan;
     x.waktucheckOut.tahun = x.waktucheckIn.tahun;
-    x.waktucheckOut.jam= x.waktucheckIn.jam;
+    x.waktucheckOut.jam= x.waktucheckIn.jam+x.durasiPeminjaman;
+    if (x.waktucheckOut.jam>=24){
+        int hari = x.waktucheckOut.jam / 24;
+        x.waktucheckOut.tanggal = x.waktucheckIn.tanggal+hari;
+        x.waktucheckOut.jam = x.waktucheckOut.jam-(24*hari);
+        if (x.waktucheckOut.tanggal>31){
+            int bulan = x.waktucheckOut.tanggal / 31;
+            x.waktucheckOut.bulan = x.waktucheckIn.bulan+bulan;
+            x.waktucheckOut.tanggal=x.waktucheckOut.tanggal-(31*bulan);
+            if (x.waktucheckOut.bulan>12){
+                int tahun = x.waktucheckOut.bulan/12;
+                x.waktucheckOut.bulan = x.waktucheckOut.bulan-(tahun*12);
+                x.waktucheckOut.tahun = x.waktucheckIn.tahun+tahun;
+            }
+        }
+    }
     x.waktucheckOut.menit= x.waktucheckIn.menit;
-    //PrintDate(x.waktucheckOut);
 
+    printDate(x.waktucheckOut);
 }
 
 void createListParent(List_parent &L) {
-
     first(L) = NULL;
 }
 
 address_parent alokasiParent(infotype_parent x) {
-
     address_parent P;
     P = new elmlist_parent;
     info(P) = x;

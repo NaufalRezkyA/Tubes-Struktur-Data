@@ -15,7 +15,6 @@ struct Date{
     int tahun;
     int jam;
     int menit;
-    int detik;
 };
 
 struct DataPeminjam
@@ -48,9 +47,9 @@ void insertLastParent(List_parent &L, address_parent P);
 void deleteFirstParent(List_parent &L, address_parent &P);
 void deleteLastParent(List_parent &L, address_parent &P);
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
+void PrintDate(Date x);
 
 void inputDataPeminjam(infotype_parent &x);
-void PrintDate(Date x);
 
 int randomInt(int ID);
 address_parent alokasiParent(infotype_parent x);
