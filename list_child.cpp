@@ -9,7 +9,7 @@ void inputDataMotor(infotype_child &x){
     cin>>x.ID;
 }
 
-void DataM(List_child LC){
+void DataM(List_child &LC){
     infotype_child x;
     x.ID = "BT20";
     x.NamaMotor = "BEAT F1";

@@ -14,6 +14,8 @@ void mainMenu()
     List_child LC;
     DataPeminjam DataPeminjam;
     DataMotor DataMtr;
+    createListParent(LP);
+    createListChild(LC);
     DataM(LC);
     do
     {
