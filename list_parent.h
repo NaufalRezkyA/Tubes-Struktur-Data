@@ -19,9 +19,9 @@ struct Date{
 
 struct DataPeminjam
 {
-    int ID, IDmotor;
+    int ID, harga;
     int nomorIdentitas, durasiPeminjaman;
-    string namaPeminjam;
+    string namaPeminjam, IDMotor;
     Date waktuPeminjaman;
     Date waktucheckIn;
     Date waktucheckOut;

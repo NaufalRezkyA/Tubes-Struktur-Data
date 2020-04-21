@@ -30,11 +30,15 @@ void insertAfterRelasi(address_relasi &Prec, address_relasi P)
 void insertLastRelasi(List_relasi &L, address_relasi P){
     address_relasi Q;
     Q = L.first;
-    while (Q->next != NULL)
-    {
-        Q = Q->next;
+    if (first(L)!=NULL){
+        while (Q->next != NULL)
+        {
+            Q = Q->next;
+        }
+        Q->next = P;
+    }else{
+        first(L)=P;
     }
-    Q->next = P;
 }
 
 void deleteFirstRelasi(List_relasi &L, address_relasi &P){

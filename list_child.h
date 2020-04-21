@@ -43,7 +43,7 @@ void inputDataMotor(infotype_child &x);
 
 address_child alokasiChild(infotype_child x);
 void dealokasiChild(address_child &P);
-address_child findElmChild(List_child L, infotype_child x);
+address_child findElmChild(List_child L, string x);
 void printInfoChild(List_child L);
 
 void DataM(List_child &LC);

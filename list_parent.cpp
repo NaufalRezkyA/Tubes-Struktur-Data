@@ -2,8 +2,8 @@
 
 int randomInt(int ID)
 {
-    ID++;
-    return ID;
+    int random = rand() % ID;
+    return random;
 }
 
 void printDate(Date x){
@@ -14,12 +14,12 @@ void printDate(Date x){
 void inputDataPeminjam(infotype_parent &x)
 {
     cout<<"Masukkan Nomor identitas anda: ";
-    cin >> x.nomorIdentitas;
+    x.nomorIdentitas=1301190478;
     cout<<endl;
     x.ID = randomInt(x.nomorIdentitas);
 
     cout<<"Masukkan Nama: ";
-    cin >> x.namaPeminjam;
+    x.namaPeminjam = "Naufal";
     cout<<endl;
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -32,22 +32,25 @@ void inputDataPeminjam(infotype_parent &x)
 
     string waktu;
     cout<<"durasi peminjaman(jam/hari):"<<endl;
-    cin >> x.durasiPeminjaman >> waktu;
+    x.durasiPeminjaman = 8; 
+    waktu = "hari";
     if (waktu == "hari"){
         x.durasiPeminjaman= x.durasiPeminjaman*24;
     }
     cout<<x.durasiPeminjaman<<endl;
     printDate(x.waktuPeminjaman);
 
+    int harga;
+    x.harga = x.durasiPeminjaman * 10000;
+    cout<<"Harga: "<<x.harga<<endl;
+
     cout<<"masukan id motor yang akan dipinjam:"<<endl;
-    cin>> x.IDmotor;
+    x.IDMotor="BT20";
 
     cout<<"waktu checin:"<<endl;
-    cin >> x.waktucheckIn.tanggal;
-    cin >> x.waktucheckIn.bulan;
-    cin >> x.waktucheckIn.tahun;
-    cin >> x.waktucheckIn.jam;
-    cin >> x.waktucheckIn.menit;
+    cin >> x.waktucheckIn.tanggal >> x.waktucheckIn.bulan
+        >> x.waktucheckIn.tahun >> x.waktucheckIn.jam
+        >> x.waktucheckIn.menit;
     printDate(x.waktucheckIn);
 
     cout<<"waktu checkout"<<endl;
@@ -71,7 +74,6 @@ void inputDataPeminjam(infotype_parent &x)
         }
     }
     x.waktucheckOut.menit= x.waktucheckIn.menit;
-
     printDate(x.waktucheckOut);
 }
 
@@ -123,11 +125,19 @@ void insertAfterParent(List_parent &L, address_parent Prec, address_parent P){
 void insertLastParent(List_parent &L, address_parent P){
     address_parent Q;
     Q = L.first;
-    while (Q->next != NULL)
-    {
-        Q = Q->next;
+    cout<<"masuk";
+    if(first(L)==NULL){
+        first(L) = P;
+        cout<<"Masuk1";
+    }else{
+        cout << "masuk2";
+        while (Q->next != NULL)
+        {
+            Q = Q->next;
+        }
+        Q->next = P;
+        
     }
-    Q->next = P;
 }
 
 void deleteFirstParent(List_parent &L, address_parent &P){
@@ -171,6 +181,7 @@ void printInfoParent(List_parent L) {
             cout<<info(P).ID<<endl;
             cout<<info(P).namaPeminjam<<endl;
             cout<<info(P).nomorIdentitas<<endl;
+            cout<<info(P).harga<<endl;
             printDate(info(P).waktucheckIn);
             printDate(info(P).waktucheckOut);
             printDate(info(P).waktuPeminjaman);

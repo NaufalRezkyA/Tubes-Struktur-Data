@@ -12,10 +12,14 @@ void mainMenu()
     int choice;
     List_parent LP;
     List_child LC;
-    DataPeminjam DataPeminjam;
+    List_relasi LR;
+    DataPeminjam Datapeminjam;
     DataMotor DataMtr;
+    address_parent P;
+    address_child Q;
     createListParent(LP);
     createListChild(LC);
+    createListRelasi(LR);
     DataM(LC);
     do
     {
@@ -25,7 +29,7 @@ void mainMenu()
         cout << "3. Daftar motor yang ada" << endl;
         cout << "4. Daftar motor yang tersedia" << endl;
         cout << "5. Catatan peminjaman motor" << endl;
-        cout << "6. Edit data peminjama motor" << endl;
+        cout << "6. Edit data peminjaman motor" << endl;
         cout << "7. Delete Data Peminjaman" << endl;
         cout << "8. Delete Data Motor" << endl;
         cout << "9. Reset Data" << endl;
@@ -35,9 +39,12 @@ void mainMenu()
         switch (choice)
         {
         case 1:
-            inputDataPeminjam(DataPeminjam);
-            insertLastParent(LP, alokasiParent(DataPeminjam));
-            break;
+            inputDataPeminjam(Datapeminjam);
+            P = alokasiParent(Datapeminjam); 
+            insertLastParent(LP, P);
+            Q = findElmChild(LC, Datapeminjam.IDMotor);
+            insertLastRelasi(LR, alokasiRelasi(P,Q));
+            break; 
         case 2:
             inputDataMotor(DataMtr);
             insertLastChild(LC, alokasiChild(DataMtr));
@@ -46,10 +53,10 @@ void mainMenu()
             printInfoChild(LC);
             break;
         case 4:
-
+            
             break;
         case 5:
-
+            printInfoRelasi(LR);
             break;
         case 6:
 
