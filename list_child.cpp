@@ -131,7 +131,10 @@ void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
         P = NULL;
     }
 }
+void deleteByID(List_child &L, int ID){
+    address_child P,R;
 
+}
 void printInfoChild(List_child L) {
     address_child P = first(L);
     do{
