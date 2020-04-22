@@ -133,7 +133,24 @@ void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
 }
 void deleteByID(List_child &L, int ID){
     address_child P,R;
+    P = L.first;
 
+    if (L.first == NULL){
+        deleteFirstChild(L,R);
+        dealokasiChild(R);
+    }else{
+        if(P->info.ID == id_x){
+            deleteFirstChild(L, R);
+            dealokasiChild(R);
+        }else{
+            while(P != NULL && P->info.ID != ID){
+                P = P->next;
+            }
+            P = P->prev;
+            deleteAfterChild(L,P,R);
+            dealokasiChild(R);
+        }
+    }
 }
 void printInfoChild(List_child L) {
     address_child P = first(L);
