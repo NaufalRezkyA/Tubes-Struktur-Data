@@ -216,3 +216,16 @@ void disconnected(List_relasi L, int ID)
         }
     }
 }
+
+void MotorYangTersedia(List_relasi LR, List_child LC){
+    address_child R = first(LC);
+    do
+    {
+        if (findElmRelasiByChild(LR, R) == NULL)
+        {
+            cout << "->" << info(R).NamaMotor << endl;
+        }
+        R = next(R);
+    } while (R != first(LC));
+}
+    

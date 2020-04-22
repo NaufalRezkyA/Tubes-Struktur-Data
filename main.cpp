@@ -56,13 +56,7 @@ void mainMenu()
             printInfoChild(LC);
             break;
         case 4:
-            address_child R = first(LC);
-            do{
-                if(findElmRelasiByChild(LR, R)==NULL){
-                    cout<<"->"<<info(R).NamaMotor<<endl;
-                }
-                R = next(R);
-            }while(R = first(LC));
+            MotorYangTersedia(LR, LC);
             break;
         case 5:
             printInfoRelasi(LR);

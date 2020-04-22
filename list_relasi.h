@@ -47,4 +47,5 @@ void printInfoRelasi(List_relasi L);
 void printInfoTerbaru(List_relasi L);
 
 void insertAndsort(List_relasi L, address_relasi x);
+void MotorYangTersedia(List_relasi LR, List_child LC);
 #endif // LIST_RELASI_H_INCLUDED
