@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <ctime>
+#include <stdlib.h>
 using namespace std;
 
 #define first(L) L.first
@@ -51,6 +52,7 @@ void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
 void PrintDate(Date x);
 
 void inputDataPeminjam(infotype_parent &x);
+void deleteByIDparent(List_parent &L, int ID);
 
 int randomInt(int ID);
 address_parent alokasiParent(infotype_parent x);

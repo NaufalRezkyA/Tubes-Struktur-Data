@@ -8,6 +8,7 @@ void createListRelasi(List_relasi &L) {
 void disconnected (address_parent P, address_child C){
 
 }
+
 address_relasi alokasiRelasi(address_parent P, address_child C) {
     address_relasi Q = new elmlist_relasi;
     child(Q) = C;
@@ -122,44 +123,21 @@ void penentuWaktu();
 void insertAndsort(List_relasi L, address_relasi x){
     address_relasi P, Q;
     P = L.first;
-    if (P == NULL || info(parent(P)).waktucheckOut.tahun >=
-        info(parent(x)).waktucheckOut.tahun &&
-        info(parent(P)).waktucheckOut.bulan >=
-        info(parent(x)).waktucheckOut.bulan &&
-        info(parent(P)).waktucheckOut.tanggal >=
-        info(parent(x)).waktucheckOut.tanggal &&
-        info(parent(P)).waktucheckOut.jam >=
-        info(parent(x)).waktucheckOut.menit)
+
+    if (P == NULL || info(parent(P)).waktucheckOut.tahun >= 
+        info(parent(x)).waktucheckOut.tahun)
     {
         insertFirstRelasi(L, x);
     }
     else if (info(parent(last(L))).waktucheckOut.tahun <=
-        info(parent(x)).waktucheckOut.tahun &&
-        info(parent(last(L))).waktucheckOut.bulan <=
-        info(parent(x)).waktucheckOut.bulan &&
-        info(parent(last(L))).waktucheckOut.tanggal <=
-        info(parent(x)).waktucheckOut.tanggal &&
-        info(parent(last(L))).waktucheckOut.jam <=
-        info(parent(x)).waktucheckOut.jam &&
-        info(parent(last(L))).waktucheckOut.menit <=
-        info(parent(x)).waktucheckOut.menit)
+        info(parent(x)).waktucheckOut.tahun)
     {
         insertLastRelasi(L, x);
     }
     else
     {
-        while (P != NULL && info(parent(P)).waktucheckOut.tahun <
-            info(parent(x)).waktucheckOut.tahun &&
-            info(parent(P)).waktucheckOut.tahun <
-            info(parent(x)).waktucheckOut.bulan &&
-            info(parent(P)).waktucheckOut.bulan <
-            info(parent(x)).waktucheckOut.tanggal &&
-            info(parent(P)).waktucheckOut.tahun <
-            info(parent(x)).waktucheckOut.tahun &&
-            info(parent(P)).waktucheckOut.tahun <
-            info(parent(x)).waktucheckOut.tahun &&
-            info(parent(P)).waktucheckOut.tahun <
-            info(parent(x)).waktucheckOut.tahun )
+        while (P != NULL && info(parent(P)).waktucheckOut.tahun < 
+            info(parent(x)).waktucheckOut.tahun)
         {
             P = P->next;
         }

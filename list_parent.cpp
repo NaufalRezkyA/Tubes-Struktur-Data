@@ -198,3 +198,37 @@ address_parent findElmParent(List_parent L, infotype_parent x) {
     } while(P != first(L));
     return NULL;
 }
+
+void deleteByIDparent(List_parent &L, int ID){
+    address_parent P, R;
+    P = L.first;
+
+    if (L.first == NULL)
+    {
+        deleteFirstParent(L, R);
+        dealokasiParent(R);
+    }
+    else
+    {
+        if (P->info.ID == ID)
+        {
+            deleteFirstParent(L, R);
+            dealokasiParent(R);
+        }
+        else if (info(last(L)) == id_x)
+        {
+            deleteLast(L, R);
+            deallocate(R);
+        }
+        else
+        {
+            while (P != NULL && inf != X)
+            {
+                P = P->next;
+            }
+            P = prev(P);
+            deleteAfterParent(L, P, R);
+            dealokasiParent(R);
+        }
+    }
+}   
