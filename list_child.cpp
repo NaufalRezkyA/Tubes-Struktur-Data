@@ -74,7 +74,7 @@ void insertLastChild(List_child &L, address_child P){
     }
 }
 
-void insertAfterChild(List_child &L, address_child &Prec, address_child P)
+void insertAfterChild(List_child &L, address_child Prec, address_child P)
 {
     if (first(L) == NULL)
     {
@@ -141,7 +141,8 @@ void deleteByIDChild(List_child &L, string ID){
     }
     else
     {
-        if (info(prev(P)).ID == ID)
+
+        if (info(first(L)).ID == ID)
         {
             deleteFirstChild(L, R);
             dealokasiChild(R);
@@ -156,7 +157,7 @@ void deleteByIDChild(List_child &L, string ID){
             do{
                 P = P->next;
             }while (P != first(L) && info(prev(P)).ID != ID);
-            P = prev(P);
+            P=prev(prev(P));
             deleteAfterChild(L, P, R);
             dealokasiChild(R);
         }
@@ -184,6 +185,30 @@ address_child findElmChild(List_child L, string x) {
     return NULL;
 }
 
+void insertAndsortChild(List_child L, address_child x)
+{
+    address_child P, Q;
+    P = L.first;
+
+    if (P == NULL || P->info.tahunMotor >= info(x).tahunMotor)
+    {
+        insertFirstChild(L, x);
+    }
+    else if (info(prev(first(L))).tahunMotor <= info(x).tahunMotor)
+    {
+        insertLastChild(L, x);
+    }
+    else
+    {
+        do
+        {
+            P = P->next;
+        } while (P != first(L) && info(prev(P)).tahunMotor != info(x).tahunMotor);
+        P = prev(prev(P));
+        insertAfterChild(L, P, x);
+    }
+}
+
 void DataM()
 {
     List_child LC;
@@ -191,13 +216,13 @@ void DataM()
     x.ID = "BT20";
     x.NamaMotor = "BEAT F1";
     x.tahunMotor = 2020;
-    insertLastChild(LC, alokasiChild(x));
+    insertAndsortChild(LC, alokasiChild(x));
     x.ID = "BT12";
     x.NamaMotor = "BEAT A1";
     x.tahunMotor = 2012;
-    insertLastChild(LC, alokasiChild(x));
+    insertAndsortChild(LC, alokasiChild(x));
     x.ID = "BT10";
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2010;
-    insertLastChild(LC, alokasiChild(x));
+    insertAndsortChild(LC, alokasiChild(x));
 }

@@ -44,7 +44,7 @@ void mainMenu()
         case 1:
             inputDataPeminjam(Datapeminjam);
             P = alokasiParent(Datapeminjam); 
-            insertLastParent(LP, P);
+            insertAndsortParent(LP, P);
             Q = findElmChild(LC, Datapeminjam.IDMotor);
             insertLastRelasi(LR, alokasiRelasi(P,Q));
             break; 
@@ -56,7 +56,13 @@ void mainMenu()
             printInfoChild(LC);
             break;
         case 4:
-            
+            address_child R = first(LC);
+            do{
+                if(findElmRelasiByChild(LR, R)==NULL){
+                    cout<<"->"<<info(R).NamaMotor<<endl;
+                }
+                R = next(R);
+            }while(R = first(LC));
             break;
         case 5:
             printInfoRelasi(LR);

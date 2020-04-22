@@ -46,6 +46,7 @@ void dealokasiChild(address_child &P);
 address_child findElmChild(List_child L, string x);
 void printInfoChild(List_child L);
 
+void insertAndsortChild(List_child L, address_child x);
 void DataM(List_child &LC);
 
 #endif // LIST_CHILD_H_INCLUDED

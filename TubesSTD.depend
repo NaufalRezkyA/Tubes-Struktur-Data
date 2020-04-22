@@ -26,7 +26,7 @@
 	"list_parent.h"
 	"list_relasi.h"
 
-1587563070 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
+1587564435 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
 	"list_child.h"
 
 1587562122 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
@@ -50,7 +50,7 @@
 	"list_parent.h"
 	<iostream>
 
-1587563590 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+1587564192 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
 	<iostream>
 	"list_child.h"
 	"list_parent.h"

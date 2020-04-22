@@ -129,29 +129,32 @@ void printInfoTerbaru(List_relasi L){
 void penentuWaktu();
 
 void insertAndsort(List_relasi L, address_relasi x){
-    address_relasi P, Q;
+    /*address_relasi P, Q;
     P = L.first;
 
-    if (P == NULL || info(parent(P)).waktucheckOut.tahun >=
-        info(parent(x)).waktucheckOut.tahun)
-    {
-        insertFirstRelasi(L, x);
-    }
-    else if (info(parent(last(L))).waktucheckOut.tahun <=
-        info(parent(x)).waktucheckOut.tahun)
-    {
-        insertLastRelasi(L, x);
-    }
-    else
-    {
-        while (P != NULL && info(parent(P)).waktucheckOut.tahun <
-            info(parent(x)).waktucheckOut.tahun)
+    if (info(parent(P)).waktucheckOut.tahun ==
+        info(parent(x)).waktucheckOut.tahun){
+        if (P == NULL || info(parent(P)).waktucheckOut.tahun >=
+                             info(parent(x)).waktucheckOut.tahun)
         {
-            P = P->next;
+            insertFirstRelasi(L, x);
         }
-        P = prev(P);
-        insertAfterRelasi(P, x);
-    }
+        else if (info(parent(last(L))).waktucheckOut.tahun <=
+                 info(parent(x)).waktucheckOut.tahun)
+        {
+            insertLastRelasi(L, x);
+        }
+        else
+        {
+            while (P != NULL && info(parent(P)).waktucheckOut.tahun <
+                                    info(parent(x)).waktucheckOut.tahun)
+            {
+                P = P->next;
+            }
+            P = prev(P);
+            insertAfterRelasi(P, x);
+        }
+        }*/
 }
 
 address_relasi findElmRelasiByParent(List_relasi L, address_parent P) {

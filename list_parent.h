@@ -54,4 +54,6 @@ void dealokasiParent(address_parent &P);
 address_parent findElmParent(List_parent L, int ID);
 void printInfoParent(List_parent L);
 
+void insertAndsortParent(List_parent L, address_parent x);
+
 #endif // LIST_PARENT_H_INCLUDED

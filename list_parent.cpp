@@ -242,4 +242,35 @@ void deleteByIDparent(List_parent &L, int ID){
             dealokasiParent(R);
         }
     }
-}   
+}
+
+void insertAndsortParent(List_parent L, address_parent x){
+    address_parent P, Q;
+    P = L.first;
+
+    address_parent R, last;
+    R = first(L);
+    while (R->next != NULL)
+    {
+        R = R->next;
+    }
+    last = R;
+
+    if (P == NULL || P->info.ID >= info(x).ID)
+    {
+        insertFirstParent(L, x);
+    }
+    else if (info(R).ID <= info(x).ID)
+    {
+        insertLastParent(L, x);
+    }
+    else
+    {
+        while (P != NULL && P->info.ID < info(x).ID)
+        {
+            P = P->next;
+        }
+        P = prev(P);
+        insertAfterParent(L, P, x);
+    }
+}
