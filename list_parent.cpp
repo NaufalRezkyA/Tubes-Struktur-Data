@@ -125,12 +125,9 @@ void insertAfterParent(List_parent &L, address_parent Prec, address_parent P){
 void insertLastParent(List_parent &L, address_parent P){
     address_parent Q;
     Q = L.first;
-    cout<<"masuk";
     if(first(L)==NULL){
         first(L) = P;
-        cout<<"Masuk1";
     }else{
-        cout << "masuk2";
         while (Q->next != NULL)
         {
             Q = Q->next;

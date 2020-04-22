@@ -33,6 +33,7 @@ void mainMenu()
         cout << "7. Delete Data Peminjaman" << endl;
         cout << "8. Delete Data Motor" << endl;
         cout << "9. Reset Data" << endl;
+        cout << "10. 3 Data terbaru" << endl;
         cout << "0. Quit" << endl;
         cout << "Masukan angka:";
         cin >> choice;
@@ -64,7 +65,16 @@ void mainMenu()
         case 7:
 
             break;
+
+        case 8:
+            break;
+        case 9:
+            break;
+        case 10:
+            printInfoTerbaru(LR);
+            break;
         }
+        
         if (choice == 0)
         {
             break;

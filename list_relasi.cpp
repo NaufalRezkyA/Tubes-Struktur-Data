@@ -2,6 +2,7 @@
 
 void createListRelasi(List_relasi &L) {
     first(L) = NULL;
+    last(L) = NULL;
 }
 
 address_relasi alokasiRelasi(address_parent P, address_child C) {
@@ -9,6 +10,7 @@ address_relasi alokasiRelasi(address_parent P, address_child C) {
     child(Q) = C;
     parent(Q) = P;
     next(Q) = NULL;
+    prev(Q) = NULL;
     return Q;
 }
 
@@ -17,61 +19,77 @@ void dealokasiRelasi(address_relasi &P){
 }
 
 void insertFirstRelasi(List_relasi &L, address_relasi P) {
-    next(P) = first(L);
-    first(L) = P;
+    if (L.first != NULL)
+    {
+        P->next = L.first;
+        prev(L.first) = P;
+        L.first = P;
+    }
+    else
+    {
+        L.first = P;
+        L.last = P;
+    }
 }
 
-void insertAfterRelasi(address_relasi &Prec, address_relasi P)
+void insertAfterRelasi(address_relasi Prec, address_relasi P)
 {
-    next(P) = next(Prec);
-    next(Prec) = P;
+    P->next = Prec->next;
+    P->prev = Prec;
+    prev(next(Prec)) = P;
+    Prec->next = P;
 }
 
 void insertLastRelasi(List_relasi &L, address_relasi P){
-    address_relasi Q;
-    Q = L.first;
-    if (first(L)!=NULL){
-        while (Q->next != NULL)
-        {
-            Q = Q->next;
-        }
-        Q->next = P;
-    }else{
-        first(L)=P;
+    if (L.first != NULL)
+    {
+        P->prev = L.last;
+        next(L.last) = P;
+        L.last = P;
+    }
+    else
+    {
+        L.last = P;
+        L.first = P;
     }
 }
 
 void deleteFirstRelasi(List_relasi &L, address_relasi &P){
-    if (L.first != NULL)
+    P = L.first;
+    if (L.first != last(L))
     {
-        P = L.first;
-        L.first = P->next;
-        P->next = NULL;
+        L.first = next(P);
+        next(P) = NULL;
+        prev(L.first) = NULL;
+    }
+    else
+    {
+        L.first = NULL;
+        L.last = NULL;
     }
 }
 
 void deleteLastRelasi(List_relasi &L, address_relasi &P){
-    address_relasi Q;
-    Q = L.first;
-    if (Q->next == NULL)
+    P = L.last;
+    if (L.last != first(L))
     {
-        deleteFirstRelasi(L, Q);
+        L.last = prev(P);
+        prev(P) = NULL;
+        next(L.last) = NULL;
     }
     else
     {
-        while ((Q->next)->next != NULL)
-        {
-            Q = Q->next;
-        }
-        P = Q->next;
-        Q->next = NULL;
+        L.first = NULL;
+        L.last = NULL;
     }
 }
 
 void deleteAfterRelasi(address_relasi Prec, address_relasi &P){
-    P = Prec->next;
-    Prec->next = P->next;
-    P->next = NULL;
+    P = next(Prec);
+    next(Prec) = next(P);
+    prev(next(P)) = Prec;
+    next(P) = NULL;
+    prev(P) = NULL;
 }
 
 void printInfoRelasi(List_relasi L) {
@@ -84,6 +102,68 @@ void printInfoRelasi(List_relasi L) {
     }
 }
 
+void printInfoTerbaru(List_relasi L){
+    address_relasi P = last(L);
+    int i = 0;
+    while (P != NULL && i<=3)
+    {
+        cout << info(parent(P)).namaPeminjam;
+        cout << info(parent(P)).durasiPeminjaman;
+        cout << info(child(P)).ID;
+        P = prev(P);
+    }
+}
+
+void penentuWaktu();
+
+void insertAndsort(List_relasi L, address_relasi x){
+    address_relasi P, Q;
+    P = L.first;
+    if (P == NULL || info(parent(P)).waktucheckOut.tahun >= 
+        info(parent(x)).waktucheckOut.tahun && 
+        info(parent(P)).waktucheckOut.bulan >= 
+        info(parent(x)).waktucheckOut.bulan &&
+        info(parent(P)).waktucheckOut.tanggal >= 
+        info(parent(x)).waktucheckOut.tanggal &&
+        info(parent(P)).waktucheckOut.jam >= 
+        info(parent(x)).waktucheckOut.menit)
+    {
+        insertFirstRelasi(L, x);
+    }
+    else if (info(parent(last(L))).waktucheckOut.tahun <=
+        info(parent(x)).waktucheckOut.tahun &&
+        info(parent(last(L))).waktucheckOut.bulan <=
+        info(parent(x)).waktucheckOut.bulan &&
+        info(parent(last(L))).waktucheckOut.tanggal <=
+        info(parent(x)).waktucheckOut.tanggal &&
+        info(parent(last(L))).waktucheckOut.jam <=
+        info(parent(x)).waktucheckOut.jam &&
+        info(parent(last(L))).waktucheckOut.menit <=
+        info(parent(x)).waktucheckOut.menit)
+    {
+        insertLastRelasi(L, x);
+    }
+    else
+    {
+        while (P != NULL && info(parent(P)).waktucheckOut.tahun < 
+            info(parent(x)).waktucheckOut.tahun &&
+            info(parent(P)).waktucheckOut.tahun < 
+            info(parent(x)).waktucheckOut.bulan &&
+            info(parent(P)).waktucheckOut.bulan < 
+            info(parent(x)).waktucheckOut.tanggal &&
+            info(parent(P)).waktucheckOut.tahun < 
+            info(parent(x)).waktucheckOut.tahun &&
+            info(parent(P)).waktucheckOut.tahun < 
+            info(parent(x)).waktucheckOut.tahun &&
+            info(parent(P)).waktucheckOut.tahun < 
+            info(parent(x)).waktucheckOut.tahun &&)
+        {
+            P = P->next;
+        }
+        P = prev(P);
+        insertAfterRelasi(P, x);
+    }
+}
 
 address_relasi findElmRelasi(List_relasi L, address_parent P, address_child C) {
     address_relasi Q = first(L);
