@@ -5,6 +5,10 @@ void createListRelasi(List_relasi &L) {
     last(L) = NULL;
 }
 
+void disconnected (address_parent P, address_child C){
+
+}
+
 address_relasi alokasiRelasi(address_parent P, address_child C) {
     address_relasi Q = new elmlist_relasi;
     child(Q) = C;
@@ -119,6 +123,7 @@ void penentuWaktu();
 void insertAndsort(List_relasi L, address_relasi x){
     address_relasi P, Q;
     P = L.first;
+
     if (P == NULL || info(parent(P)).waktucheckOut.tahun >= 
         info(parent(x)).waktucheckOut.tahun)
     {

@@ -1,6 +1,7 @@
 #ifndef LIST_PARENT_H_INCLUDED
 #define LIST_PARENT_H_INCLUDED
 
+#include <stdlib.h>
 #include <iostream>
 #include <ctime>
 #include <stdlib.h>
