@@ -203,6 +203,13 @@ void deleteByIDparent(List_parent &L, int ID){
     address_parent P, R;
     P = L.first;
 
+    address_parent Q,last;
+    while (Q->next != NULL)
+    {
+        Q = Q->next;
+    }
+    last = Q;
+
     if (L.first == NULL)
     {
         deleteFirstParent(L, R);
@@ -215,10 +222,10 @@ void deleteByIDparent(List_parent &L, int ID){
             deleteFirstParent(L, R);
             dealokasiParent(R);
         }
-        else if (info(last(L)) == id_x)
+        else if (info(last).ID == ID)
         {
-            deleteLast(L, R);
-            deallocate(R);
+            deleteLastParent(L, R);
+            dealokasiParent(R);
         }
         else
         {
