@@ -175,7 +175,7 @@ void printInfoParent(List_parent L) {
 
     address_parent P = first(L);
     if(first(L)!=NULL) {
-        while ((P) != first(L))
+        while ((P) != NULL)
         {
             cout<<info(P).ID<<endl;
             cout<<info(P).namaPeminjam<<endl;

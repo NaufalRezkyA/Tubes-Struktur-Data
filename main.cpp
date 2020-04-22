@@ -35,6 +35,7 @@ void mainMenu()
         cout << "8. Delete Data Motor" << endl;
         cout << "9. Reset Data" << endl;
         cout << "10. 3 Data terbaru" << endl;
+        cout << "11. Data peminjam" << endl;
         cout << "0. Quit" << endl;
         cout << "Masukan angka:";
         cin >> choice;
@@ -42,11 +43,11 @@ void mainMenu()
         {
         case 1:
             inputDataPeminjam(Datapeminjam);
-            P = alokasiParent(Datapeminjam); 
+            P = alokasiParent(Datapeminjam);
             insertLastParent(LP, P);
             Q = findElmChild(LC, Datapeminjam.IDMotor);
             insertLastRelasi(LR, alokasiRelasi(P,Q));
-            break; 
+            break;
         case 2:
             inputDataMotor(DataMtr);
             insertLastChild(LC, alokasiChild(DataMtr));
@@ -55,7 +56,7 @@ void mainMenu()
             printInfoChild(LC);
             break;
         case 4:
-            
+
             break;
         case 5:
             printInfoRelasi(LR);
@@ -67,8 +68,20 @@ void mainMenu()
             cout<<info(P).ID<<endl;
             if (P != NULL)
             {
-                deleteByIDparent(LP, id);
-                cout << "Data berhasil dihapus.." << endl;
+                address_relasi Q = findElmRelasiByParent(LR, P);
+                if(Q!=NULL){
+                    cout<<"ID akan menggunakan Motor pada:";
+                    //PrintDate(info(P).waktucheckIn);
+                    cout<<"Dengan menghapus data peminjam maka akan menghapus data peminjaman motor"<<endl;
+                    cout<<"Apakah anda ingin menghapusnya(Y/N)?";
+                    char penentuDelete;
+                    cin>> penentuDelete;
+                    if (penentuDelete=='Y'){
+                        disconnected(LR, info(P).ID);
+                    }
+                    deleteByIDparent(LP, id);
+                    cout << "Data berhasil dihapus.." << endl;
+                }
             }
             else
             {
@@ -87,8 +100,11 @@ void mainMenu()
         case 10:
             printInfoTerbaru(LR);
             break;
+        case 11:
+            printInfoParent(LP);
+            break;
         }
-        
+
         if (choice == 0)
         {
             break;
