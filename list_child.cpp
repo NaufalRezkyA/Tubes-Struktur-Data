@@ -131,9 +131,36 @@ void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
         P = NULL;
     }
 }
-void deleteByID(List_child &L, int ID){
-    address_child P,R;
-
+void deleteByIDChild(List_child &L, string ID){
+    address_child P, R;
+    P = L.first;
+    if (L.first == NULL)
+    {
+        deleteFirstChild(L, R);
+        dealokasiChild(R);
+    }
+    else
+    {
+        if (info(prev(P)).ID == ID)
+        {
+            deleteFirstChild(L, R);
+            dealokasiChild(R);
+        }
+        else if (info(prev(P)).ID == ID)
+        {
+            deleteLastChild(L, R);
+            dealokasiChild(R);
+        }
+        else
+        {
+            do{
+                P = P->next;
+            }while (P != first(L) && info(prev(P)).ID != ID);
+            P = prev(P);
+            deleteAfterChild(L, P, R);
+            dealokasiChild(R);
+        }
+    }
 }
 void printInfoChild(List_child L) {
     address_child P = first(L);

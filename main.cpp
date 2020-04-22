@@ -68,8 +68,21 @@ void mainMenu()
             cout<<info(P).ID<<endl;
             if (P != NULL)
             {
-                deleteByIDparent(LP, id);
-                cout << "Data berhasil dihapus.." << endl;
+                address_relasi Q = findElmRelasiByParent(LR, P);
+                if(Q!=NULL){
+                    cout<<"ID akan menggunakan Motor pada:"<<endl;
+                    printDate(info(P).waktucheckIn);
+                    cout<<"Dengan menghapus data peminjam maka akan menghapus data peminjaman motor"<<endl;
+                    cout<<"Apakah anda ingin menghapusnya(Y/N)?";
+                    char penentuDelete;
+                    cin>> penentuDelete;
+                    if (penentuDelete=='Y'){
+                        disconnected(LR, info(P).ID);
+                    }
+                    cout<<"dc sukses";
+                    deleteByIDparent(LP, id);
+                    cout << "Data berhasil dihapus.." << endl;
+                }
             }
             else
             {

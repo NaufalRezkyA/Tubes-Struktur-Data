@@ -5,10 +5,6 @@ void createListRelasi(List_relasi &L) {
     last(L) = NULL;
 }
 
-void disconnected (address_parent P, address_child C){
-
-}
-
 address_relasi alokasiRelasi(address_parent P, address_child C) {
     address_relasi Q = new elmlist_relasi;
     child(Q) = C;
@@ -103,12 +99,17 @@ void deleteAfterRelasi(address_relasi Prec, address_relasi &P){
 
 void printInfoRelasi(List_relasi L) {
     address_relasi P = first(L);
-    while(P !=NULL) {
-        cout<<info(parent(P)).namaPeminjam<<endl;
-        cout<<info(parent(P)).ID<<endl;
-        cout<<info(parent(P)).durasiPeminjaman<<endl;
-        cout<<info(child(P)).ID<<endl;
-        P = next(P);
+    if (parent(P)==NULL || child(P)==NULL){
+        cout<<"Kosong"<<endl;
+    }else{
+        cout<<"list";
+        while(P !=NULL) {
+            cout<<info(parent(P)).namaPeminjam<<endl;
+            cout<<info(parent(P)).ID<<endl;
+            cout<<info(parent(P)).durasiPeminjaman<<endl;
+            cout<<info(child(P)).ID<<endl;
+            P = next(P);
+        }
     }
 }
 
@@ -153,10 +154,10 @@ void insertAndsort(List_relasi L, address_relasi x){
     }
 }
 
-address_relasi findElmRelasi(List_relasi L, address_parent P, address_child C) {
+address_relasi findElmRelasiByParent(List_relasi L, address_parent P) {
     address_relasi Q = first(L);
     while(Q != NULL) {
-        if(parent(Q)==P && child(Q)== C) {
+        if(parent(Q)==P) {
             return Q;
         }
         Q = next(Q);
@@ -164,4 +165,51 @@ address_relasi findElmRelasi(List_relasi L, address_parent P, address_child C) {
     return NULL;
 }
 
+address_relasi findElmRelasiByChild(List_relasi L,address_child C) {
+    address_relasi Q = first(L);
+    while(Q != NULL) {
+        if(child(Q)== C) {
+            return Q;
+        }
+        Q = next(Q);
+    }
+    return NULL;
+}
 
+void disconnected(List_relasi L, int ID)
+{
+    address_relasi P, R;
+    P = L.first;
+
+    if (L.first == NULL)
+    {
+        cout<<"masuk";
+        deleteFirstRelasi(L, R);
+        dealokasiRelasi(R);
+    }
+    else
+    {
+        
+        if (info(parent(P)).ID == ID)
+        {
+            cout<<"masuk2";
+            deleteFirstRelasi(L, R);
+            dealokasiRelasi(R);
+        }
+        else if (info(parent(last(L))).ID == ID)
+        {
+            deleteLastRelasi(L, R);
+            dealokasiRelasi(R);
+        }
+        else
+        {
+            while (P != NULL && info(parent(P)).ID != ID)
+            {
+                P = P->next;
+            }
+            P = prev(P);
+            deleteAfterRelasi(P, R);
+            dealokasiRelasi(R);
+        }
+    }
+}

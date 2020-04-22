@@ -19,7 +19,8 @@ struct DataPeminjam
 {
     int ID, harga,nomorIdentitas, durasiPeminjaman;
     string namaPeminjam, IDMotor;
-    Date waktuPeminjaman,waktucheckIn,waktucheckOut;
+    Date waktuPeminjaman;
+    Date waktucheckIn,waktucheckOut;
 };
 
 typedef DataPeminjam infotype_parent;

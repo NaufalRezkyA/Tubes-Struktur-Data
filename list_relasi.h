@@ -38,10 +38,11 @@ void deleteFirstRelasi(List_relasi &L, address_relasi &P);
 void deleteLastRelasi(List_relasi &L, address_relasi &P);
 void deleteAfterRelasi(address_relasi Prec, address_relasi &P);
 
-void disconnected (address_parent P, address_child C);
+void disconnected(List_relasi L, int ID);
 address_relasi alokasiRelasi( address_parent P, address_child C);
 void dealokasiRelasi(address_relasi &P);
-address_relasi findElmRelasi(List_relasi L, address_parent P, address_child C);
+address_relasi findElmRelasiByParent(List_relasi L, address_parent P);
+address_relasi findElmRelasiByChild(List_relasi L, address_child C); 
 void printInfoRelasi(List_relasi L);
 void printInfoTerbaru(List_relasi L);
 
