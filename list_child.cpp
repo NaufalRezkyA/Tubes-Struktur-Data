@@ -131,7 +131,7 @@ void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
         P = NULL;
     }
 }
-void deleteByID(List_child &L, int ID){
+void deleteByID(List_child &L, string ID){
     address_child P,R;
     P = L.first;
 
