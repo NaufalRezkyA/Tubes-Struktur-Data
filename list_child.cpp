@@ -139,7 +139,7 @@ void deleteByID(List_child &L, int ID){
         deleteFirstChild(L,R);
         dealokasiChild(R);
     }else{
-        if(P->info.ID == id_x){
+        if(P->info.ID == ID){
             deleteFirstChild(L, R);
             dealokasiChild(R);
         }else{

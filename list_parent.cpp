@@ -32,7 +32,7 @@ void inputDataPeminjam(infotype_parent &x)
 
     string waktu;
     cout<<"durasi peminjaman(jam/hari):"<<endl;
-    x.durasiPeminjaman = 8; 
+    x.durasiPeminjaman = 8;
     waktu = "hari";
     if (waktu == "hari"){
         x.durasiPeminjaman= x.durasiPeminjaman*24;
@@ -133,7 +133,7 @@ void insertLastParent(List_parent &L, address_parent P){
             Q = Q->next;
         }
         Q->next = P;
-        
+
     }
 }
 
@@ -215,14 +215,9 @@ void deleteByIDparent(List_parent &L, int ID){
             deleteFirstParent(L, R);
             dealokasiParent(R);
         }
-        else if (info(last(L)) == id_x)
-        {
-            deleteLast(L, R);
-            deallocate(R);
-        }
         else
         {
-            while (P != NULL && inf != X)
+            while (P != NULL && info(P) != ID)
             {
                 P = P->next;
             }
@@ -231,4 +226,4 @@ void deleteByIDparent(List_parent &L, int ID){
             dealokasiParent(R);
         }
     }
-}   
+}
