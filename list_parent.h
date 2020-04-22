@@ -57,7 +57,7 @@ void deleteByIDparent(List_parent &L, int ID);
 int randomInt(int ID);
 address_parent alokasiParent(infotype_parent x);
 void dealokasiParent(address_parent &P);
-address_parent findElmParent(List_parent L, infotype_parent x);
+address_parent findElmParent(List_parent L, int ID);
 void printInfoParent(List_parent L);
 
 #endif // LIST_PARENT_H_INCLUDED
