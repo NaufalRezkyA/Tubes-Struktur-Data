@@ -21,7 +21,6 @@ void mainMenu()
     createListChild(LC);
     createListRelasi(LR);
     DataM(LC);
-    int id;
     do
     {
         cout << "Menu Peminjaman Motor" << endl;
@@ -61,23 +60,10 @@ void mainMenu()
             printInfoRelasi(LR);
             break;
         case 6:
-            cout << "Masukkan ID member yang ingin di hapus: ";
-            cin >> id;
-            P = findElmParent(LP, id);
-            cout<<info(P).ID<<endl;
-            if (P != NULL)
-            {
-                deleteByIDparent(LP, id);
-                cout << "Data berhasil dihapus.." << endl;
-            }
-            else
-            {
-                cout << "Data Tidak ada.." << endl;
-            }
-            cout << endl;
+
             break;
         case 7:
-
+            
             break;
 
         case 8:

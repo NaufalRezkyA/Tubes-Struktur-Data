@@ -174,8 +174,7 @@ void printInfoParent(List_parent L) {
 
     address_parent P = first(L);
     if(first(L)!=NULL) {
-        while ((P) != first(L))
-        {
+        do {
             cout<<info(P).ID<<endl;
             cout<<info(P).namaPeminjam<<endl;
             cout<<info(P).nomorIdentitas<<endl;
@@ -184,20 +183,19 @@ void printInfoParent(List_parent L) {
             printDate(info(P).waktucheckOut);
             printDate(info(P).waktuPeminjaman);
             P = next(P);
-        }
+        } while((P)!=first(L));
     }
 }
 
-address_parent findElmParent(List_parent L, int ID) {
+address_parent findElmParent(List_parent L, infotype_parent x) {
 
     address_parent P = first(L);
-    while (P != NULL)
-    {
-        if(info(P).ID == ID) {
+    do {
+        if(info(P).ID == x.ID) {
             return P;
         }
         P = next(P);
-    }
+    } while(P != first(L));
     return NULL;
 }
 
@@ -205,7 +203,7 @@ void deleteByIDparent(List_parent &L, int ID){
     address_parent P, R;
     P = L.first;
 
-    address_parent Q,last;
+    address_parent last;
     Q = first(L);
     while (Q->next != NULL)
     {
@@ -232,7 +230,7 @@ void deleteByIDparent(List_parent &L, int ID){
         }
         else
         {
-            while (P != NULL && P->info.ID != ID)
+            while (P != NULL && inf != X)
             {
                 P = P->next;
             }
