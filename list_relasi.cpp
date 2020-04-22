@@ -99,9 +99,10 @@ void deleteAfterRelasi(address_relasi Prec, address_relasi &P){
 void printInfoRelasi(List_relasi L) {
     address_relasi P = first(L);
     while(P !=NULL) {
-        cout<<info(parent(P)).namaPeminjam;
-        cout<<info(parent(P)).durasiPeminjaman;
-        cout<<info(child(P)).ID;
+        cout<<info(parent(P)).namaPeminjam<<endl;
+        cout<<info(parent(P)).ID<<endl;
+        cout<<info(parent(P)).durasiPeminjaman<<endl;
+        cout<<info(child(P)).ID<<endl;
         P = next(P);
     }
 }
@@ -124,7 +125,7 @@ void insertAndsort(List_relasi L, address_relasi x){
     address_relasi P, Q;
     P = L.first;
 
-    if (P == NULL || info(parent(P)).waktucheckOut.tahun >= 
+    if (P == NULL || info(parent(P)).waktucheckOut.tahun >=
         info(parent(x)).waktucheckOut.tahun)
     {
         insertFirstRelasi(L, x);
@@ -136,7 +137,7 @@ void insertAndsort(List_relasi L, address_relasi x){
     }
     else
     {
-        while (P != NULL && info(parent(P)).waktucheckOut.tahun < 
+        while (P != NULL && info(parent(P)).waktucheckOut.tahun <
             info(parent(x)).waktucheckOut.tahun)
         {
             P = P->next;

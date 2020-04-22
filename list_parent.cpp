@@ -31,8 +31,9 @@ void inputDataPeminjam(infotype_parent &x)
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
 
     string waktu;
+    cout<<"masuk";
     cout<<"durasi peminjaman(jam/hari):"<<endl;
-    x.durasiPeminjaman = 8;
+    x.durasiPeminjaman = 8; 
     waktu = "hari";
     if (waktu == "hari"){
         x.durasiPeminjaman= x.durasiPeminjaman*24;
@@ -133,7 +134,7 @@ void insertLastParent(List_parent &L, address_parent P){
             Q = Q->next;
         }
         Q->next = P;
-
+        
     }
 }
 
@@ -174,7 +175,8 @@ void printInfoParent(List_parent L) {
 
     address_parent P = first(L);
     if(first(L)!=NULL) {
-        do {
+        while ((P) != first(L))
+        {
             cout<<info(P).ID<<endl;
             cout<<info(P).namaPeminjam<<endl;
             cout<<info(P).nomorIdentitas<<endl;
@@ -183,19 +185,20 @@ void printInfoParent(List_parent L) {
             printDate(info(P).waktucheckOut);
             printDate(info(P).waktuPeminjaman);
             P = next(P);
-        } while((P)!=first(L));
+        }
     }
 }
 
-address_parent findElmParent(List_parent L, infotype_parent x) {
+address_parent findElmParent(List_parent L, int ID) {
 
     address_parent P = first(L);
-    do {
-        if(info(P).ID == x.ID) {
+    while (P != NULL)
+    {
+        if(info(P).ID == ID) {
             return P;
         }
         P = next(P);
-    } while(P != first(L));
+    }
     return NULL;
 }
 
@@ -203,7 +206,7 @@ void deleteByIDparent(List_parent &L, int ID){
     address_parent P, R;
     P = L.first;
 
-    address_parent last;
+    address_parent Q,last;
     Q = first(L);
     while (Q->next != NULL)
     {
@@ -230,7 +233,7 @@ void deleteByIDparent(List_parent &L, int ID){
         }
         else
         {
-            while (P != NULL && inf != X)
+            while (P != NULL && P->info.ID != ID)
             {
                 P = P->next;
             }
@@ -239,4 +242,4 @@ void deleteByIDparent(List_parent &L, int ID){
             dealokasiParent(R);
         }
     }
-}
+}   
