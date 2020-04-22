@@ -26,13 +26,13 @@
 	"list_parent.h"
 	"list_relasi.h"
 
-1587541595 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
+1587540045 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
 	"list_child.h"
 
-1587541593 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
+1587540045 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
 	<iostream>
 
-1587541594 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
+1587540876 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
 	"list_parent.h"
 
 1587540144 d:\kuliah\semester 2\tubes-struktur-data\list_parent.h
