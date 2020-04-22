@@ -45,5 +45,5 @@ address_relasi findElmRelasi(List_relasi L, address_parent P, address_child C);
 void printInfoRelasi(List_relasi L);
 void printInfoTerbaru(List_relasi L);
 
-void RelasiAscending(List_relasi L);
+void insertAndsort(List_relasi L, address_relasi x);
 #endif // LIST_RELASI_H_INCLUDED

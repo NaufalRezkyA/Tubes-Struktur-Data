@@ -22,6 +22,7 @@ void mainMenu()
     createListRelasi(LR);
     DataM(LC);
     int id;
+    string idmotor;
     do
     {
         cout << "Menu Peminjaman Motor" << endl;
@@ -81,6 +82,12 @@ void mainMenu()
             break;
 
         case 8:
+            cout<<"Masukkan ID motor yang ingin dihapus: ";
+            cin>>idmotor;
+            if (findElmChild(LC, idmotor)!=NULL){
+                deleteByIDChild(LC, idmotor);
+                cout<<"delete berhasil";
+            }
             break;
         case 9:
             break;

@@ -38,7 +38,7 @@ void insertAfterChild(List_child &L, address_child Prec, address_child P);
 void deleteFirstChild(List_child &L, address_child &P);
 void deleteLastChild(List_child &L, address_child &P);
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P);
-void deleteByID(List_child &L, int ID);
+void deleteByIDChild(List_child &L, string ID);
 void inputDataMotor(infotype_child &x);
 
 address_child alokasiChild(infotype_child x);

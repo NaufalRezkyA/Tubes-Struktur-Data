@@ -12,21 +12,14 @@ using namespace std;
 #define info(P) P->info
 
 struct Date{
-    int tanggal;
-    int bulan;
-    int tahun;
-    int jam;
-    int menit;
+    int tanggal,bulan,tahun,jam,menit;
 };
 
 struct DataPeminjam
 {
-    int ID, harga;
-    int nomorIdentitas, durasiPeminjaman;
+    int ID, harga,nomorIdentitas, durasiPeminjaman;
     string namaPeminjam, IDMotor;
-    Date waktuPeminjaman;
-    Date waktucheckIn;
-    Date waktucheckOut;
+    Date waktuPeminjaman,waktucheckIn,waktucheckOut;
 };
 
 typedef DataPeminjam infotype_parent;
@@ -49,7 +42,7 @@ void insertLastParent(List_parent &L, address_parent P);
 void deleteFirstParent(List_parent &L, address_parent &P);
 void deleteLastParent(List_parent &L, address_parent &P);
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
-void PrintDate(Date x);
+void printDate(Date x);
 
 void inputDataPeminjam(infotype_parent &x);
 void deleteByIDparent(List_parent &L, int ID);

@@ -173,6 +173,7 @@ void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P){
 void printInfoParent(List_parent L) {
 
     address_parent P = first(L);
+
     if(first(L)!=NULL) {
         while ((P) != first(L))
         {

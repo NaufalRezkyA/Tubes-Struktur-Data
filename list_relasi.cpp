@@ -59,17 +59,22 @@ void insertLastRelasi(List_relasi &L, address_relasi P){
 }
 
 void deleteFirstRelasi(List_relasi &L, address_relasi &P){
-    P = L.first;
-    if (L.first != last(L))
+    if (L.first->next == NULL)
     {
-        L.first = next(P);
-        next(P) = NULL;
-        prev(L.first) = NULL;
+        cout<<"delete";
+        P = L.first;
+        parent(P) = NULL;
+        child(P) = NULL;
+        P = NULL;
+        L.last = NULL;
+        
     }
     else
     {
-        L.first = NULL;
-        L.last = NULL;
+        P = L.first;
+        L.first = P->next;
+        P->next = NULL;
+        L.first->prev = NULL;
     }
 }
 
@@ -116,6 +121,7 @@ void printInfoTerbaru(List_relasi L){
         cout << info(parent(P)).durasiPeminjaman;
         cout << info(child(P)).ID;
         P = prev(P);
+        i++;
     }
 }
 
