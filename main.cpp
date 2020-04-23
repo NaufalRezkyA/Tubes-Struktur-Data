@@ -42,12 +42,11 @@ void mainMenu()
         {
         case 1:
             inputDataPeminjam(LR,Datapeminjam);
-            CheckInputanCheckin(LR, Datapeminjam);
-            P = alokasiParent(Datapeminjam); 
+            P = alokasiParent(Datapeminjam);
             insertAndsortParent(LP, P);
             Q = findElmChild(LC, Datapeminjam.IDMotor);
             insertLastRelasi(LR, alokasiRelasi(P,Q));
-            break; 
+            break;
         case 2:
             inputDataMotor(DataMtr);
             insertLastChild(LC, alokasiChild(DataMtr));
@@ -108,7 +107,7 @@ void mainMenu()
             printInfoTerbaru(LR);
             break;
         }
-        
+
         if (choice == 0)
         {
             break;
