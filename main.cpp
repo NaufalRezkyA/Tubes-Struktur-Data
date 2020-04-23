@@ -29,7 +29,6 @@ void mainMenu()
         cout << "1. Menginput Peminjaman Motor" << endl;
         cout << "2. Menginput Data Motor" << endl;
         cout << "3. Daftar motor yang ada" << endl;
-        cout << "4. Daftar motor yang tersedia" << endl;
         cout << "5. Catatan peminjaman motor" << endl;
         cout << "6. Edit data peminjaman motor" << endl;
         cout << "7. Delete Data Peminjaman" << endl;
@@ -42,7 +41,8 @@ void mainMenu()
         switch (choice)
         {
         case 1:
-            inputDataPeminjam(Datapeminjam);
+            inputDataPeminjam(LR,Datapeminjam);
+            CheckInputanCheckin(LR, Datapeminjam);
             P = alokasiParent(Datapeminjam); 
             insertAndsortParent(LP, P);
             Q = findElmChild(LC, Datapeminjam.IDMotor);

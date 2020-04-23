@@ -168,10 +168,10 @@ address_relasi findElmRelasiByParent(List_relasi L, address_parent P) {
     return NULL;
 }
 
-address_relasi findElmRelasiByChild(List_relasi L,address_child C) {
+address_relasi findElmRelasiByChild(List_relasi L,string ID) {
     address_relasi Q = first(L);
     while(Q != NULL) {
-        if(child(Q)== C) {
+        if(info(child(Q)).ID == ID) {
             return Q;
         }
         Q = next(Q);
@@ -221,11 +221,145 @@ void MotorYangTersedia(List_relasi LR, List_child LC){
     address_child R = first(LC);
     do
     {
-        if (findElmRelasiByChild(LR, R) == NULL)
+        if (findElmRelasiByChild(LR, info(R).ID) == NULL)
         {
             cout << "->" << info(R).NamaMotor << endl;
         }
         R = next(R);
     } while (R != first(LC));
 }
-    
+
+void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark){
+    address_relasi P = findElmRelasiByChild(LR, datapeminjam.IDMotor);
+    mark = false;
+    if(P==NULL){
+        cout<<"Data tidak valid"<<endl;
+    }else{
+        if (info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.tahun &&
+            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tahun &&
+            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.bulan &&
+            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.bulan &&
+            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.tanggal &&
+            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tanggal &&
+            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.jam &&
+            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.jam &&
+            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.menit &&
+            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.menit)
+        {
+            cout<<"Motor telah di pesan pengguna yang lain"<<endl;
+            mark = true;
+        }
+    }
+}
+
+void inputDataPeminjam(List_relasi LR, infotype_parent &x)
+{
+    cout << "Masukkan Nomor identitas anda: ";
+    x.nomorIdentitas = 1301190478;
+    cout << endl;
+    x.ID = randomInt(x.nomorIdentitas);
+
+    cout << "Masukkan Nama: ";
+    x.namaPeminjam = "Naufal";
+    cout << endl;
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+
+    x.waktuPeminjaman.tanggal = ltm->tm_mday;
+    x.waktuPeminjaman.bulan = 1 + ltm->tm_mon;
+    x.waktuPeminjaman.tahun = 1900 + ltm->tm_year;
+    x.waktuPeminjaman.jam = ltm->tm_hour;
+    x.waktuPeminjaman.menit = 1 + ltm->tm_min;
+
+    string waktu;
+    cout << "durasi peminjaman(jam/hari):" << endl;
+    x.durasiPeminjaman = 8;
+    waktu = "hari";
+    if (waktu == "hari")
+    {
+        x.durasiPeminjaman = x.durasiPeminjaman * 24;
+    }
+    cout << x.durasiPeminjaman << endl;
+    printDate(x.waktuPeminjaman);
+
+    int harga;
+    x.harga = x.durasiPeminjaman * 10000;
+    cout << "Harga: " << x.harga << endl;
+
+    cout << "masukan id motor yang akan dipinjam:" << endl;
+    x.IDMotor = "BT20";
+
+    bool mark = false;
+    while(mark!=true){
+        while (mark != true)
+        {
+            cout << "waktu checin:" << endl;
+            cin >> x.waktucheckIn.tanggal >> x.waktucheckIn.bulan >> x.waktucheckIn.tahun >> x.waktucheckIn.jam >> x.waktucheckIn.menit;
+            if (x.waktucheckIn.tahun < x.waktuPeminjaman.tahun)
+            {
+                cout << "Inputan tidak valid" << endl;
+                mark = true;
+            }
+            else
+            {
+                if (x.waktucheckIn.bulan < x.waktucheckIn.bulan)
+                {
+                    cout << "Inputan tidak valid" << endl;
+                    mark = true;
+                }
+                else
+                {
+                    if (x.waktucheckIn.tanggal < x.waktuPeminjaman.tanggal)
+                    {
+                        cout << "Inputan tidak valid" << endl;
+                        mark = true;
+                    }
+                    else
+                    {
+                        if (x.waktucheckIn.jam < x.waktucheckIn.jam)
+                        {
+                            cout << "Inputan tidak valid" << endl;
+                            mark = true;
+                        }
+                        else
+                        {
+                            if (x.waktucheckIn.menit < x.waktuPeminjaman.menit)
+                            {
+                                cout << "Inputan tidak valid" << endl;
+                                mark = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        CheckInputanCheckin(LR, x, mark);
+    }
+    printDate(x.waktucheckIn);
+
+    cout << "waktu checkout" << endl;
+    x.waktucheckOut.tanggal = x.waktucheckIn.tanggal;
+    x.waktucheckOut.bulan = x.waktucheckIn.bulan;
+    x.waktucheckOut.tahun = x.waktucheckIn.tahun;
+    x.waktucheckOut.jam = x.waktucheckIn.jam + x.durasiPeminjaman;
+    if (x.waktucheckOut.jam >= 24)
+    {
+        int hari = x.waktucheckOut.jam / 24;
+        x.waktucheckOut.tanggal = x.waktucheckIn.tanggal + hari;
+        x.waktucheckOut.jam = x.waktucheckOut.jam - (24 * hari);
+        if (x.waktucheckOut.tanggal > 31)
+        {
+            int bulan = x.waktucheckOut.tanggal / 31;
+            x.waktucheckOut.bulan = x.waktucheckIn.bulan + bulan;
+            x.waktucheckOut.tanggal = x.waktucheckOut.tanggal - (31 * bulan);
+            if (x.waktucheckOut.bulan > 12)
+            {
+                int tahun = x.waktucheckOut.bulan / 12;
+                x.waktucheckOut.bulan = x.waktucheckOut.bulan - (tahun * 12);
+                x.waktucheckOut.tahun = x.waktucheckIn.tahun + tahun;
+            }
+        }
+    }
+    x.waktucheckOut.menit = x.waktucheckIn.menit;
+    printDate(x.waktucheckOut);
+}
