@@ -49,5 +49,5 @@ void printInfoTerbaru(List_relasi L);
 void insertAndsort(List_relasi L, address_relasi x);
 void MotorYangTersedia(List_relasi LR, List_child LC);
 void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam);
-void inputDataPeminjam(List_relasi LR, infotype_parent &x)
+void inputDataPeminjam(List_relasi LR, infotype_parent &x);
 #endif // LIST_RELASI_H_INCLUDED
