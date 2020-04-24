@@ -74,7 +74,7 @@ void insertLastChild(List_child &L, address_child P){
     }
 }
 
-void insertAfterChild(List_child &L, address_child &Prec, address_child P)
+void insertAfterChild(List_child &L, address_child Prec, address_child P)
 {
     if (first(L) == NULL)
     {
@@ -108,11 +108,19 @@ void deleteFirstChild(List_child &L, address_child &P){
 }
 
 void deleteLastChild(List_child &L, address_child &P){
-    P = prev(first(L));
-    next(prev(P)) = first(L);
-    prev(first(L)) = prev(prev(P));
-    next(P) = NULL;
-    prev(P) = NULL;
+    P=first(L);
+    if(next(first(L)!=P)){
+        P = prev(first(L));
+        next(prev(P)) = first(L);
+        prev(first(L)) = prev(prev(P));
+        next(P) = NULL;
+        prev(P) = NULL;
+    }else{
+        next(P) = NULL;
+        prev(P) = NULL;
+        first(L) = NULL;
+    }
+    
 }
 
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
@@ -131,17 +139,62 @@ void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
         P = NULL;
     }
 }
-void deleteByID(List_child &L, int ID){
-    address_child P,R;
+void deleteByIDChild(List_child &L, string ID){
+    address_child P, R;
+    P = L.first;
+    if (L.first == NULL)
+    {
+        deleteFirstChild(L, R);
+        dealokasiChild(R);
+    }
+    else
+    {
+
+        if (info(first(L)).ID == ID)
+        {
+            deleteFirstChild(L, R);
+            dealokasiChild(R);
+        }
+        else if (info(prev(P)).ID == ID)
+        {
+            deleteLastChild(L, R);
+            dealokasiChild(R);
+        }
+        else
+        {
+            do{
+                P = P->next;
+            }while (P != first(L) && info(prev(P)).ID != ID);
+            P=prev(prev(P));
+            deleteAfterChild(L, P, R);
+            dealokasiChild(R);
+        }
+    }
 }
+
+int CountChild(List_child L){
+    address_child P = first(L);
+    int i=0;
+    do
+    {
+        i++;
+        P = next(P);
+    } while (P != first(L));
+    return i;
+}
+
 void printInfoChild(List_child L) {
     address_child P = first(L);
-    do{
-        cout<<"->"<<info(P).ID<<endl;
-        cout<<"->"<<info(P).NamaMotor<<endl;
-        cout<<"->"<<info(P).tahunMotor<<endl;
-        P = next(P);
-    }while (P != first(L));
+    if(P!=NULL){
+        do{
+            cout<<"->"<<info(P).ID<<endl;
+            cout<<"->"<<info(P).NamaMotor<<endl;
+            cout<<"->"<<info(P).tahunMotor<<endl;
+            P = next(P);
+        }while (P != first(L));
+    }else{
+        cout<<"Data motor kosong"<<endl;
+    }
 }
 
 
@@ -156,6 +209,30 @@ address_child findElmChild(List_child L, string x) {
     return NULL;
 }
 
+void insertAndsortChild(List_child L, address_child x)
+{
+    address_child P, Q;
+    P = L.first;
+
+    if (P == NULL || P->info.tahunMotor >= info(x).tahunMotor)
+    {
+        insertFirstChild(L, x);
+    }
+    else if (info(prev(first(L))).tahunMotor <= info(x).tahunMotor)
+    {
+        insertLastChild(L, x);
+    }
+    else
+    {
+        do
+        {
+            P = P->next;
+        } while (P != first(L) && info(prev(P)).tahunMotor != info(x).tahunMotor);
+        P = prev(prev(P));
+        insertAfterChild(L, P, x);
+    }
+}
+
 void DataM()
 {
     List_child LC;
@@ -163,13 +240,13 @@ void DataM()
     x.ID = "BT20";
     x.NamaMotor = "BEAT F1";
     x.tahunMotor = 2020;
-    insertLastChild(LC, alokasiChild(x));
+    insertAndsortChild(LC, alokasiChild(x));
     x.ID = "BT12";
     x.NamaMotor = "BEAT A1";
     x.tahunMotor = 2012;
-    insertLastChild(LC, alokasiChild(x));
+    insertAndsortChild(LC, alokasiChild(x));
     x.ID = "BT10";
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2010;
-    insertLastChild(LC, alokasiChild(x));
+    insertAndsortChild(LC, alokasiChild(x));
 }

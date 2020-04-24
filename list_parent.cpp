@@ -7,75 +7,8 @@ int randomInt(int ID)
 }
 
 void printDate(Date x){
-    cout<<x.tanggal<<":"<<x.bulan<<":"<<x.tahun<<endl;
+    cout<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
     cout<<x.jam<<":"<<x.menit<<endl;
-}
-
-void inputDataPeminjam(infotype_parent &x)
-{
-    cout<<"Masukkan Nomor identitas anda: ";
-    x.nomorIdentitas=1301190478;
-    cout<<endl;
-    x.ID = randomInt(x.nomorIdentitas);
-
-    cout<<"Masukkan Nama: ";
-    x.namaPeminjam = "Naufal";
-    cout<<endl;
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
-
-    x.waktuPeminjaman.tanggal= ltm->tm_mday;
-    x.waktuPeminjaman.bulan= 1+ltm->tm_mon;
-    x.waktuPeminjaman.tahun= 1900+ltm->tm_year;
-    x.waktuPeminjaman.jam = ltm->tm_hour;
-    x.waktuPeminjaman.menit = 1 + ltm->tm_min;
-
-    string waktu;
-    cout<<"masuk";
-    cout<<"durasi peminjaman(jam/hari):"<<endl;
-    x.durasiPeminjaman = 8; 
-    waktu = "hari";
-    if (waktu == "hari"){
-        x.durasiPeminjaman= x.durasiPeminjaman*24;
-    }
-    cout<<x.durasiPeminjaman<<endl;
-    printDate(x.waktuPeminjaman);
-
-    int harga;
-    x.harga = x.durasiPeminjaman * 10000;
-    cout<<"Harga: "<<x.harga<<endl;
-
-    cout<<"masukan id motor yang akan dipinjam:"<<endl;
-    x.IDMotor="BT20";
-
-    cout<<"waktu checin:"<<endl;
-    cin >> x.waktucheckIn.tanggal >> x.waktucheckIn.bulan
-        >> x.waktucheckIn.tahun >> x.waktucheckIn.jam
-        >> x.waktucheckIn.menit;
-    printDate(x.waktucheckIn);
-
-    cout<<"waktu checkout"<<endl;
-    x.waktucheckOut.tanggal = x.waktucheckIn.tanggal;
-    x.waktucheckOut.bulan = x.waktucheckIn.bulan;
-    x.waktucheckOut.tahun = x.waktucheckIn.tahun;
-    x.waktucheckOut.jam= x.waktucheckIn.jam+x.durasiPeminjaman;
-    if (x.waktucheckOut.jam>=24){
-        int hari = x.waktucheckOut.jam / 24;
-        x.waktucheckOut.tanggal = x.waktucheckIn.tanggal+hari;
-        x.waktucheckOut.jam = x.waktucheckOut.jam-(24*hari);
-        if (x.waktucheckOut.tanggal>31){
-            int bulan = x.waktucheckOut.tanggal / 31;
-            x.waktucheckOut.bulan = x.waktucheckIn.bulan+bulan;
-            x.waktucheckOut.tanggal=x.waktucheckOut.tanggal-(31*bulan);
-            if (x.waktucheckOut.bulan>12){
-                int tahun = x.waktucheckOut.bulan/12;
-                x.waktucheckOut.bulan = x.waktucheckOut.bulan-(tahun*12);
-                x.waktucheckOut.tahun = x.waktucheckIn.tahun+tahun;
-            }
-        }
-    }
-    x.waktucheckOut.menit= x.waktucheckIn.menit;
-    printDate(x.waktucheckOut);
 }
 
 void createListParent(List_parent &L) {
@@ -171,9 +104,24 @@ void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P){
     P->next = NULL;
 }
 
-void printInfoParent(List_parent L) {
-
+int CountParent(List_parent L)
+{
     address_parent P = first(L);
+    int i = 0;
+    if (P != NULL )
+    {
+        while (P != NULL)
+        {
+            i++;
+            P = next(P);
+        }
+    }
+    return i;
+}
+
+void printInfoParent(List_parent L) {
+    address_parent P = first(L);
+
     if(first(L)!=NULL) {
         while ((P) != NULL)
         {
@@ -186,6 +134,8 @@ void printInfoParent(List_parent L) {
             printDate(info(P).waktuPeminjaman);
             P = next(P);
         }
+    }else{
+        cout<<"Tidak ada data peminjaman"<<endl;
     }
 }
 
@@ -242,4 +192,37 @@ void deleteByIDparent(List_parent &L, int ID){
             dealokasiParent(R);
         }
     }
-}   
+}
+
+void insertAndsortParent(List_parent L, address_parent x){
+    address_parent P, Q;
+    P = L.first;
+
+    address_parent R, last;
+    R = first(L);
+    while (R->next != NULL)
+    {
+        R = R->next;
+    }
+    last = R;
+
+    if (P == NULL || P->info.ID >= info(x).ID)
+    {
+        insertFirstParent(L, x);
+    }
+    else if (info(R).ID <= info(x).ID)
+    {
+        insertLastParent(L, x);
+    }
+    else
+    {
+        while (P != NULL && P->info.ID < info(x).ID)
+        {
+            P = P->next;
+        }
+        P = prev(P);
+        insertAfterParent(L, P, x);
+    }
+}
+
+
