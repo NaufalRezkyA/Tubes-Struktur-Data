@@ -63,7 +63,7 @@ void deleteFirstRelasi(List_relasi &L, address_relasi &P){
         child(P) = NULL;
         P = NULL;
         L.last = NULL;
-        
+
     }
     else
     {
@@ -126,41 +126,10 @@ void printInfoTerbaru(List_relasi L){
     }
 }
 
-void penentuWaktu();
-
-void insertAndsort(List_relasi L, address_relasi x){
-    /*address_relasi P, Q;
-    P = L.first;
-
-    if (info(parent(P)).waktucheckOut.tahun ==
-        info(parent(x)).waktucheckOut.tahun){
-        if (P == NULL || info(parent(P)).waktucheckOut.tahun >=
-                             info(parent(x)).waktucheckOut.tahun)
-        {
-            insertFirstRelasi(L, x);
-        }
-        else if (info(parent(last(L))).waktucheckOut.tahun <=
-                 info(parent(x)).waktucheckOut.tahun)
-        {
-            insertLastRelasi(L, x);
-        }
-        else
-        {
-            while (P != NULL && info(parent(P)).waktucheckOut.tahun <
-                                    info(parent(x)).waktucheckOut.tahun)
-            {
-                P = P->next;
-            }
-            P = prev(P);
-            insertAfterRelasi(P, x);
-        }
-        }*/
-}
-
-address_relasi findElmRelasiByParent(List_relasi L, address_parent P) {
+address_relasi findElmRelasiByParent(List_relasi L, int ID) {
     address_relasi Q = first(L);
     while(Q != NULL) {
-        if(parent(Q)==P) {
+        if(info(parent(Q)).ID==ID) {
             return Q;
         }
         Q = next(Q);
@@ -192,7 +161,7 @@ void disconnected(List_relasi L, int ID)
     }
     else
     {
-        
+
         if (info(parent(P)).ID == ID)
         {
             cout<<"masuk2";
@@ -251,9 +220,7 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark){
         }
     }
 }
-
-void inputDataPeminjam(List_relasi LR, infotype_parent &x)
-{
+void dataIdentitas(infotype_parent &x){
     cout << "Masukkan Nomor identitas anda: ";
     x.nomorIdentitas = 1301190478;
     cout << endl;
@@ -270,7 +237,10 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
     x.waktuPeminjaman.tahun = 1900 + ltm->tm_year;
     x.waktuPeminjaman.jam = ltm->tm_hour;
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
+}
 
+void inputDataPeminjam(List_relasi LR, infotype_parent &x)
+{
     string waktu;
     cout << "durasi peminjaman(jam/hari):" << endl;
     x.durasiPeminjaman = 8;
@@ -298,6 +268,7 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
             if (x.waktucheckIn.tahun < x.waktuPeminjaman.tahun)
             {
                 cout << "Inputan tidak valid" << endl;
+            }else if(x.waktucheckIn.tahun > x.waktuPeminjaman.tahun){
                 mark = true;
             }
             else
@@ -305,6 +276,7 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
                 if (x.waktucheckIn.bulan < x.waktucheckIn.bulan)
                 {
                     cout << "Inputan tidak valid" << endl;
+                }else if(x.waktucheckIn.bulan > x.waktucheckIn.bulan){
                     mark = true;
                 }
                 else
@@ -312,6 +284,7 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
                     if (x.waktucheckIn.tanggal < x.waktuPeminjaman.tanggal)
                     {
                         cout << "Inputan tidak valid" << endl;
+                    }else if(x.waktucheckIn.tanggal > x.waktuPeminjaman.tanggal){
                         mark = true;
                     }
                     else
@@ -319,6 +292,7 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
                         if (x.waktucheckIn.jam < x.waktucheckIn.jam)
                         {
                             cout << "Inputan tidak valid" << endl;
+                        }else if(x.waktucheckIn.jam > x.waktucheckIn.jam){
                             mark = true;
                         }
                         else
@@ -326,6 +300,7 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
                             if (x.waktucheckIn.menit < x.waktuPeminjaman.menit)
                             {
                                 cout << "Inputan tidak valid" << endl;
+                            }else{
                                 mark = true;
                             }
                         }
@@ -363,3 +338,4 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
     x.waktucheckOut.menit = x.waktucheckIn.menit;
     printDate(x.waktucheckOut);
 }
+

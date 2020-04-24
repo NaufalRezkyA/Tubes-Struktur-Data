@@ -41,7 +41,7 @@ void deleteAfterRelasi(address_relasi Prec, address_relasi &P);
 void disconnected(List_relasi L, int ID);
 address_relasi alokasiRelasi( address_parent P, address_child C);
 void dealokasiRelasi(address_relasi &P);
-address_relasi findElmRelasiByParent(List_relasi L, address_parent P);
+address_relasi findElmRelasiByParent(List_relasi L, int ID);
 address_relasi findElmRelasiByChild(List_relasi L,  string ID);
 void printInfoRelasi(List_relasi L);
 void printInfoTerbaru(List_relasi L);
@@ -49,5 +49,6 @@ void printInfoTerbaru(List_relasi L);
 void insertAndsort(List_relasi L, address_relasi x);
 void MotorYangTersedia(List_relasi LR, List_child LC);
 void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam);
+void dataIdentitas(infotype_parent &x);
 void inputDataPeminjam(List_relasi LR, infotype_parent &x);
 #endif // LIST_RELASI_H_INCLUDED
