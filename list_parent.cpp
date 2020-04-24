@@ -117,7 +117,7 @@ void printInfoParent(List_parent L) {
 }
 
 address_parent findElmParent(List_parent L, int ID) {
-    
+
     address_parent P = first(L);
     while (P != NULL)
     {
@@ -164,23 +164,36 @@ void deleteByIDparent(List_parent &L, int ID){
     }
 }
 
-void insertAndsortParent(List_parent &L, address_parent P){
-    if (first(L) == NULL || info(P).ID <= info(first(L)).ID)
+void insertAndsortParent(List_parent &L, address_parent R){
+    address_parent P, Q;
+    P = L.first;
+    if (P == NULL)
     {
-        insertFirstParent(L, P);
+        insertFirstParent(L, R);
     }
-    else if (info(P).ID > info(last(L)).ID)
+    else if (P->info.ID > info(R).ID && findElmParent(L, info(R).ID) == NULL)
     {
-        insertLastParent(L, P);
+        insertFirstParent(L, R);
+    }
+    else if (findElmParent(L, info(R).ID) == NULL)
+    {
+        while (P != NULL && P->info.ID < info(R).ID)
+        {
+            Q = P;
+            P = P->next;
+        }
+        if (P != L.last)
+        {
+            insertAfterParent(L, Q, R);
+        }
+        else
+        {
+            insertLastParent(L, R);
+        }
     }
     else
     {
-        address_parent Q = first(L);
-        while (info(next(Q)).ID < info(P).ID)
-        {
-            Q = next(Q);
-        }
-        insertAfterParent(L, Q, P);
+        cout<<"ERROR"<<endl;    
     }
 }
 

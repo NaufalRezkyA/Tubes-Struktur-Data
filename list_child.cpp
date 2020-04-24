@@ -228,7 +228,7 @@ void insertAndsortChild(List_child L, address_child x)
         {
             P = P->next;
         } while (P != first(L) && info(prev(P)).tahunMotor != info(x).tahunMotor);
-        P = prev(prev(P));
+        P = prev(P);
         insertAfterChild(L, P, x);
     }
 }
@@ -239,14 +239,14 @@ void DataM()
     infotype_child x;
     x.ID = "BT20";
     x.NamaMotor = "BEAT F1";
-    x.tahunMotor = 2020;
+    x.tahunMotor = 2012;
     insertAndsortChild(LC, alokasiChild(x));
     x.ID = "BT12";
     x.NamaMotor = "BEAT A1";
-    x.tahunMotor = 2012;
+    x.tahunMotor = 2010;
     insertAndsortChild(LC, alokasiChild(x));
     x.ID = "BT10";
     x.NamaMotor = "BEAT A0";
-    x.tahunMotor = 2010;
+    x.tahunMotor = 2020;
     insertAndsortChild(LC, alokasiChild(x));
 }
