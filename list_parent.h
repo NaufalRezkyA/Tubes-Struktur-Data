@@ -8,6 +8,7 @@
 using namespace std;
 
 #define first(L) L.first
+#define last(L) L.last
 #define next(P) P->next
 #define info(P) P->info
 
@@ -33,6 +34,7 @@ struct elmlist_parent {
 
 struct List_parent {
     address_parent first;
+    address_parent last;
 };
 
 
@@ -54,6 +56,6 @@ void dealokasiParent(address_parent &P);
 address_parent findElmParent(List_parent L, int ID);
 void printInfoParent(List_parent L);
 
-void insertAndsortParent(List_parent L, address_parent x);
+void insertAndsortParent(List_parent &L, address_parent P);
 
 #endif // LIST_PARENT_H_INCLUDED

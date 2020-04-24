@@ -111,7 +111,7 @@ int CountRelasi(List_relasi L){
 
 void printInfoRelasi(List_relasi L) {
     address_relasi P = first(L);
-    if (P==NULL){
+    if (parent(P)==NULL || child(P)==NULL || P==NULL){
         cout<<"Kosong"<<endl;
     }else{
         cout<<"list";
@@ -164,44 +164,6 @@ address_relasi findElmRelasiByChild(List_relasi L,string ID) {
     return NULL;
 }
 
-void disconnected(List_relasi L, int ID)
-{
-    address_relasi P, R;
-    P = L.first;
-
-    if (L.first == NULL)
-    {
-        cout<<"masuk";
-        deleteFirstRelasi(L, R);
-        dealokasiRelasi(R);
-    }
-    else
-    {
-
-        if (info(parent(P)).ID == ID)
-        {
-            cout<<"masuk2";
-            deleteFirstRelasi(L, R);
-            dealokasiRelasi(R);
-        }
-        else if (info(parent(last(L))).ID == ID)
-        {
-            deleteLastRelasi(L, R);
-            dealokasiRelasi(R);
-        }
-        else
-        {
-            while (P != NULL && info(parent(P)).ID != ID)
-            {
-                P = P->next;
-            }
-            P = prev(P);
-            deleteAfterRelasi(P, R);
-            dealokasiRelasi(R);
-        }
-    }
-}
-
 void MotorYangTersedia(List_relasi LR, List_child LC){
     address_child R = first(LC);
     do
@@ -217,9 +179,8 @@ void MotorYangTersedia(List_relasi LR, List_child LC){
 void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark){
     address_relasi P = findElmRelasiByChild(LR, datapeminjam.IDMotor);
     mark = false;
-    if(P==NULL){
-        cout<<"Data tidak valid"<<endl;
-    }else{
+    cout<<"inputancheckin";
+    if(P!=NULL){
         if (info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.tahun &&
             datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tahun &&
             info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.bulan &&
@@ -231,10 +192,14 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark){
             info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.menit &&
             datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.menit)
         {
-            cout<<"Motor telah di pesan pengguna yang lain"<<endl;
-            mark = true;
+            cout << "Motor telah di pesan pengguna yang lain" << endl;
+        }else{
+            mark=true;
         }
+    }else{
+        mark=true;
     }
+    cout<<mark;
 }
 void dataIdentitas(infotype_parent &x){
     cout << "Masukkan Nomor identitas anda: ";

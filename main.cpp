@@ -36,6 +36,7 @@ void mainMenu()
         cout << "7. Delete Data Motor" << endl;
         cout << "8. Reset Data" << endl;
         cout << "9. 3 Data terbaru" << endl;
+        cout << "10. Data peminjam" << endl;
         cout << "0. Quit" << endl;
         cout << "Masukan angka:";
         cin >> choice;
@@ -45,7 +46,10 @@ void mainMenu()
             dataIdentitas(Datapeminjam);
             inputDataPeminjam(LR,Datapeminjam);
             P = alokasiParent(Datapeminjam);
+            cout<<Datapeminjam.ID<<endl;
+            cout<<"masuk";
             insertAndsortParent(LP, P);
+            cout<<"masuk2";
             Q = findElmChild(LC, Datapeminjam.IDMotor);
             insertLastRelasi(LR, alokasiRelasi(P,Q));
             break;
@@ -57,7 +61,11 @@ void mainMenu()
             printInfoChild(LC);
             break;
         case 4:
-            printInfoRelasi(LR);
+            if(first(LR)!=NULL){
+                printInfoRelasi(LR);
+            }else{
+                cout<<"kosong"<<endl;
+            }
             break;
         case 5:
             int Id;
@@ -147,7 +155,7 @@ void mainMenu()
         case 9:
             printInfoTerbaru(LR);
             break;
-        case 11:
+        case 10:
             printInfoParent(LP);
             break;
         }
