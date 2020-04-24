@@ -45,7 +45,7 @@ void deleteLastParent(List_parent &L, address_parent &P);
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
 void printDate(Date x);
 
-
+int CountParent(List_parent L);
 void deleteByIDparent(List_parent &L, int ID);
 
 int randomInt(int ID);

@@ -15,9 +15,9 @@ void mainMenu()
     List_relasi LR;
     DataPeminjam Datapeminjam;
     DataMotor DataMtr;
-    address_parent P;
-    address_child Q;
-    address_relasi R;
+    address_parent P,T;
+    address_child Q,U;
+    address_relasi R,S;
     createListParent(LP);
     createListChild(LC);
     createListRelasi(LR);
@@ -114,21 +114,34 @@ void mainMenu()
             }
             break;
         case 8:
+            int i;
             R = first(LR);
-            while(R!=NULL){
-                disconnected(LR, info(parent(R)).ID);
-                R=next(R);
+            if(R!=NULL){
+                i = CountRelasi(LR);
+                while(i>0){
+                    deleteFirstRelasi(LR, S);
+                    dealokasiRelasi(S);
+                    i--;
+                }
             }
             P = first(LP);
-            while (P!=NULL)
-            {
-                deleteByIDparent(LP, info(P).ID);
-                P=next(P);
+            if(P!=NULL){
+                i = CountParent(LP);
+                while (i > 0)
+                {
+                    deleteFirstParent(LP, T);
+                    dealokasiParent(T);
+                    i--;
+                }
             }
-            Q = first(LC);
-            while(Q!=NULL){
-                deleteByIDChild(LC, info(Q).ID);
-                Q=next(Q);
+            Q = prev(first(LC));
+            if(Q!=NULL){
+                i = CountChild(LC);
+                while(i>0){
+                    deleteFirstChild(LC, U);
+                    dealokasiChild(U);
+                    i--;
+                }
             }
             break;
         case 9:

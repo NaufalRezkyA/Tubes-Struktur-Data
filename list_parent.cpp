@@ -104,8 +104,22 @@ void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P){
     P->next = NULL;
 }
 
-void printInfoParent(List_parent L) {
+int CountParent(List_parent L)
+{
+    address_parent P = first(L);
+    int i = 0;
+    if (P != NULL )
+    {
+        while (P != NULL)
+        {
+            i++;
+            P = next(P);
+        }
+    }
+    return i;
+}
 
+void printInfoParent(List_parent L) {
     address_parent P = first(L);
 
     if(first(L)!=NULL) {
@@ -120,6 +134,8 @@ void printInfoParent(List_parent L) {
             printDate(info(P).waktuPeminjaman);
             P = next(P);
         }
+    }else{
+        cout<<"Tidak ada data peminjaman"<<endl;
     }
 }
 

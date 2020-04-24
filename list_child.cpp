@@ -108,11 +108,19 @@ void deleteFirstChild(List_child &L, address_child &P){
 }
 
 void deleteLastChild(List_child &L, address_child &P){
-    P = prev(first(L));
-    next(prev(P)) = first(L);
-    prev(first(L)) = prev(prev(P));
-    next(P) = NULL;
-    prev(P) = NULL;
+    P=first(L);
+    if(next(first(L)!=P)){
+        P = prev(first(L));
+        next(prev(P)) = first(L);
+        prev(first(L)) = prev(prev(P));
+        next(P) = NULL;
+        prev(P) = NULL;
+    }else{
+        next(P) = NULL;
+        prev(P) = NULL;
+        first(L) = NULL;
+    }
+    
 }
 
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
@@ -163,14 +171,30 @@ void deleteByIDChild(List_child &L, string ID){
         }
     }
 }
+
+int CountChild(List_child L){
+    address_child P = first(L);
+    int i=0;
+    do
+    {
+        i++;
+        P = next(P);
+    } while (P != first(L));
+    return i;
+}
+
 void printInfoChild(List_child L) {
     address_child P = first(L);
-    do{
-        cout<<"->"<<info(P).ID<<endl;
-        cout<<"->"<<info(P).NamaMotor<<endl;
-        cout<<"->"<<info(P).tahunMotor<<endl;
-        P = next(P);
-    }while (P != first(L));
+    if(P!=NULL){
+        do{
+            cout<<"->"<<info(P).ID<<endl;
+            cout<<"->"<<info(P).NamaMotor<<endl;
+            cout<<"->"<<info(P).tahunMotor<<endl;
+            P = next(P);
+        }while (P != first(L));
+    }else{
+        cout<<"Data motor kosong"<<endl;
+    }
 }
 
 

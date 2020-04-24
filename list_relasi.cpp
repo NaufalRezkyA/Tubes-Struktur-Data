@@ -97,9 +97,21 @@ void deleteAfterRelasi(address_relasi Prec, address_relasi &P){
     prev(P) = NULL;
 }
 
+int CountRelasi(List_relasi L){
+    address_relasi P = first(L);
+    int i = 0;
+    if(parent(P)!=NULL || child(P)!=NULL){
+        while(P!=NULL){
+            i++;
+            P=next(P);
+        }
+    }
+    return i;
+}
+
 void printInfoRelasi(List_relasi L) {
     address_relasi P = first(L);
-    if (parent(P)==NULL || child(P)==NULL){
+    if (P==NULL){
         cout<<"Kosong"<<endl;
     }else{
         cout<<"list";
@@ -116,13 +128,17 @@ void printInfoRelasi(List_relasi L) {
 void printInfoTerbaru(List_relasi L){
     address_relasi P = last(L);
     int i = 0;
-    while (P != NULL && i<=3)
-    {
-        cout << info(parent(P)).namaPeminjam;
-        cout << info(parent(P)).durasiPeminjaman;
-        cout << info(child(P)).ID;
-        P = prev(P);
-        i++;
+    if(P!=NULL){
+        while (P != NULL || i<=3)
+        {
+            cout << info(parent(P)).namaPeminjam;
+            cout << info(parent(P)).durasiPeminjaman;
+            cout << info(child(P)).ID;
+            P = prev(P);
+            i++;
+        }
+    }else{
+        cout<<"Tidak ada data peminjaman motor"<<endl;
     }
 }
 

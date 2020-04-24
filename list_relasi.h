@@ -43,6 +43,7 @@ address_relasi alokasiRelasi( address_parent P, address_child C);
 void dealokasiRelasi(address_relasi &P);
 address_relasi findElmRelasiByParent(List_relasi L, int ID);
 address_relasi findElmRelasiByChild(List_relasi L,  string ID);
+int CountRelasi(List_relasi L);
 void printInfoRelasi(List_relasi L);
 void printInfoTerbaru(List_relasi L);
 
