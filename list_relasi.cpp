@@ -181,6 +181,7 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark){
     mark = false;
     cout<<"inputancheckin";
     if(P!=NULL){
+        cout<<"temu";
         if (info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.tahun &&
             datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tahun &&
             info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.bulan &&
@@ -254,10 +255,10 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
             }
             else
             {
-                if (x.waktucheckIn.bulan < x.waktucheckIn.bulan)
+                if (x.waktucheckIn.bulan < x.waktuPeminjaman.bulan)
                 {
                     cout << "Inputan tidak valid" << endl;
-                }else if(x.waktucheckIn.bulan > x.waktucheckIn.bulan){
+                }else if(x.waktucheckIn.bulan > x.waktuPeminjaman.bulan){
                     mark = true;
                 }
                 else
@@ -270,10 +271,10 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
                     }
                     else
                     {
-                        if (x.waktucheckIn.jam < x.waktucheckIn.jam)
+                        if (x.waktucheckIn.jam < x.waktuPeminjaman.jam)
                         {
                             cout << "Inputan tidak valid" << endl;
-                        }else if(x.waktucheckIn.jam > x.waktucheckIn.jam){
+                        }else if(x.waktucheckIn.jam > x.waktuPeminjaman.jam){
                             mark = true;
                         }
                         else
