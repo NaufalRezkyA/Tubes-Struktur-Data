@@ -176,11 +176,11 @@ void insertAndsortParent(List_parent &L, address_parent R){
     {
         if (findElmParent(L,info(R).ID) == NULL)
         {
-            if (info(R).ID < L.first->info.ID)
+            if (info(R).ID < info(first(L)).ID)
             {
                 insertFirstParent(L, R);
             }
-            else if (info(R).ID > L.last->info.ID)
+            else if (info(R).ID > info(last(L)).ID)
             {
                 insertLastParent(L, R);
             }
