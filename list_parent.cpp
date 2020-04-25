@@ -29,7 +29,6 @@ void dealokasiParent(address_parent &P){
 }
 
 void insertFirstParent(List_parent &L, address_parent P) {
-    cout << "insert First"<<endl;
     if (first(L) == NULL)
     {
         first(L) = P;
@@ -43,13 +42,11 @@ void insertFirstParent(List_parent &L, address_parent P) {
 }
 
 void insertAfterParent(List_parent &L, address_parent Prec, address_parent P){
-    cout << "insert After"<<endl;
     next(P) = next(Prec);
     next(Prec) = P;
 }
 
 void insertLastParent(List_parent &L, address_parent P){
-    cout << "insert Last"<<endl;
     next(last(L)) = P;
     last(L) = P;
 }
@@ -185,7 +182,6 @@ void insertAndsortParent(List_parent &L, address_parent R){
                 address_parent P = first(L);
                 while (P != NULL && info(R).ID > info(next(P)).ID)
                 {
-                    cout << info(P).ID<< endl;
                     P = P->next;
                 }
                 insertAfterParent(L, P, R);
