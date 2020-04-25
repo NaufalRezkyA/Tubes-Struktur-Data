@@ -6,7 +6,7 @@ int randomIntChild()
     return random;
 }
 
-void inputDataMotor(infotype_child &x){
+void inputDataMotor(List_child L,infotype_child &x){
     cout<<"Nama Motor: ";
     cin>>x.NamaMotor;
     cout<<"Tahun Motor: ";
@@ -15,23 +15,12 @@ void inputDataMotor(infotype_child &x){
     cin>>x.ID;
     cout<<"Tipe: ";
     cin>>x.Tipe;
-    x.ID = randomIntChild();
-}
 
-void DataM(List_child &LC){
-    infotype_child x;
-    x.ID = 18392;
-    x.NamaMotor = "BEAT F1";
-    x.tahunMotor = 2020;
-    insertLastChild(LC, alokasiChild(x));
-    x.ID = 19320;
-    x.NamaMotor = "BEAT A1";
-    x.tahunMotor = 2012;
-    insertLastChild(LC, alokasiChild(x));
-    x.ID = 90219;
-    x.NamaMotor = "BEAT A0";
-    x.tahunMotor = 2010;
-    insertLastChild(LC, alokasiChild(x));
+    bool mark = true;
+    while(mark!=false){
+        x.ID = randomIntChild();
+        mark = checkDuplicateIDChild(L, x.ID);
+    }
 }
 
 void createListChild(List_child &L) {
@@ -218,40 +207,55 @@ address_child findElmChild(List_child L, int ID) {
     return NULL;
 }
 
-void insertAndsortChild(List_child L, address_child x)
+void insertAndsortChild(List_child &L, address_child R)
 {
     if (L.first != NULL)
     {
-        if (findElmChild(L, info(x).ID) == NULL)
+        if (findElmChild(L, info(R).ID) == NULL)
         {
-            if (info(x).ID < L.first->info.ID)
+            if (info(R).ID < L.first->info.ID)
             {
-                insertFirstChild(L, x);
+                insertFirstChild(L, R);
+            }
+            else if (info(R).ID > info(prev(first(L))).ID)
+            {
+                insertLastChild(L, R);
             }
             else
             {
-                address_child P = L.first;
-                do
-                {
+                address_child P;
+                P = first(L);
+                
+                do{
+                    cout << info(P).ID << endl;
                     P = P->next;
-                } while (P != L.first && P->info.ID > info(x).ID);
-                insertAfterChild(L, P->prev, x);
+                }
+                while (P != first(L) && R->info.ID > info(next(P)).ID);
+                    cout << info(P).ID << "->" << info(R).ID;
+                insertAfterChild(L, P, R);
             }
         }
         else
         {
-            cout << "Lapas sudah terdaftar" << endl;
+            cout << "peminjaman sudah terdaftar" << endl;
         }
     }
     else
     {
-        insertFirstChild(L, x);
+        insertFirstChild(L, R);
     }
 }
 
-void DataM()
+bool checkDuplicateIDChild(List_child L, int ID){
+    if (findElmChild(L, ID) == NULL)
+    {
+        return false;
+    }
+    return true;
+}
+
+void DataM(List_child &LC)
 {
-    List_child LC;
     infotype_child x;
     x.ID = 19231;
     x.NamaMotor = "BEAT F1";

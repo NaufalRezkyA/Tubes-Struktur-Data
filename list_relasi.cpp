@@ -166,7 +166,7 @@ void printInfoRelasi(List_relasi L)
 void printInfoTerbaru(List_relasi L)
 {
     address_relasi P = last(L);
-    int i = 0;
+    int i = 1;
     if (P != NULL)
     {
         while (P != NULL || i <= CountRelasi(L))
@@ -305,7 +305,7 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
     cout << "Harga: " << x.harga << endl;
 
     cout << "masukan id motor yang akan dipinjam:" << endl;
-    x.IDMotor = 19320;
+    x.IDMotor = 19231;
 
     bool mark = false;
     while (mark != true)
@@ -396,6 +396,16 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
     }
     x.waktucheckOut.menit = x.waktucheckIn.menit;
     printDate(x.waktucheckOut);
+}
+
+void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Datapeminjam){
+    address_parent P = findElmParent(LP, Datapeminjam.ID);
+    cout<<Datapeminjam.IDMotor;
+    address_child Q = findElmChild(LC, Datapeminjam.IDMotor);
+    cout<<"child";
+    cout << info(Q).ID;
+    insertLastRelasi(LR, alokasiRelasi(P, Q));
+    cout << info(child(first(LR))).NamaMotor << endl;
 }
 
 void disconnected(List_relasi &L, int ID)

@@ -46,20 +46,13 @@ void mainMenu()
         case 1:
             dataIdentitas(LP,Datapeminjam);
             inputDataPeminjam(LR,Datapeminjam);
-            cout<<"alokasi";
             P = alokasiParent(Datapeminjam);
             cout<<Datapeminjam.ID<<endl;
-            cout<<"masuk";
             insertAndsortParent(LP, P);
-            cout<<"masuk2";
-            cout<<Datapeminjam.IDMotor;
-            Q = findElmChild(LC, Datapeminjam.IDMotor);
-            cout<<info(Q).ID;
-            insertLastRelasi(LR, alokasiRelasi(P,Q));
-            cout<<info(child(first(LR))).NamaMotor<<endl;
+            connect(LR,LP,LC,Datapeminjam);
             break;
         case 2:
-            inputDataMotor(DataMtr);
+            inputDataMotor(LC, DataMtr);
             insertAndsortChild(LC, alokasiChild(DataMtr));
             break;
         case 3:
@@ -91,8 +84,27 @@ void mainMenu()
             {
                 inputDataPeminjam(LR, info(parent(R)));
             }
-            break;   
+            break;
         case 7:
+            cout << "Masukkan ID member yang ingin di hapus: ";
+            cin >> id;
+            P = findElmParent(LP, id);
+            if (P != NULL)
+            {
+                R = findElmRelasiByParent(LR, info(P).ID);
+                if (R != NULL)
+                {
+                    disconnected(LR, info(P).ID);
+                    cout << "dc sukses";
+                }
+            }
+            else
+            {
+                cout << "Data Tidak ada.." << endl;
+            }
+            cout << endl;
+            break;
+        case 8:
             cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
@@ -122,25 +134,6 @@ void mainMenu()
             }
             cout << endl;
             break;
-        case 8:
-            cout << "Masukkan ID member yang ingin di hapus: ";
-            cin >> id;
-            P = findElmParent(LP, id);
-            if (P != NULL)
-            {
-                R = findElmRelasiByParent(LR, info(P).ID);
-                if (R != NULL)
-                {
-                    disconnected(LR, info(P).ID);
-                    cout << "dc sukses";
-                }
-            }
-            else
-            {
-                cout << "Data Tidak ada.." << endl;
-            }
-            cout << endl;
-            break;   
         case 9:
             cout << "Masukkan ID motor yang ingin dihapus: ";
             cin >> idmotor;
@@ -156,7 +149,7 @@ void mainMenu()
             {
                 cout << "Data motor kosong" << endl;
             }
-            break;    
+            break;
         case 10:
             printInfoTerbaru(LR);
             break;

@@ -40,7 +40,7 @@ void deleteFirstChild(List_child &L, address_child &P);
 void deleteLastChild(List_child &L, address_child &P);
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P);
 void deleteByIDChild(List_child &L, int ID);
-void inputDataMotor(infotype_child &x);
+void inputDataMotor(List_child L, infotype_child &x);
 
 int randomIntChild();
 address_child alokasiChild(infotype_child x);
@@ -49,7 +49,8 @@ address_child findElmChild(List_child L, int ID);
 int CountChild(List_child L);
 void printInfoChild(List_child L);
 
-void insertAndsortChild(List_child L, address_child x);
+void insertAndsortChild(List_child &L, address_child R);
 void DataM(List_child &LC);
+bool checkDuplicateIDChild(List_child L, int ID);
 
 #endif // LIST_CHILD_H_INCLUDED
