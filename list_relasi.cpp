@@ -48,7 +48,6 @@ void deleteFirstRelasi(List_relasi &L, address_relasi &P)
     }
     else
     {
-        cout<<info(child(next(P))).ID<<endl;
         first(L) = next(P);
         prev(first(L)) = NULL;
         next(P) = NULL;
@@ -58,7 +57,6 @@ void deleteFirstRelasi(List_relasi &L, address_relasi &P)
 void deleteLastRelasi(List_relasi &L, address_relasi &P)
 {
     P = last(L);
-    cout<<info(parent(prev(P))).ID;
     parent(P) = NULL;
     child(P) = NULL;
     if (first(L) == last(L))
@@ -69,7 +67,6 @@ void deleteLastRelasi(List_relasi &L, address_relasi &P)
     else
     {
         last(L)=prev(P);
-        cout << info(parent(last(L))).ID;
         next(last(L))=NULL;
         prev(P) = NULL;
     }
@@ -101,40 +98,32 @@ int CountRelasi(List_relasi L)
     int i = 0;
     while (P != NULL)
     {
-        cout << "iterasi";
         i++;
         P = next(P);
     }
-
     return i;
 }
 
 void printInfoRelasi(List_relasi L)
 {
     address_relasi P = first(L);
-    cout<<"count";
-    cout<<CountRelasi(L)<<endl;
-    if (child(P) == NULL)
-    {
-        cout << "child Kosong" << endl;
-    }else if (parent(P) == NULL){
-        cout<<"parent kosong";
-    }else if (P == NULL){
-        cout<<"P null";
-    }
-    else
-    {
-        cout << "list";
+    if(P!=NULL){
         while (P != NULL)
         {
             if(parent(P)!=NULL && child(P)!=NULL){
                 cout << info(parent(P)).namaPeminjam << endl;
                 cout << info(parent(P)).ID << endl;
-                cout << info(parent(P)).durasiPeminjaman << endl;
                 cout << info(child(P)).NamaMotor << endl;
+                cout << "Waktu checkin:"<<endl;
+                printDate(info(parent(P)).waktucheckIn);
+                cout << "Waktu checkout:" << endl;
+                printDate(info(parent(P)).waktucheckOut);
             }
+            cout<<endl;
             P = next(P);
         }
+    }else{
+        cout<< "Tidak ada data peminjaman..."<<endl;
     }
 }
 
@@ -146,9 +135,14 @@ void printInfoTerbaru(List_relasi L)
     {
         while (P != NULL || i <= CountRelasi(L))
         {
-            cout << info(parent(P)).namaPeminjam;
-            cout << info(parent(P)).durasiPeminjaman;
-            cout << info(child(P)).ID;
+            cout << info(parent(P)).namaPeminjam << endl;
+            cout << info(parent(P)).ID << endl;
+            cout << info(child(P)).NamaMotor << endl;
+            cout << "Waktu checkin:" << endl;
+            printDate(info(parent(P)).waktucheckIn);
+            cout << "Waktu checkout:" << endl;
+            printDate(info(parent(P)).waktucheckOut);
+            cout<<endl;
             P = prev(P);
             i++;
         }
@@ -176,40 +170,43 @@ address_relasi findElmRelasiByParent(List_relasi L, int ID)
 address_relasi findElmRelasiByChild(List_relasi L, int ID)
 {
     address_relasi Q = first(L);
-    cout << "findelm";
     while (Q != NULL)
     {
-        cout << "masuk";
         if (info(child(Q)).ID == ID)
         {
-            cout << "masuk1";
             return Q;
         }
         Q = next(Q);
     }
-    cout << "child";
     return NULL;
 }
 
 void MotorYangTersedia(List_relasi LR, List_child LC)
 {
     address_child R = first(LC);
-    do
-    {
-        if (findElmRelasiByChild(LR, info(R).ID) == NULL)
+    if(R!=NULL){
+        do
         {
-            cout << "->" << info(R).NamaMotor << endl;
-        }
-        R = next(R);
-    } while (R != first(LC));
+            if (findElmRelasiByChild(LR, info(R).ID) == NULL)
+            {
+                cout <<"Nama Motor: "<< info(R).NamaMotor << endl;
+                cout <<"ID Motor: "<< info(R).ID << endl;
+                cout <<"Tahun Motor: "<< info(R).tahunMotor << endl;
+                cout <<"Tipe Motor: "<< info(R).Tipe << endl;
+                cout <<"Harga sewa(jam): "<< info(R).Harga << endl;
+            }
+            cout<<endl;
+            R = next(R);
+        } while (R != first(LC));
+    }else{
+        cout<<"Tidak ada data motor"<<endl;
+    }
 }
 
 void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
 {
-    cout << "error";
     address_relasi P = findElmRelasiByChild(LR, datapeminjam.IDMotor);
     mark = false;
-    cout << "inputancheckin";
     if (P != NULL)
     {
         cout << "temu";
@@ -240,17 +237,16 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
 void dataIdentitas(List_parent L, infotype_parent &x)
 {
     cout << "Masukkan Nomor identitas anda: ";
-    x.nomorIdentitas = 1301190478;
-    cout << endl;
+    cin >> x.nomorIdentitas;
+    cout<<endl;
     bool mark = true;
     while (mark != false)
     {
         x.ID = randomIntParent();
         mark = checkDuplicateIDParent(L, x.ID);
-        cout << "duplikat";
     }
     cout << "Masukkan Nama: ";
-    x.namaPeminjam = "Naufal";
+    cin>>x.namaPeminjam;
     cout << endl;
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -274,18 +270,29 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
     cout << x.durasiPeminjaman << endl;
     printDate(x.waktuPeminjaman);
 
-    cout << "masukan id motor yang akan dipinjam:" << endl;
-    cin>>x.IDMotor;
-
     int harga;
-    x.harga = x.durasiPeminjaman * info(child(findElmRelasiByChild(LR, x.IDMotor))).Harga;
-    
     bool mark = false;
+    while(mark!=true){
+        cout << "masukan id motor yang akan dipinjam:" << endl;
+        cin>>x.IDMotor;
+        address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
+        if(P!=NULL){
+            x.harga = x.durasiPeminjaman * info(child(P)).Harga;
+            CheckInputanCheckin(LR, x, mark);
+        }else{
+            mark=true;
+        }
+    }
+
+    mark = false;
     while (mark != true)
     {
         while (mark != true)
         {
-            cout << "waktu checin:" << endl;
+            cout << "Waktu checkin: " << endl;
+            cout << "Format pengisian tanggal bulan tahun jam menit"<<endl;
+            cout << "Yang dipisahkan dengan 1 space.."<<endl;
+            cout << "Silahkan input waktu : "<<endl;
             cin >> x.waktucheckIn.tanggal >> x.waktucheckIn.bulan >> x.waktucheckIn.tahun >> x.waktucheckIn.jam >> x.waktucheckIn.menit;
             if (x.waktucheckIn.tahun < x.waktuPeminjaman.tahun)
             {
@@ -344,7 +351,7 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
     }
     printDate(x.waktucheckIn);
 
-    cout << "waktu checkout" << endl;
+    cout << "Waktu checkout:" << endl;
     x.waktucheckOut.tanggal = x.waktucheckIn.tanggal;
     x.waktucheckOut.bulan = x.waktucheckIn.bulan;
     x.waktucheckOut.tahun = x.waktucheckIn.tahun;
@@ -373,12 +380,8 @@ void inputDataPeminjam(List_relasi LR, infotype_parent &x)
 
 void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Datapeminjam){
     address_parent P = findElmParent(LP, Datapeminjam.ID);
-    cout<<Datapeminjam.IDMotor;
     address_child Q = findElmChild(LC, Datapeminjam.IDMotor);
-    cout<<"child";
-    cout << info(Q).ID;
     insertLastRelasi(LR, alokasiRelasi(P, Q));
-    cout << info(child(first(LR))).NamaMotor << endl;
 }
 
 void disconnected(List_relasi &L, int ID)
@@ -388,15 +391,11 @@ void disconnected(List_relasi &L, int ID)
 
     if (info(parent(P)).ID == ID || L.first == NULL)
     {
-        cout << "delete first";
         deleteFirstRelasi(L, R);
         dealokasiRelasi(R);
-        cout<<"disconnec"<<endl;
-        
     }
     else if (info(parent(last(L))).ID == ID)
     {
-        cout << "deletelast";
         deleteLastRelasi(L, R);
         dealokasiRelasi(R);
     }
@@ -407,8 +406,6 @@ void disconnected(List_relasi &L, int ID)
             P = P->next;
         }
         P = prev(P);
-        cout << info(parent(P)).ID << endl;
-        cout << "deleteafter";
         deleteAfterRelasi(L, P, R);
         dealokasiRelasi(R);
     }

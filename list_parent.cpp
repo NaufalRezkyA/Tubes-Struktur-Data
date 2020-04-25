@@ -9,6 +9,7 @@ int randomIntParent()
 void printDate(Date x){
     cout<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
     cout<<x.jam<<":"<<x.menit<<endl;
+    cout<<endl;
 }
 
 void createListParent(List_parent &L) {
@@ -93,13 +94,10 @@ int CountParent(List_parent L)
 {
     address_parent P = first(L);
     int i = 0;
-    if (P != NULL )
+    while (P != NULL)
     {
-        while (P != NULL)
-        {
-            i++;
-            P = next(P);
-        }
+        i++;
+        P = next(P);
     }
     return i;
 }
@@ -109,13 +107,17 @@ void printInfoParent(List_parent L) {
     if(first(L)!=NULL) {
         while (P != NULL)
         {
-            cout<<info(P).ID<<endl;
-            cout<<info(P).namaPeminjam<<endl;
-            cout<<info(P).nomorIdentitas<<endl;
-            cout<<info(P).harga<<endl;
+            cout<<"ID Peminjam: "<<info(P).ID<<endl;
+            cout<<"Nama: "<<info(P).namaPeminjam<<endl;
+            cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
+            cout<<"Harga Sewa: "<<info(P).harga<<endl;
+            cout<<"Waktu Checkin: "<<endl;
             printDate(info(P).waktucheckIn);
+            cout<<"Waktu Checkout: "<<endl;
             printDate(info(P).waktucheckOut);
+            cout<<"Waktu transaksi: "<<endl;
             printDate(info(P).waktuPeminjaman);
+            cout<<endl;
             P = next(P);
         }
     }else{
@@ -133,7 +135,6 @@ address_parent findElmParent(List_parent L, int ID) {
         }
         P = next(P);
     }
-    cout<<"masuk";
     return NULL;
 }
 

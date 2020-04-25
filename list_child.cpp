@@ -11,8 +11,6 @@ void inputDataMotor(List_child L,infotype_child &x){
     cin>>x.NamaMotor;
     cout<<"Tahun Motor: ";
     cin>>x.tahunMotor;
-    cout<<"ID: ";
-    cin>>x.ID;
     cout<<"Tipe: ";
     cin>>x.Tipe;
 
@@ -185,13 +183,16 @@ void printInfoChild(List_child L) {
     address_child P = first(L);
     if(P!=NULL){
         do{
-            cout<<"->"<<info(P).ID<<endl;
-            cout<<"->"<<info(P).NamaMotor<<endl;
-            cout<<"->"<<info(P).tahunMotor<<endl;
+            cout << "Nama Motor: " << info(P).NamaMotor << endl;
+            cout << "ID Motor: " << info(P).ID << endl;
+            cout << "Tahun Motor: " << info(P).tahunMotor << endl;
+            cout << "Tipe Motor: " << info(P).Tipe << endl;
+            cout << "Harga sewa(jam): " << info(P).Harga << endl;
+            cout<<endl;
             P = next(P);
         }while (P != first(L));
     }else{
-        cout<<"Data motor kosong"<<endl;
+        cout<<"Data motor Tidak Ada..."<<endl;
     }
 }
 
@@ -231,13 +232,12 @@ void insertAndsortChild(List_child &L, address_child R)
                     P = P->next;
                 }
                 while (P != first(L) && R->info.ID > info(next(P)).ID);
-                    cout << info(P).ID << "->" << info(R).ID;
                 insertAfterChild(L, P, R);
             }
         }
         else
         {
-            cout << "peminjaman sudah terdaftar" << endl;
+            cout << "Peminjam telah meminjam motor..." << endl;
         }
     }
     else
@@ -263,12 +263,14 @@ void DataM(List_child &LC)
     x.Tipe = "Manual";
     x.Harga = 12000;
     insertAndsortChild(LC, alokasiChild(x));
+
     x.ID = 92132;
     x.NamaMotor = "BEAT A1";
     x.tahunMotor = 2010;
     x.Tipe = "Automatic";
     x.Harga = 10000;
     insertAndsortChild(LC, alokasiChild(x));
+
     x.ID = 10923;
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2020;
