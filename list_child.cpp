@@ -261,15 +261,18 @@ void DataM(List_child &LC)
     x.NamaMotor = "BEAT F1";
     x.tahunMotor = 2012;
     x.Tipe = "Manual";
+    x.Harga = 12000;
     insertAndsortChild(LC, alokasiChild(x));
     x.ID = 92132;
     x.NamaMotor = "BEAT A1";
     x.tahunMotor = 2010;
     x.Tipe = "Automatic";
+    x.Harga = 10000;
     insertAndsortChild(LC, alokasiChild(x));
     x.ID = 10923;
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2020;
     x.Tipe = "Manual";
+    x.Harga = 11000;
     insertAndsortChild(LC, alokasiChild(x));
 }
