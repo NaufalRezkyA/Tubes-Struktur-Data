@@ -36,6 +36,7 @@ void deleteFirstRelasi(List_relasi &L, address_relasi &P);
 void deleteLastRelasi(List_relasi &L, address_relasi &P);
 void deleteAfterRelasi(List_relasi &L, address_relasi Prec, address_relasi &P);
 
+void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Datapeminjam);
 void disconnected(List_relasi &L, int ID);
 address_relasi alokasiRelasi( address_parent P, address_child C);
 void dealokasiRelasi(address_relasi &P);
