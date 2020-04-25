@@ -135,21 +135,36 @@ void mainMenu()
             cout << endl;
             break;
         case 9:
-            cout << "Masukkan ID motor yang ingin dihapus: ";
-            cin >> idmotor;
-            if (first(LC) != NULL)
+            cout << "Masukkan ID motor yang ingin di hapus: ";
+            cin >> id;
+            Q = findElmChild(LC, id);
+            if (Q != NULL)
             {
-                if (findElmChild(LC, idmotor) != NULL)
+                R = findElmRelasiByChild(LR, info(Q).ID);
+                if (R != NULL)
                 {
-                    deleteByIDChild(LC, idmotor);
-                    cout << "delete berhasil";
+                    cout << "ID akan menggunakan Motor pada:" << endl;
+                    printDate(info(parent(R)).waktucheckIn);
+                    cout << "Dengan menghapus data motor maka akan menghapus data peminjaman motor" << endl;
+                    cout << "Apakah anda ingin menghapusnya(Y/N)?";
+                    char penentuDelete;
+                    cin >> penentuDelete;
+                    if (penentuDelete == 'Y')
+                    {
+                        disconnected(LR, info(parent(R)).ID);
+                        cout << "dc sukses";
+                        deleteByIDChild(LC, id);
+                        cout << "Data berhasil dihapus.." << endl;
+                    }
                 }
             }
             else
             {
-                cout << "Data motor kosong" << endl;
+                cout << "Data Tidak ada.." << endl;
             }
+            cout << endl;
             break;
+
         case 10:
             printInfoTerbaru(LR);
             break;
