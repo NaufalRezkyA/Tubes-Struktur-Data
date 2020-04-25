@@ -41,16 +41,16 @@
 	<iostream>
 	<ctime>
 
-1587782410 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
+1587810226 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
 	"list_relasi.h"
 
-1587776370 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
+1587808820 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"
 	<iostream>
 
-1587782485 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+1587810155 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
 	<iostream>
 	"list_child.h"
 	"list_parent.h"

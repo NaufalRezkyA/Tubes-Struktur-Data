@@ -31,14 +31,12 @@ struct List_relasi{
 
 
 void createListRelasi(List_relasi &L);
-void insertFirstRelasi(List_relasi &L, address_relasi P);
 void insertLastRelasi(List_relasi &L, address_relasi P);
-void insertAfterRelasi(address_relasi Prec, address_relasi P);
 void deleteFirstRelasi(List_relasi &L, address_relasi &P);
 void deleteLastRelasi(List_relasi &L, address_relasi &P);
-void deleteAfterRelasi(address_relasi Prec, address_relasi &P);
+void deleteAfterRelasi(List_relasi &L, address_relasi Prec, address_relasi &P);
 
-void disconnected(List_relasi L, int ID);
+void disconnected(List_relasi &L, int ID);
 address_relasi alokasiRelasi( address_parent P, address_child C);
 void dealokasiRelasi(address_relasi &P);
 address_relasi findElmRelasiByParent(List_relasi L, int ID);
@@ -48,7 +46,6 @@ void printInfoRelasi(List_relasi L);
 void printInfoTerbaru(List_relasi L);
 
 void insertAndsort(List_relasi L, address_relasi x);
-void MotorYangTersedia(List_relasi LR, List_child LC);
 void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark);
 void dataIdentitas(List_parent L,infotype_parent &x);
 void inputDataPeminjam(List_relasi LR, infotype_parent &x);
