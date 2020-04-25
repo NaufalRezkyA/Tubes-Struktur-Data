@@ -2,6 +2,7 @@
 #define LIST_CHILD_H_INCLUDED
 
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 #define next(P) P->next
@@ -12,8 +13,8 @@ using namespace std;
 
 struct DataMotor
 {
-    int tahunMotor;
-    string NamaMotor, ID;
+    int tahunMotor,ID,Harga;
+    string NamaMotor, Tipe;
 };
 
 
@@ -38,12 +39,13 @@ void insertAfterChild(List_child &L, address_child Prec, address_child P);
 void deleteFirstChild(List_child &L, address_child &P);
 void deleteLastChild(List_child &L, address_child &P);
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P);
-void deleteByIDChild(List_child &L, string ID);
+void deleteByIDChild(List_child &L, int ID);
 void inputDataMotor(infotype_child &x);
 
+int randomIntChild();
 address_child alokasiChild(infotype_child x);
 void dealokasiChild(address_child &P);
-address_child findElmChild(List_child L, string x);
+address_child findElmChild(List_child L, int ID);
 int CountChild(List_child L);
 void printInfoChild(List_child L);
 

@@ -26,31 +26,31 @@
 	"list_parent.h"
 	"list_relasi.h"
 
-1587749365 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
+1587780472 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
 	"list_child.h"
 
-1587711546 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
+1587780449 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
 	<iostream>
+	<stdlib.h>
 
-1587750253 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
+1587780442 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
 	"list_parent.h"
 
-1587749111 d:\kuliah\semester 2\tubes-struktur-data\list_parent.h
+1587780437 d:\kuliah\semester 2\tubes-struktur-data\list_parent.h
 	<stdlib.h>
 	<iostream>
 	<ctime>
-	<stdlib.h>
 
-1587745754 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
+1587782410 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
 	"list_relasi.h"
 
-1587740796 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
+1587776370 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"
 	<iostream>
 
-1587746161 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+1587782485 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
 	<iostream>
 	"list_child.h"
 	"list_parent.h"

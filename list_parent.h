@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <ctime>
-#include <stdlib.h>
+
 using namespace std;
 
 #define first(L) L.first
@@ -18,8 +18,8 @@ struct Date{
 
 struct DataPeminjam
 {
-    int ID, harga,nomorIdentitas, durasiPeminjaman;
-    string namaPeminjam, IDMotor;
+    int ID, harga,IDMotor, durasiPeminjaman;
+    string namaPeminjam, nomorIdentitas;
     Date waktuPeminjaman;
     Date waktucheckIn,waktucheckOut;
 };
@@ -50,12 +50,12 @@ void printDate(Date x);
 int CountParent(List_parent L);
 void deleteByIDparent(List_parent &L, int ID);
 
-int randomInt(int ID);
+int randomIntParent();
 address_parent alokasiParent(infotype_parent x);
 void dealokasiParent(address_parent &P);
 address_parent findElmParent(List_parent L, int ID);
 void printInfoParent(List_parent L);
 
 void insertAndsortParent(List_parent &L, address_parent R);
-
+bool checkDuplicateIDParent(List_parent L, int ID);
 #endif // LIST_PARENT_H_INCLUDED

@@ -1,8 +1,8 @@
 #include "list_parent.h"
 
-int randomInt(int ID)
+int randomIntParent()
 {
-    int random = rand() % ID;
+    int random = rand() % 90000 + 10000;
     return random;
 }
 
@@ -165,36 +165,44 @@ void deleteByIDparent(List_parent &L, int ID){
 }
 
 void insertAndsortParent(List_parent &L, address_parent R){
-    address_parent P, Q;
-    P = L.first;
-    if (P == NULL)
+    if (L.first != NULL)
     {
-        insertFirstParent(L, R);
-    }
-    else if (P->info.ID > info(R).ID && findElmParent(L, info(R).ID) == NULL)
-    {
-        insertFirstParent(L, R);
-    }
-    else if (findElmParent(L, info(R).ID) == NULL)
-    {
-        while (P != NULL && P->info.ID < info(R).ID)
+        if (findElmParent(L,info(R).ID) == NULL)
         {
-            Q = P;
-            P = P->next;
-        }
-        if (P != L.last)
-        {
-            insertAfterParent(L, Q, R);
+            if (info(R).ID < L.first->info.ID)
+            {
+                insertFirstParent(L, R);
+            }
+            else if (info(R).ID > L.last->info.ID)
+            {
+                insertLastParent(L, R);
+            }
+            else
+            {
+                address_parent P = L.first;
+                while (P != NULL && info(R).ID > P->info.ID)
+                {
+                    P = P->next;
+                }
+                insertAfterParent(L, P, R);
+            }
         }
         else
         {
-            insertLastParent(L, R);
+            cout << "peminjaman sudah terdaftar" << endl;
         }
     }
     else
     {
-        cout<<"ERROR"<<endl;    
+        insertFirstParent(L, R);
     }
 }
 
-
+bool checkDuplicateIDParent(List_parent L, int ID)
+{
+    if (findElmParent(L, ID) == NULL)
+    {
+        return false;
+    }
+    return true;
+}

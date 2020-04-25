@@ -23,7 +23,7 @@ void mainMenu()
     createListRelasi(LR);
     DataM(LC);
     int id;
-    string idmotor;
+    int idmotor;
     do
     {
         cout << "Menu Peminjaman Motor" << endl;
@@ -43,19 +43,22 @@ void mainMenu()
         switch (choice)
         {
         case 1:
-            dataIdentitas(Datapeminjam);
+            dataIdentitas(LP,Datapeminjam);
             inputDataPeminjam(LR,Datapeminjam);
+            cout<<"alokasi";
             P = alokasiParent(Datapeminjam);
             cout<<Datapeminjam.ID<<endl;
             cout<<"masuk";
             insertAndsortParent(LP, P);
             cout<<"masuk2";
+            cout<<Datapeminjam.IDMotor;
             Q = findElmChild(LC, Datapeminjam.IDMotor);
+            cout<<info(Q).ID;
             insertLastRelasi(LR, alokasiRelasi(P,Q));
             break;
         case 2:
             inputDataMotor(DataMtr);
-            insertLastChild(LC, alokasiChild(DataMtr));
+            insertAndsortChild(LC, alokasiChild(DataMtr));
             break;
         case 3:
             printInfoChild(LC);
@@ -85,7 +88,6 @@ void mainMenu()
             cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
-            cout << info(P).ID << endl;
             if (P != NULL)
             {
                 R = findElmRelasiByParent(LR, info(P).ID);
@@ -100,10 +102,10 @@ void mainMenu()
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(P).ID);
+                        cout << "dc sukses";
+                        deleteByIDparent(LP, id);
+                        cout << "Data berhasil dihapus.." << endl;
                     }
-                    cout << "dc sukses";
-                    deleteByIDparent(LP, id);
-                    cout << "Data berhasil dihapus.." << endl;
                 }
             }
             else
@@ -116,9 +118,13 @@ void mainMenu()
         case 7:
             cout<<"Masukkan ID motor yang ingin dihapus: ";
             cin>>idmotor;
-            if (findElmChild(LC, idmotor)!=NULL){
-                deleteByIDChild(LC, idmotor);
-                cout<<"delete berhasil";
+            if(first(LC)!=NULL){
+                if (findElmChild(LC, idmotor)!=NULL){
+                    deleteByIDChild(LC, idmotor);
+                    cout<<"delete berhasil";
+                }
+            }else{
+                cout<<"Data motor kosong"<<endl;
             }
             break;
         case 8:

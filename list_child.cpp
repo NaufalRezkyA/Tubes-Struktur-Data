@@ -1,5 +1,11 @@
 #include "list_child.h"
 
+int randomIntChild()
+{
+    int random = rand() % 90000 + 10000;
+    return random;
+}
+
 void inputDataMotor(infotype_child &x){
     cout<<"Nama Motor: ";
     cin>>x.NamaMotor;
@@ -7,19 +13,22 @@ void inputDataMotor(infotype_child &x){
     cin>>x.tahunMotor;
     cout<<"ID: ";
     cin>>x.ID;
+    cout<<"Tipe: ";
+    cin>>x.Tipe;
+    x.ID = randomIntChild();
 }
 
 void DataM(List_child &LC){
     infotype_child x;
-    x.ID = "BT20";
+    x.ID = 18392;
     x.NamaMotor = "BEAT F1";
     x.tahunMotor = 2020;
     insertLastChild(LC, alokasiChild(x));
-    x.ID = "BT12";
+    x.ID = 19320;
     x.NamaMotor = "BEAT A1";
     x.tahunMotor = 2012;
     insertLastChild(LC, alokasiChild(x));
-    x.ID = "BT10";
+    x.ID = 90219;
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2010;
     insertLastChild(LC, alokasiChild(x));
@@ -120,7 +129,7 @@ void deleteLastChild(List_child &L, address_child &P){
         prev(P) = NULL;
         first(L) = NULL;
     }
-    
+
 }
 
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
@@ -139,7 +148,7 @@ void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
         P = NULL;
     }
 }
-void deleteByIDChild(List_child &L, string ID){
+void deleteByIDChild(List_child &L, int ID){
     address_child P, R;
     P = L.first;
     if (L.first == NULL)
@@ -198,10 +207,10 @@ void printInfoChild(List_child L) {
 }
 
 
-address_child findElmChild(List_child L, string x) {
+address_child findElmChild(List_child L, int ID) {
     address_child P = first(L);
     do{
-        if(info(P).ID==x) {
+        if(info(P).ID==ID) {
             return P;
         }
         P = next(P);
@@ -211,25 +220,32 @@ address_child findElmChild(List_child L, string x) {
 
 void insertAndsortChild(List_child L, address_child x)
 {
-    address_child P, Q;
-    P = L.first;
-
-    if (P == NULL || P->info.tahunMotor >= info(x).tahunMotor)
+    if (L.first != NULL)
     {
-        insertFirstChild(L, x);
-    }
-    else if (info(prev(first(L))).tahunMotor <= info(x).tahunMotor)
-    {
-        insertLastChild(L, x);
+        if (findElmChild(L, info(x).ID) == NULL)
+        {
+            if (info(x).ID < L.first->info.ID)
+            {
+                insertFirstChild(L, x);
+            }
+            else
+            {
+                address_child P = L.first;
+                do
+                {
+                    P = P->next;
+                } while (P != L.first && P->info.ID > info(x).ID);
+                insertAfterChild(L, P->prev, x);
+            }
+        }
+        else
+        {
+            cout << "Lapas sudah terdaftar" << endl;
+        }
     }
     else
     {
-        do
-        {
-            P = P->next;
-        } while (P != first(L) && info(prev(P)).tahunMotor != info(x).tahunMotor);
-        P = prev(P);
-        insertAfterChild(L, P, x);
+        insertFirstChild(L, x);
     }
 }
 
@@ -237,16 +253,19 @@ void DataM()
 {
     List_child LC;
     infotype_child x;
-    x.ID = "BT20";
+    x.ID = 19231;
     x.NamaMotor = "BEAT F1";
     x.tahunMotor = 2012;
+    x.Tipe = "Manual";
     insertAndsortChild(LC, alokasiChild(x));
-    x.ID = "BT12";
+    x.ID = 92132;
     x.NamaMotor = "BEAT A1";
     x.tahunMotor = 2010;
+    x.Tipe = "Automatic";
     insertAndsortChild(LC, alokasiChild(x));
-    x.ID = "BT10";
+    x.ID = 10923;
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2020;
+    x.Tipe = "Manual";
     insertAndsortChild(LC, alokasiChild(x));
 }
