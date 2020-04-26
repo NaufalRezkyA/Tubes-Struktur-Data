@@ -217,7 +217,6 @@ void dataIdentitas(List_parent L, infotype_parent &x)
 {
     cout << "Masukkan Nomor identitas anda: ";
     cin >> x.nomorIdentitas;
-    cout<<endl;
     bool mark = true;
     while (mark != false)
     {
@@ -226,7 +225,6 @@ void dataIdentitas(List_parent L, infotype_parent &x)
     }
     cout << "Masukkan Nama: ";
     cin>>x.namaPeminjam;
-    cout << endl;
     time_t now = time(0);
     tm *ltm = localtime(&now);
 
@@ -242,7 +240,7 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
     bool mark = false;
     while (mark != true)
     {
-        cout << "masukan id motor yang akan dipinjam:" << endl;
+        cout << "Masukan ID motor yang akan dipinjam: " << endl;
         cin >> x.IDMotor;
         address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
         if (P != NULL)
@@ -264,6 +262,7 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
             cout << "Waktu checkin: " << endl;
             cout << "Format pengisian tanggal bulan tahun jam menit" << endl;
             cout << "Yang dipisahkan dengan 1 space.." << endl;
+            cout << "Ex: 23 9 2000 10 30" << endl;
             cout << "Silahkan input waktu : " << endl;
             cin >> x.waktucheckIn.tanggal >> x.waktucheckIn.bulan >> x.waktucheckIn.tahun >> x.waktucheckIn.jam >> x.waktucheckIn.menit;
             printDate(x.waktuPeminjaman);
@@ -349,14 +348,13 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
     }
     x.waktucheckOut.menit = x.waktucheckIn.menit;
     printDate(x.waktucheckOut);
-
     y.ID = x.IDMotor;
 }
 
 void inputDataPeminjam(List_relasi LR, infotype_parent &x)
 {
     string waktu;
-    cout << "durasi peminjaman(jam/hari):" << endl;
+    cout << "durasi peminjaman(ex: 8 jam/hari):";
     cin >> x.durasiPeminjaman >> waktu;
     if (waktu == "hari")
     {
@@ -373,6 +371,8 @@ void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Dat
     address_parent P = findElmParent(LP, Datapeminjam.ID);
     address_child Q = findElmChild(LC, datachild.ID);
     insertLastRelasi(LR, alokasiRelasi(P, Q));
+    address_relasi R = findElmRelasiByParent(LR, Datapeminjam.ID);
+    info(parent(R)).harga = info(parent(R)).durasiPeminjaman * info(child(R)).Harga;
 }
 
 void disconnected(List_relasi &L, int ID)

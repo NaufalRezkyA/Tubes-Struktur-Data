@@ -50,7 +50,7 @@
 	"list_parent.h"
 	<iostream>
 
-1587866040 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+1587871673 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
 	<iostream>
 	"list_child.h"
 	"list_parent.h"
