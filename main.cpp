@@ -72,7 +72,24 @@ void mainMenu()
             connect(LR, LP, LC, x, y);
             break;
         case 6:
-            
+            cout<<"Masukkan ID peminjam: ";
+            cin>>x.ID;
+            cout<<"Masukkan ID motor: ";
+            cin>>y.ID;
+            P = findElmParent(LP, x.ID);
+            Q = findElmChild(LC, y.ID);
+            if(P!=NULL & Q!=NULL){
+                R = findElmRelasiByParent(LR, info(P).ID);
+                S = findElmRelasiByChild(LR, info(Q).ID);
+                if(R!=NULL & S!=NULL){
+                    cout<<"Data telah terhubung"<<endl;
+                } else{
+                    cout<<"Data belum terhubung"<<endl;
+                }
+            }else{
+                cout<<"Data yang anda cari tidak ada..."<<endl;
+            }
+            break;
         case 7:
             cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
