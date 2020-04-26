@@ -47,7 +47,6 @@ void mainMenu()
             dataIdentitas(LP,Datapeminjam);
             inputDataPeminjam(LR,Datapeminjam);
             P = alokasiParent(Datapeminjam);
-            cout<<Datapeminjam.ID<<endl;
             insertAndsortParent(LP, P);
             connect(LR,LP,LC,Datapeminjam);
             break;
@@ -95,12 +94,12 @@ void mainMenu()
                 if (R != NULL)
                 {
                     disconnected(LR, info(P).ID);
-                    cout << "dc sukses";
+                    cout << "Penghapusan Data berhasil...";
                 }
             }
             else
             {
-                cout << "Data Tidak ada.." << endl;
+                cout << "Data Tidak ada..." << endl;
             }
             cout << endl;
             break;
@@ -122,9 +121,8 @@ void mainMenu()
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(P).ID);
-                        cout << "dc sukses";
                         deleteByIDparent(LP, id);
-                        cout << "Data berhasil dihapus.." << endl;
+                        cout << "Penghapusan Data Berhasil..." << endl;
                     }
                 }
             }
@@ -152,9 +150,8 @@ void mainMenu()
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(parent(R)).ID);
-                        cout << "dc sukses";
                         deleteByIDChild(LC, id);
-                        cout << "Data berhasil dihapus.." << endl;
+                        cout << "Penghapusan Data Berhasil..." << endl;
                     }
                 }
             }
@@ -203,6 +200,7 @@ void mainMenu()
                     i--;
                 }
             }
+            cout<<"Reset Data Berhasil..."<<endl;
             break;
         }
         if (choice == 0)
