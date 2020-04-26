@@ -111,12 +111,14 @@ void printInfoParent(List_parent L) {
             cout<<"Nama: "<<info(P).namaPeminjam<<endl;
             cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
             cout<<"Harga Sewa: "<<info(P).harga<<endl;
-            cout<<"Waktu Checkin: "<<endl;
-            printDate(info(P).waktucheckIn);
-            cout<<"Waktu Checkout: "<<endl;
-            printDate(info(P).waktucheckOut);
-            cout<<"Waktu transaksi: "<<endl;
-            printDate(info(P).waktuPeminjaman);
+            if (info(P).waktucheckIn.tanggal<=31){
+                cout << "Waktu Checkin: " << endl;
+                printDate(info(P).waktucheckIn);
+                cout<<"Waktu Checkout: "<<endl;
+                printDate(info(P).waktucheckOut);
+                cout<<"Waktu transaksi: "<<endl;
+                printDate(info(P).waktuPeminjaman);
+            }
             cout<<endl;
             P = next(P);
         }
