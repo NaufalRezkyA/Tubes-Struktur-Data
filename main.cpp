@@ -6,6 +6,13 @@ using namespace std;
 #include "list_relasi.h"
 
 void mainMenu();
+void currentTime();
+
+void currentTime(){
+    time_t now = time(0);
+    char *dt = ctime(&now);
+    cout << "The local date and time is: " << dt << endl;
+}
 
 void mainMenu()
 {
@@ -259,6 +266,7 @@ void mainMenu()
 
 int main()
 {
+    currentTime();
     mainMenu();
 
     return 0;
