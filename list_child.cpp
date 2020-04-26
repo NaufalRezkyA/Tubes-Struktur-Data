@@ -271,7 +271,7 @@ void DataM(List_child &LC)
     x.Harga = 10000;
     insertAndsortChild(LC, alokasiChild(x));
 
-    x.ID = 10923;
+    x.ID = 12345;
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2020;
     x.Tipe = "Manual";

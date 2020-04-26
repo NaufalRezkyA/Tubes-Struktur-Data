@@ -24,20 +24,23 @@ void mainMenu()
     DataM(LC);
     int id;
     int idmotor;
+    infotype_parent x;
+    infotype_child y;
     do
     {
         cout << "Menu Peminjaman Motor" << endl;
-        cout << "1. Menginput Peminjaman Motor" << endl;
+        cout << "1. Menginput Peminjam Motor" << endl;
         cout << "2. Menginput Data Motor" << endl;
-        cout << "3. Data peminjam" << endl;
-        cout << "4. Daftar motor yang ada" << endl;
-        cout << "5. Catatan peminjaman motor" << endl;
-        cout << "6. Edit data peminjaman motor" << endl;
-        cout << "7. Batalkan peminjaman motor by ID" << endl;
-        cout << "8. Delete Data si peminjam" << endl;
-        cout << "9. Delete Data Motor" << endl;
-        cout << "10. 3 Data Transaksi terbaru" << endl;
-        cout << "11. Reset Data" << endl;
+        cout << "3. Menginput transaksi penyewaan"<<endl;
+        cout << "4. Data peminjam" << endl;
+        cout << "5. Daftar motor yang ada" << endl;
+        cout << "6. Catatan peminjaman motor" << endl;
+        cout << "7. Edit data peminjaman motor" << endl;
+        cout << "8. Batalkan peminjaman motor by ID" << endl;
+        cout << "9. Delete Data si peminjam" << endl;
+        cout << "10. Delete Data Motor" << endl;
+        cout << "11. 3 Data Transaksi terbaru" << endl;
+        cout << "12. Reset Data" << endl;
         cout << "0. Quit" << endl;
         cout << "Masukan angka:";
         cin >> choice;
@@ -48,19 +51,25 @@ void mainMenu()
             inputDataPeminjam(LR,Datapeminjam);
             P = alokasiParent(Datapeminjam);
             insertAndsortParent(LP, P);
-            connect(LR,LP,LC,Datapeminjam);
             break;
         case 2:
             inputDataMotor(LC, DataMtr);
             insertAndsortChild(LC, alokasiChild(DataMtr));
             break;
         case 3:
-            printInfoParent(LP);
+            cout << "ID peminjam:";
+            cin >> x.ID;
+            P = findElmParent(LP, x.ID);
+            checkin(LR, info(P), y);
+            connect(LR, LP, LC, x, y);
             break;
         case 4:
-            printInfoChild(LC);
+            printInfoParent(LP);
             break;
         case 5:
+            printInfoChild(LC);
+            break;
+        case 6:
             if (first(LR) != NULL)
             {
                 printInfoRelasi(LR);
@@ -70,7 +79,7 @@ void mainMenu()
                 cout << "kosong" << endl;
             }
             break;
-        case 6:
+        case 7:
             int Id;
             cout << "Masukkan ID peminjaman yang ingin dirubah datanya:";
             cin >> Id;
@@ -84,7 +93,7 @@ void mainMenu()
                 inputDataPeminjam(LR, info(parent(R)));
             }
             break;
-        case 7:
+        case 8:
             cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
@@ -103,7 +112,7 @@ void mainMenu()
             }
             cout << endl;
             break;
-        case 8:
+        case 9:
             cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
@@ -132,7 +141,7 @@ void mainMenu()
             }
             cout << endl;
             break;
-        case 9:
+        case 10:
             cout << "Masukkan ID motor yang ingin di hapus: ";
             cin >> id;
             Q = findElmChild(LC, id);
@@ -162,10 +171,10 @@ void mainMenu()
             cout << endl;
             break;
 
-        case 10:
+        case 11:
             printInfoTerbaru(LR);
             break;
-        case 11:
+        case 12:
             int i;
             R = first(LR);
             if (R != NULL)
