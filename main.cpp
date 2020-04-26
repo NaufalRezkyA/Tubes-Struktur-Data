@@ -35,12 +35,13 @@ void mainMenu()
         cout << "4. Data peminjam" << endl;
         cout << "5. Daftar motor yang ada" << endl;
         cout << "6. Catatan peminjaman motor" << endl;
-        cout << "7. Edit data peminjaman motor" << endl;
-        cout << "8. Batalkan peminjaman motor by ID" << endl;
-        cout << "9. Delete Data si peminjam" << endl;
-        cout << "10. Delete Data Motor" << endl;
-        cout << "11. 3 Data Transaksi terbaru" << endl;
-        cout << "12. Reset Data" << endl;
+        cout << "7. Lihat data motor yang di sewa peminjam" << endl;
+        cout << "8. Edit data peminjaman motor" << endl;
+        cout << "9. Batalkan peminjaman motor by ID" << endl;
+        cout << "10. Delete Data si peminjam" << endl;
+        cout << "11. Delete Data Motor" << endl;
+        cout << "12. 3 Data Transaksi terbaru" << endl;
+        cout << "13. Reset Data" << endl;
         cout << "0. Quit" << endl;
         cout << "Masukan angka:";
         cin >> choice;
@@ -80,6 +81,21 @@ void mainMenu()
             }
             break;
         case 7:
+            cout << "Masukkan ID peminjam:";
+            cin >> x.ID;
+            R = findElmRelasiByParent(LR, x.ID);
+            while (R != NULL)
+            {
+                cout << info(parent(R)).namaPeminjam << endl;
+                cout << info(parent(R)).ID << endl;
+                cout << info(child(R)).NamaMotor << endl;
+                cout << "Waktu checkin:" << endl;
+                printDate(info(parent(R)).waktucheckIn);
+                cout << "Waktu checkout:" << endl;
+                printDate(info(parent(R)).waktucheckOut);
+            }
+            break;
+        case 8:
             int Id;
             cout << "Masukkan ID peminjaman yang ingin dirubah datanya:";
             cin >> Id;
@@ -93,7 +109,7 @@ void mainMenu()
                 inputDataPeminjam(LR, info(parent(R)));
             }
             break;
-        case 8:
+        case 9:
             cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
@@ -112,7 +128,7 @@ void mainMenu()
             }
             cout << endl;
             break;
-        case 9:
+        case 10:
             cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
@@ -141,7 +157,7 @@ void mainMenu()
             }
             cout << endl;
             break;
-        case 10:
+        case 11:
             cout << "Masukkan ID motor yang ingin di hapus: ";
             cin >> id;
             Q = findElmChild(LC, id);
@@ -171,10 +187,10 @@ void mainMenu()
             cout << endl;
             break;
 
-        case 11:
+        case 12:
             printInfoTerbaru(LR);
             break;
-        case 12:
+        case 13:
             int i;
             R = first(LR);
             if (R != NULL)
