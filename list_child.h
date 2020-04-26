@@ -1,8 +1,13 @@
 #ifndef LIST_CHILD_H_INCLUDED
 #define LIST_CHILD_H_INCLUDED
 
+
 #include <iostream>
 #include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+#include "list_parent.h"
 using namespace std;
 
 #define next(P) P->next
@@ -52,5 +57,6 @@ void printInfoChild(List_child L);
 void insertAndsortChild(List_child &L, address_child R);
 void DataM(List_child &LC);
 bool checkDuplicateIDChild(List_child L, int ID);
+
 
 #endif // LIST_CHILD_H_INCLUDED

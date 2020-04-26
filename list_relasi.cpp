@@ -107,19 +107,25 @@ int CountRelasi(List_relasi L)
 void printInfoRelasi(List_relasi L)
 {
     address_relasi P = first(L);
+    int i,j;
+    i = 7;
+    j = 0;
     if(P!=NULL){
         while (P != NULL)
         {
             if(parent(P)!=NULL && child(P)!=NULL){
-                cout << info(parent(P)).namaPeminjam << endl;
-                cout << info(parent(P)).ID << endl;
-                cout << info(child(P)).NamaMotor << endl;
-                cout << "Waktu checkin:"<<endl;
-                printDate(info(parent(P)).waktucheckIn);
-                cout << "Waktu checkout:" << endl;
-                printDate(info(parent(P)).waktucheckOut);
+                gotoxy(38,i);cout << "Nama Peminjam   : "<<info(parent(P)).namaPeminjam << endl;
+                gotoxy(38,i+1);cout << "ID Peminjam     : "<<info(parent(P)).ID << endl;
+                gotoxy(38,i+2);cout << "Nama Motor      :"<<info(child(P)).NamaMotor << endl;
+                gotoxy(38,i+3);cout << "Waktu checkin   : "<<endl;
+                i = 4;
+                printDate(info(parent(P)).waktucheckIn, i);
+                i=6;
+                gotoxy(38,i);cout << "Waktu checkout  : " << endl;
+                i = 7;
+                printDate(info(parent(P)).waktucheckOut, i);
             }
-            cout<<endl;
+            i=i+10;
             P = next(P);
         }
     }else{
@@ -139,9 +145,9 @@ void printInfoTerbaru(List_relasi L)
             cout << info(parent(P)).ID << endl;
             cout << info(child(P)).NamaMotor << endl;
             cout << "Waktu checkin:" << endl;
-            printDate(info(parent(P)).waktucheckIn);
+            printDate(info(parent(P)).waktucheckIn, i);
             cout << "Waktu checkout:" << endl;
-            printDate(info(parent(P)).waktucheckOut);
+            printDate(info(parent(P)).waktucheckOut, i);
             cout<<endl;
             P = prev(P);
             i++;
@@ -188,7 +194,6 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
     mark = false;
     if (P != NULL)
     {
-        cout << "temu";
         if (info(parent(P)).waktucheckIn.tahun <= datapeminjam.waktucheckIn.tahun &&
             datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tahun &&
             info(parent(P)).waktucheckIn.bulan <= datapeminjam.waktucheckIn.bulan &&
@@ -200,7 +205,7 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
             info(parent(P)).waktucheckIn.menit <= datapeminjam.waktucheckIn.menit &&
             datapeminjam.waktucheckIn.menit <= info(parent(P)).waktucheckOut.menit)
         {
-            cout << "Motor telah di pesan pengguna yang lain" << endl;
+            gotoxy(45,15);cout << "Motor telah di pesan pengguna yang lain" << endl;
         }
         else
         {
@@ -215,7 +220,8 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
 }
 void dataIdentitas(List_parent L, infotype_parent &x)
 {
-    cout << "Masukkan Nomor identitas anda: ";
+    gotoxy(55,7);cout << "Formulir Data Diri Peminjam ";
+    gotoxy(38,9);cout << "Masukkan Nomor identitas          : ";
     cin >> x.nomorIdentitas;
     bool mark = true;
     while (mark != false)
@@ -223,7 +229,7 @@ void dataIdentitas(List_parent L, infotype_parent &x)
         x.ID = randomIntParent();
         mark = checkDuplicateIDParent(L, x.ID);
     }
-    cout << "Masukkan Nama: ";
+    gotoxy(38,10);cout << "Masukkan Nama                     : ";
     cin>>x.namaPeminjam;
     time_t now = time(0);
     tm *ltm = localtime(&now);
@@ -237,10 +243,11 @@ void dataIdentitas(List_parent L, infotype_parent &x)
 
 void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
 {
+    int i;
     bool mark = false;
     while (mark != true)
     {
-        cout << "Masukan ID motor yang akan dipinjam: " << endl;
+        gotoxy(38,10);cout << "Masukan ID motor yang akan dipinjam : ";
         cin >> x.IDMotor;
         address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
         if (P != NULL)
@@ -259,16 +266,17 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
     {
         while (mark != true)
         {
-            cout << "Waktu checkin: " << endl;
-            cout << "Format pengisian tanggal bulan tahun jam menit" << endl;
-            cout << "Yang dipisahkan dengan 1 space.." << endl;
-            cout << "Ex: 23 9 2000 10 30" << endl;
-            cout << "Silahkan input waktu : " << endl;
+            gotoxy(38,11);cout << "Waktu checkin: " << endl;
+            gotoxy(38,12);cout << "Format pengisian tanggal bulan tahun jam menit" << endl;
+            gotoxy(38,13);cout << "Yang dipisahkan dengan 1 space.." << endl;
+            gotoxy(38,14);cout << "Ex: 23 9 2000 10 30" << endl;
+            gotoxy(38,15);cout << "Silahkan input waktu : ";
             cin >> x.waktucheckIn.tanggal >> x.waktucheckIn.bulan >> x.waktucheckIn.tahun >> x.waktucheckIn.jam >> x.waktucheckIn.menit;
-            printDate(x.waktuPeminjaman);
+            i = 16;
+            printDate(x.waktuPeminjaman, i);
             if (x.waktucheckIn.tahun < x.waktuPeminjaman.tahun)
             {
-                cout << "Inputan tidak valid" << endl;
+                gotoxy(38,17);cout << "Inputan tidak valid" << endl;
             }
             else if (x.waktucheckIn.tahun > x.waktuPeminjaman.tahun)
             {
@@ -278,7 +286,7 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
             {
                 if (x.waktucheckIn.bulan < x.waktuPeminjaman.bulan)
                 {
-                    cout << "Inputan tidak valid" << endl;
+                    gotoxy(38,17);cout << "Inputan tidak valid" << endl;
                 }
                 else if (x.waktucheckIn.bulan > x.waktuPeminjaman.bulan)
                 {
@@ -288,7 +296,7 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
                 {
                     if (x.waktucheckIn.tanggal < x.waktuPeminjaman.tanggal)
                     {
-                        cout << "Inputan tidak valid" << endl;
+                        gotoxy(38,17);cout << "Inputan tidak valid" << endl;
                     }
                     else if (x.waktucheckIn.tanggal > x.waktuPeminjaman.tanggal)
                     {
@@ -298,7 +306,7 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
                     {
                         if (x.waktucheckIn.jam < x.waktuPeminjaman.jam)
                         {
-                            cout << "Inputan tidak valid" << endl;
+                            gotoxy(38,17);cout << "Inputan tidak valid" << endl;
                         }
                         else if (x.waktucheckIn.jam > x.waktuPeminjaman.jam)
                         {
@@ -308,7 +316,7 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
                         {
                             if (x.waktucheckIn.menit < x.waktuPeminjaman.menit)
                             {
-                                cout << "Inputan tidak valid" << endl;
+                                gotoxy(38,17);cout << "Inputan tidak valid" << endl;
                             }
                             else
                             {
@@ -321,9 +329,10 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
         }
         CheckInputanCheckin(LR, x, mark);
     }
-    printDate(x.waktucheckIn);
+    i = 18;
+    printDate(x.waktucheckIn, i);
 
-    cout << "Waktu checkout:" << endl;
+    gotoxy(38,20);cout << "Waktu checkout:" << endl;
     x.waktucheckOut.tanggal = x.waktucheckIn.tanggal;
     x.waktucheckOut.bulan = x.waktucheckIn.bulan;
     x.waktucheckOut.tahun = x.waktucheckIn.tahun;
@@ -347,21 +356,25 @@ void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
         }
     }
     x.waktucheckOut.menit = x.waktucheckIn.menit;
-    printDate(x.waktucheckOut);
+    i =21;
+    printDate(x.waktucheckOut, i);
     y.ID = x.IDMotor;
 }
 
 void inputDataPeminjam(List_relasi LR, infotype_parent &x)
 {
+    int i;
     string waktu;
-    cout << "durasi peminjaman(ex: 8 jam/hari):";
+    gotoxy(38,11);cout << "durasi peminjaman(ex: 8 jam/hari) : ";
     cin >> x.durasiPeminjaman >> waktu;
     if (waktu == "hari")
     {
         x.durasiPeminjaman = x.durasiPeminjaman * 24;
     }
-    cout << x.durasiPeminjaman << endl;
-    printDate(x.waktuPeminjaman);
+    gotoxy(45,15);cout <<"RESULT"<< endl;
+    gotoxy(38,16);cout <<"Durasi Peminjaman : "<< x.durasiPeminjaman << " jam"<< endl;
+    i = 17;
+    printDate(x.waktuPeminjaman, i);
 
     int harga;
     x.harga = 0;
@@ -402,3 +415,5 @@ void disconnected(List_relasi &L, int ID)
     }
 
 }
+
+

@@ -6,9 +6,9 @@ int randomIntParent()
     return random;
 }
 
-void printDate(Date x){
-    cout<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
-    cout<<x.jam<<":"<<x.menit<<endl;
+void printDate(Date x,int i){
+    gotoxy(38,i);cout<<"Tanggal   : "<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
+    gotoxy(38,i+1);cout<<"Jam     : "<<x.jam<<":"<<x.menit<<endl;
     cout<<endl;
 }
 
@@ -104,20 +104,32 @@ int CountParent(List_parent L)
 
 void printInfoParent(List_parent L) {
     address_parent P = first(L);
+    int i,j;
+    i = 9;
+    j = 0;
     if(first(L)!=NULL) {
         while (P != NULL)
         {
-            cout<<"ID Peminjam: "<<info(P).ID<<endl;
-            cout<<"Nama: "<<info(P).namaPeminjam<<endl;
-            cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
-            cout<<"Harga Sewa: "<<info(P).harga<<endl;
+            if(i+6 >= 30){
+                i = 9;
+                j = 29;
+
+            }
+            gotoxy(45,7);cout<<"DATA DIRI PEMINJAM";
+            gotoxy(38+j,i);cout<<"ID Peminjam: "<<info(P).ID<<endl;
+            gotoxy(38+j,i+1);cout<<"Nama: "<<info(P).namaPeminjam<<endl;
+            gotoxy(38+j,i+2);cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
+            gotoxy(38+j,i+3);cout<<"Harga Sewa: "<<info(P).harga<<endl;
             if (info(P).waktucheckIn.tanggal<=31){
-                cout << "Waktu Checkin: " << endl;
-                printDate(info(P).waktucheckIn);
-                cout<<"Waktu Checkout: "<<endl;
-                printDate(info(P).waktucheckOut);
-                cout<<"Waktu transaksi: "<<endl;
-                printDate(info(P).waktuPeminjaman);
+                gotoxy(38+j,i+4);cout << "Waktu Checkin: " << endl;
+                printDate(info(P).waktucheckIn, i+5);
+                gotoxy(38+j,i+6);cout<<"Waktu Checkout: "<<endl;
+                printDate(info(P).waktucheckOut, i+7);
+                gotoxy(38+j,i+8);cout<<"Waktu transaksi: "<<endl;
+                printDate(info(P).waktuPeminjaman, i+9);
+                i=i+11;
+            }else {
+                i= i +5;
             }
             cout<<endl;
             P = next(P);
@@ -218,4 +230,13 @@ bool checkDuplicateIDParent(List_parent L, int ID)
         return false;
     }
     return true;
+}
+
+void SetColor(unsigned short color) {
+    HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsoleOutput,color);
+}
+void gotoxy(int x, int y){
+   COORD k = {x,y};
+   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), k);
 }
