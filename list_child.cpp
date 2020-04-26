@@ -1,5 +1,6 @@
 #include "list_child.h"
 
+<<<<<<< Updated upstream
 void inputDataMotor(infotype_child &x){
     cout<<"Nama Motor: ";
     cin>>x.NamaMotor;
@@ -23,6 +24,12 @@ void DataM(List_child &LC){
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2010;
     insertLastChild(LC, alokasiChild(x));
+=======
+int randomIntChild()
+{
+    int random = rand() % 90000 + 10000;
+    return random;
+>>>>>>> Stashed changes
 }
 
 void createListChild(List_child &L) {
@@ -245,8 +252,21 @@ void DataM()
     x.NamaMotor = "BEAT A1";
     x.tahunMotor = 2012;
     insertAndsortChild(LC, alokasiChild(x));
+<<<<<<< Updated upstream
     x.ID = "BT10";
+=======
+
+    x.ID = 12345;
+>>>>>>> Stashed changes
     x.NamaMotor = "BEAT A0";
     x.tahunMotor = 2010;
     insertAndsortChild(LC, alokasiChild(x));
 }
+
+void printDate(Date x)
+{
+    cout << x.tanggal << "/" << x.bulan << "/" << x.tahun << endl;
+    cout << x.jam << ":" << x.menit << endl;
+    cout << endl;
+}
+

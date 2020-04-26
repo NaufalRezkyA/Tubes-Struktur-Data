@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # depslib dependency file v1.0
 1583576026 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_child.cpp
 	"list_child.h"
@@ -115,3 +116,123 @@
 	"list_parent.h"
 	"list_relasi.h"
 
+=======
+# depslib dependency file v1.0
+1583576026 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_child.cpp
+	"list_child.h"
+
+1583575990 d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_child.h
+	<iostream>
+
+1583576148 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_parent.cpp
+	"list_parent.h"
+
+1583576097 d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_parent.h
+	<iostream>
+
+1583576252 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_relasi.cpp
+	"list_relasi.h"
+
+1583576214 d:\kuliah\semester 2\tubes-struktur-data\tubesstd\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1583576292 source:d:\kuliah\semester 2\tubes-struktur-data\tubesstd\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+
+1587856614 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
+	"list_child.h"
+
+1587854611 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
+	<iostream>
+	<stdlib.h>
+
+1587859140 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
+	"list_parent.h"
+
+1587854628 d:\kuliah\semester 2\tubes-struktur-data\list_parent.h
+	<stdlib.h>
+	<iostream>
+	<ctime>
+
+1587859079 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
+	"list_relasi.h"
+
+1587858147 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1587859169 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+
+1587700442 source:e:\github\tubes-struktur-data\list_child.cpp
+	"list_child.h"
+
+1587700442 e:\github\tubes-struktur-data\list_child.h
+	<iostream>
+
+1587700442 source:e:\github\tubes-struktur-data\list_parent.cpp
+	"list_parent.h"
+
+1587700442 e:\github\tubes-struktur-data\list_parent.h
+	<stdlib.h>
+	<iostream>
+	<ctime>
+	<stdlib.h>
+
+1587700442 source:e:\github\tubes-struktur-data\list_relasi.cpp
+	"list_relasi.h"
+
+1587700442 e:\github\tubes-struktur-data\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1587700442 source:e:\github\tubes-struktur-data\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+
+1587541499 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\list_child.cpp
+	"list_child.h"
+
+1587541499 c:\users\naufa\downloads\compressed\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\list_child.h
+	<iostream>
+
+1587541499 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\list_parent.cpp
+	"list_parent.h"
+
+1587541499 c:\users\naufa\downloads\compressed\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\list_parent.h
+	<stdlib.h>
+	<iostream>
+	<ctime>
+	<stdlib.h>
+
+1587541499 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\list_relasi.cpp
+	"list_relasi.h"
+
+1587541499 c:\users\naufa\downloads\compressed\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1587541499 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\tubes-struktur-data-60483859d476badd1d33e3423e530b20aa9158a1\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+
+>>>>>>> Stashed changes

@@ -6,11 +6,14 @@ int randomInt(int ID)
     return random;
 }
 
+<<<<<<< Updated upstream
 void printDate(Date x){
     cout<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
     cout<<x.jam<<":"<<x.menit<<endl;
 }
 
+=======
+>>>>>>> Stashed changes
 void createListParent(List_parent &L) {
     first(L) = NULL;
 }
@@ -125,6 +128,7 @@ void printInfoParent(List_parent L) {
     if(first(L)!=NULL) {
         while ((P) != first(L))
         {
+<<<<<<< Updated upstream
             cout<<info(P).ID<<endl;
             cout<<info(P).namaPeminjam<<endl;
             cout<<info(P).nomorIdentitas<<endl;
@@ -132,6 +136,14 @@ void printInfoParent(List_parent L) {
             printDate(info(P).waktucheckIn);
             printDate(info(P).waktucheckOut);
             printDate(info(P).waktuPeminjaman);
+=======
+            cout<<"ID Peminjam: "<<info(P).ID<<endl;
+            cout<<"Nama: "<<info(P).namaPeminjam<<endl;
+            cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
+            cout<<"ID Motor: "<<info(P).IDMotor<<endl;
+            cout<<"Harga Sewa: "<<info(P).harga<<endl;
+            cout<<endl;
+>>>>>>> Stashed changes
             P = next(P);
         }
     }else{
@@ -145,6 +157,18 @@ address_parent findElmParent(List_parent L, int ID) {
     while (P != NULL)
     {
         if(info(P).ID == ID) {
+            return P;
+        }
+        P = next(P);
+    }
+    return NULL;
+}
+
+address_parent findElmParentbyIdentitas(List_parent L, string ID) {
+    address_parent P = first(L);
+    while (P != NULL)
+    {
+        if(info(P).nomorIdentitas == ID) {
             return P;
         }
         P = next(P);

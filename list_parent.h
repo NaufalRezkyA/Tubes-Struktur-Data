@@ -11,16 +11,18 @@ using namespace std;
 #define next(P) P->next
 #define info(P) P->info
 
-struct Date{
-    int tanggal,bulan,tahun,jam,menit;
-};
-
 struct DataPeminjam
 {
+<<<<<<< Updated upstream
     int ID, harga,nomorIdentitas, durasiPeminjaman;
     string namaPeminjam, IDMotor;
     Date waktuPeminjaman;
     Date waktucheckIn,waktucheckOut;
+=======
+    int ID, harga, IDMotor;
+    string namaPeminjam, nomorIdentitas;
+    
+>>>>>>> Stashed changes
 };
 
 typedef DataPeminjam infotype_parent;
@@ -43,8 +45,6 @@ void insertLastParent(List_parent &L, address_parent P);
 void deleteFirstParent(List_parent &L, address_parent &P);
 void deleteLastParent(List_parent &L, address_parent &P);
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
-void printDate(Date x);
-
 int CountParent(List_parent L);
 void deleteByIDparent(List_parent &L, int ID);
 
@@ -52,6 +52,7 @@ int randomInt(int ID);
 address_parent alokasiParent(infotype_parent x);
 void dealokasiParent(address_parent &P);
 address_parent findElmParent(List_parent L, int ID);
+address_parent findElmParentbyIdentitas(List_parent L, string ID);
 void printInfoParent(List_parent L);
 
 void insertAndsortParent(List_parent L, address_parent x);

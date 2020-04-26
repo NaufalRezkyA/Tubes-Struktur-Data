@@ -42,6 +42,7 @@ void mainMenu()
         switch (choice)
         {
         case 1:
+<<<<<<< Updated upstream
             dataIdentitas(Datapeminjam);
             inputDataPeminjam(LR,Datapeminjam);
             P = alokasiParent(Datapeminjam);
@@ -52,6 +53,18 @@ void mainMenu()
         case 2:
             inputDataMotor(DataMtr);
             insertLastChild(LC, alokasiChild(DataMtr));
+=======
+            dataIdentitas(LP,LR,Datapeminjam);
+            inputDataPeminjam(LR,LP,LC,Datapeminjam,P);
+            cout<<info(P).IDMotor;
+            Q = findElmChild(LC, info(P).IDMotor);
+            cout<<"connect";
+            connect(LR,LP,LC,info(P),info(Q));
+            break;
+        case 2:
+            inputDataMotor(LR,LC,LP, DataMtr, P);
+            insertAndsortChild(LC, alokasiChild(DataMtr));
+>>>>>>> Stashed changes
             break;
         case 3:
             printInfoChild(LC);
@@ -70,7 +83,7 @@ void mainMenu()
             }
             else
             {
-                inputDataPeminjam(LR, info(parent(R)));
+                inputDataPeminjam(LR,LP,LC, info(parent(R)),P);
             }
             break;
         case 6:
@@ -83,15 +96,49 @@ void mainMenu()
                 R = findElmRelasiByParent(LR, info(P).ID);
                 if (R != NULL)
                 {
-                    cout << "ID akan menggunakan Motor pada:" << endl;
-                    printDate(info(P).waktucheckIn);
-                    cout << "Dengan menghapus data peminjam maka akan menghapus data peminjaman motor" << endl;
+                    // cout << "ID akan menggunakan Motor pada:" << endl;
+                    // printDate(info(P).waktucheckIn);
+                    // cout << "Dengan menghapus data peminjam maka akan menghapus data peminjaman motor" << endl;
                     cout << "Apakah anda ingin menghapusnya(Y/N)?";
                     char penentuDelete;
                     cin >> penentuDelete;
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(P).ID);
+<<<<<<< Updated upstream
+=======
+                        deleteByIDparent(LP, id);
+                        cout << "Penghapusan Data Berhasil..." << endl;
+                    }
+                }
+            }
+            else
+            {
+                cout << "Data Tidak ada.." << endl;
+            }
+            cout << endl;
+            break;
+        case 9:
+            cout << "Masukkan ID motor yang ingin di hapus: ";
+            cin >> id;
+            Q = findElmChild(LC, id);
+            if (Q != NULL)
+            {
+                R = findElmRelasiByChild(LR, info(Q).ID);
+                if (R != NULL)
+                {
+                    // cout << "ID akan menggunakan Motor pada:" << endl;
+                    // printDate(info(parent(R)).waktucheckIn);
+                    cout << "Dengan menghapus data motor maka akan menghapus data peminjaman motor" << endl;
+                    cout << "Apakah anda ingin menghapusnya(Y/N)?";
+                    char penentuDelete;
+                    cin >> penentuDelete;
+                    if (penentuDelete == 'Y')
+                    {
+                        disconnected(LR, info(parent(R)).ID);
+                        deleteByIDChild(LC, id);
+                        cout << "Penghapusan Data Berhasil..." << endl;
+>>>>>>> Stashed changes
                     }
                     cout << "dc sukses";
                     deleteByIDparent(LP, id);
