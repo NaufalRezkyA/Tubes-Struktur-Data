@@ -35,6 +35,7 @@ void mainMenu()
     infotype_child y;
     do
     {
+        currentTime();
         cout << "Menu Peminjaman Motor" << endl;
         cout << "1. Insert Parent" << endl;
         cout << "2. Display List parent only" << endl;
@@ -266,7 +267,6 @@ void mainMenu()
 
 int main()
 {
-    currentTime();
     mainMenu();
 
     return 0;
