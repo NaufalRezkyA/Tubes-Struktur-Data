@@ -13,6 +13,8 @@ void inputDataMotor(List_child L,infotype_child &x){
     cin>>x.tahunMotor;
     cout<<"Tipe: ";
     cin>>x.Tipe;
+    cout<<"Harga sewa(jam): ";
+    cin>>x.Harga;
 
     bool mark = true;
     while(mark!=false){

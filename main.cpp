@@ -76,8 +76,12 @@ void mainMenu()
             cout << "ID peminjam:";
             cin >> x.ID;
             P = findElmParent(LP, x.ID);
-            checkin(LR, info(P), y);
-            connect(LR, LP, LC, x, y);
+            if(P!=NULL){
+                checkin(LR,LC, info(P), y);
+                connect(LR, LP, LC, x, y);
+            }else{
+                cout<<"Data tidak tidak ada..."<<endl;
+            }
             break;
         case 6:
             cout<<"Masukkan ID peminjam: ";
@@ -113,7 +117,7 @@ void mainMenu()
             }
             else
             {
-                cout << "Data Tidak ada..." << endl;
+                cout << "Data peminjam Tidak ada..." << endl;
             }
             cout << endl;
             break;
@@ -131,16 +135,19 @@ void mainMenu()
         case 9:
             cout << "Masukkan ID peminjam:";
             cin >> x.ID;
-            R = findElmRelasiByParent(LR, x.ID);
+            R = first(LR);
             while (R != NULL)
             {
-                cout << info(parent(R)).namaPeminjam << endl;
-                cout << info(parent(R)).ID << endl;
-                cout << info(child(R)).NamaMotor << endl;
-                cout << "Waktu checkin:" << endl;
-                printDate(info(parent(R)).waktucheckIn);
-                cout << "Waktu checkout:" << endl;
-                printDate(info(parent(R)).waktucheckOut);
+                if(info(parent(R)).ID==x.ID){
+                    cout << info(parent(R)).namaPeminjam << endl;
+                    cout << info(parent(R)).ID << endl;
+                    cout << info(child(R)).NamaMotor << endl;
+                    cout << "Waktu checkin:" << endl;
+                    printDate(info(parent(R)).waktucheckIn);
+                    cout << "Waktu checkout:" << endl;
+                    printDate(info(parent(R)).waktucheckOut);
+                }
+                R=next(R);
             }
             break;
         case 10:

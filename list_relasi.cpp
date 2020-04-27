@@ -188,7 +188,6 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
     mark = false;
     if (P != NULL)
     {
-        cout << "temu";
         if (info(parent(P)).waktucheckIn.tahun <= datapeminjam.waktucheckIn.tahun &&
             datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tahun &&
             info(parent(P)).waktucheckIn.bulan <= datapeminjam.waktucheckIn.bulan &&
@@ -235,23 +234,28 @@ void dataIdentitas(List_parent L, infotype_parent &x)
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
 }
 
-void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
+void checkin(List_relasi LR,List_child LC, infotype_parent &x, infotype_child &y)
 {
     bool mark = false;
     while (mark != true)
     {
         cout << "Masukan ID motor yang akan dipinjam: " << endl;
         cin >> x.IDMotor;
-        address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
-        if (P != NULL)
-        {
-            //x.harga = x.durasiPeminjaman * info(child(P)).Harga;
-            CheckInputanCheckin(LR, x, mark);
+        address_child R = findElmChild(LC, x.IDMotor);
+        if(R!=NULL){
+            address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
+            if (P != NULL)
+            {
+                cout<<"Motor dipakai orang lain pada :"<<endl;
+            }
+            else
+            {
+                mark = true;
+            }
+        }else{
+            cout<<"Data motor tidak ada..."<<endl;
         }
-        else
-        {
-            mark = true;
-        }
+        
     }
 
     mark = false;
