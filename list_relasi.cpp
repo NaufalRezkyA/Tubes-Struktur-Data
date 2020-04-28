@@ -246,24 +246,30 @@ void dataIdentitas(List_parent L, infotype_parent &x)
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
 }
 
-void checkin(List_relasi LR, infotype_parent &x, infotype_child &y)
+void checkin(List_relasi LR,List_child LC, infotype_parent &x, infotype_child &y)
 {
-    int i,j;
+    int i, j;
     bool mark = false;
     while (mark != true)
     {
-        gotoxy(38,10);cout << "Masukan ID motor yang akan dipinjam :";
+        gotoxy(38, 10);
+        cout << "Masukan ID motor yang akan dipinjam: " << endl;
         cin >> x.IDMotor;
-        address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
-        if (P != NULL)
-        {
-            //x.harga = x.durasiPeminjaman * info(child(P)).Harga;
-            CheckInputanCheckin(LR, x, mark);
+        address_child R = findElmChild(LC, x.IDMotor);
+        if(R!=NULL){
+            address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
+            if (P != NULL)
+            {
+                cout<<"Motor dipakai orang lain pada :"<<endl;
+            }
+            else
+            {
+                mark = true;
+            }
+        }else{
+            cout<<"Data motor tidak ada..."<<endl;
         }
-        else
-        {
-            mark = true;
-        }
+        
     }
 
     mark = false;

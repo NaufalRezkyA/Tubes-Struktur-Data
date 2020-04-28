@@ -58,5 +58,4 @@ void insertAndsortChild(List_child &L, address_child R);
 void DataM(List_child &LC);
 bool checkDuplicateIDChild(List_child L, int ID);
 
-
 #endif // LIST_CHILD_H_INCLUDED
