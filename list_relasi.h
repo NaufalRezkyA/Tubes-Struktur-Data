@@ -1,9 +1,13 @@
 #ifndef LIST_RELASI_H_INCLUDED
 #define LIST_RELASI_H_INCLUDED
 
+
 #include "list_relasi.h"
 #include "list_child.h"
 #include "list_parent.h"
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
 
 #include <iostream>
 using namespace std;
@@ -51,4 +55,5 @@ void insertAndsort(List_relasi L, address_relasi x);
 void CheckInputanCheckin(List_relasi LR, List_child LC, DataPeminjam datapeminjam, bool &mark);
 void dataIdentitas(List_parent L,infotype_parent &x);
 void inputDataPeminjam(List_relasi LR, infotype_parent &x);
+
 #endif // LIST_RELASI_H_INCLUDED
