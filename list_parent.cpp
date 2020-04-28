@@ -6,9 +6,9 @@ int randomIntParent()
     return random;
 }
 
-void printDate(Date x,int i){
-    gotoxy(38,i);cout<<"Tanggal   : "<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
-    gotoxy(38,i+1);cout<<"Jam     : "<<x.jam<<":"<<x.menit<<endl;
+void printDate(Date x,int i, int j){
+    gotoxy(38+j,i);cout<<"Tanggal   : "<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
+    gotoxy(38+j,i+1);cout<<"Jam       : "<<x.jam<<":"<<x.menit<<endl;
     cout<<endl;
 }
 
@@ -113,21 +113,20 @@ void printInfoParent(List_parent L) {
             if(i+6 >= 30){
                 i = 9;
                 j = 29;
-
             }
-            gotoxy(45,7);cout<<"DATA DIRI PEMINJAM";
+            gotoxy(55,7);cout<<"DATA DIRI PEMINJAM";
             gotoxy(38+j,i);cout<<"ID Peminjam: "<<info(P).ID<<endl;
             gotoxy(38+j,i+1);cout<<"Nama: "<<info(P).namaPeminjam<<endl;
             gotoxy(38+j,i+2);cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
             gotoxy(38+j,i+3);cout<<"Harga Sewa: "<<info(P).harga<<endl;
             if (info(P).waktucheckIn.tanggal<=31){
                 gotoxy(38+j,i+4);cout << "Waktu Checkin: " << endl;
-                printDate(info(P).waktucheckIn, i+5);
-                gotoxy(38+j,i+6);cout<<"Waktu Checkout: "<<endl;
-                printDate(info(P).waktucheckOut, i+7);
-                gotoxy(38+j,i+8);cout<<"Waktu transaksi: "<<endl;
-                printDate(info(P).waktuPeminjaman, i+9);
-                i=i+11;
+                printDate(info(P).waktucheckIn, i+5, j);
+                gotoxy(38+j,i+7);cout<<"Waktu Checkout: "<<endl;
+                printDate(info(P).waktucheckOut, i+8, j);
+                gotoxy(38+j,i+10);cout<<"Waktu transaksi:"<<endl;
+                printDate(info(P).waktuPeminjaman, i+11, j);
+                i=i+14;
             }else {
                 i= i +5;
             }
@@ -135,7 +134,7 @@ void printInfoParent(List_parent L) {
             P = next(P);
         }
     }else{
-        cout<<"Tidak ada data peminjaman"<<endl;
+         gotoxy(38+j,20);cout<<"Tidak ada data peminjaman"<<endl;
     }
 }
 
@@ -205,10 +204,8 @@ void insertAndsortParent(List_parent &L, address_parent R){
                 P = first(L);
                 while (P != NULL && R->info.ID > info(next(P)).ID)
                 {
-                    cout<<info(P).ID<<endl;
                     P = P->next;
                 }
-                cout<<info(P).ID<<"->"<<info(R).ID;
                 insertAfterParent(L, P, R);
             }
         }

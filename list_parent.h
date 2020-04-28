@@ -49,7 +49,7 @@ void insertLastParent(List_parent &L, address_parent P);
 void deleteFirstParent(List_parent &L, address_parent &P);
 void deleteLastParent(List_parent &L, address_parent &P);
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
-void printDate(Date x, int i);
+void printDate(Date x, int i, int j);
 
 int CountParent(List_parent L);
 void deleteByIDparent(List_parent &L, int ID);

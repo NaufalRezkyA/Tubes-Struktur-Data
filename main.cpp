@@ -2,7 +2,11 @@
 #include <conio.h>
 #include <windows.h>
 #include <iostream>
-/*Baru sampai no 8 untuk desain*/
+
+/*No 6 error*/
+/*No 9 error*/
+/*No 10 dan 11 error*/
+/*No 14 error*/
 
 using namespace std;
 #include "list_child.h"
@@ -43,7 +47,6 @@ void bg()
     gotoxy(1,29);SetColor(153);cout << " ";SetColor(112);cout << "    > Hassan Rizky P (1301190328) ";gotoxy(36,29);SetColor(153);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(153);cout << " " << endl;
     gotoxy(1,30);SetColor(153);cout << " ";SetColor(112);cout << "    > Naufal Rezky A (1301190478) ";gotoxy(36,30);SetColor(153);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(153);cout << " " << endl;
     gotoxy(1,31);SetColor(153);cout << " ";SetColor(112);cout << "             IF-43-05             ";gotoxy(36,31);SetColor(153);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(153);cout << " " << endl;
-    gotoxy(1,32);SetColor(153);cout << " ";SetColor(112);cout << "            INFORMATIKA           ";gotoxy(36,32);SetColor(153);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(153);cout << " " << endl;
     gotoxy(1,32);SetColor(153);cout << " ";SetColor(112);cout << "            INFORMATIKA           ";gotoxy(36,32);SetColor(153);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(153);cout << " " << endl;
     gotoxy(1,33);SetColor(153);cout << "                                                                                                      " << endl;
 }
@@ -105,7 +108,7 @@ void mainMenu()
             break;
         case 2:
             printInfoParent(LP);
-            gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
+            gotoxy(54,32);cout<<"Press w and Enter to Continue : ";
             cin>>key;
             break;
         case 3:
@@ -120,8 +123,8 @@ void mainMenu()
             cin>>key;
             break;
         case 5:
-            gotoxy(45,7);cout << "Proses Peminjaman Motor";
-            gotoxy(38,9);cout << "ID peminjam:";
+            gotoxy(55,7);cout << "Proses Peminjaman Motor";
+            gotoxy(38,9);cout << "ID peminjam                         :";
             cin >> x.ID;
             P = findElmParent(LP, x.ID);
             checkin(LR, info(P), y);
@@ -158,88 +161,114 @@ void mainMenu()
             }
             else
             {
-                gotoxy(44,7);cout << "kosong" << endl;
+                gotoxy(44,15);cout << "kosong" << endl;
             }
             gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
             cin>>key;
             break;
 
         case 9:
-            cout << "Masukkan ID peminjam:";
+            gotoxy(38,7);cout << "Masukkan ID peminjam:";
             cin >> x.ID;
+            i= 9;
+            j = 0;
             R = findElmRelasiByParent(LR, x.ID);
             while (R != NULL)
             {
-                cout << info(parent(R)).namaPeminjam << endl;
-                cout << info(parent(R)).ID << endl;
-                cout << info(child(R)).NamaMotor << endl;
-                cout << "Waktu checkin:" << endl;
-                printDate(info(parent(R)).waktucheckIn, i);
-                cout << "Waktu checkout:" << endl;
-                printDate(info(parent(R)).waktucheckOut, i);
+                if(i+6 >= 30){
+                    i = 9;
+                    j = 29;
+                }
+                gotoxy(38,i);cout << info(parent(R)).namaPeminjam << endl;
+                gotoxy(38,i+1);cout << info(parent(R)).ID << endl;
+                gotoxy(38,i+2);cout << info(child(R)).NamaMotor << endl;
+                gotoxy(38,i+3);cout << "Waktu checkin:" << endl;
+                printDate(info(parent(R)).waktucheckIn, i+4, j);
+                gotoxy(38,i+6);cout << "Waktu checkout:" << endl;
+                printDate(info(parent(R)).waktucheckOut, i+7, j);
+                i= i +10;
             }
+            gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
+            cin>>key;
             break;
         case 10:
-            cout << "Masukkan ID motor yang ingin di hapus: ";
+            gotoxy(38,7);cout << "Masukkan ID motor yang ingin di hapus : ";
             cin >> id;
+            j = 0;
             Q = findElmChild(LC, id);
             if (Q != NULL)
             {
                 R = findElmRelasiByChild(LR, info(Q).ID);
                 if (R != NULL)
                 {
-                    cout << "ID akan menggunakan Motor pada:" << endl;
-                    printDate(info(parent(R)).waktucheckIn, i);
-                    cout << "Dengan menghapus data motor maka akan menghapus data peminjaman motor" << endl;
-                    cout << "Apakah anda ingin menghapusnya(Y/N)?";
+                    gotoxy(38,8);cout << "ID akan menggunakan Motor pada :" << endl;
+                    printDate(info(parent(R)).waktucheckIn, 9, j);
+                    gotoxy(38,11);cout << "Dengan menghapus data motor maka akan menghapus data peminjaman" << endl;
+                    gotoxy(38,12);cout << "Apakah anda ingin menghapusnya(Y/N)?";
                     char penentuDelete;
                     cin >> penentuDelete;
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(parent(R)).ID);
                         deleteByIDChild(LC, id);
-                        cout << "Penghapusan Data Berhasil..." << endl;
+                        gotoxy(38,14);cout << "Penghapusan Data Berhasil..." << endl;
+                    }else {
+                        gotoxy(38,14);cout << "Data Batal Dihapus..." << endl;
                     }
+                }else {
+                    deleteByIDChild(LC, id);
+                    gotoxy(38,9);cout << "Penghapusan Data Berhasil..." << endl;
                 }
             }
             else
             {
-                cout << "Data Tidak ada.." << endl;
+                gotoxy(55,15);cout << "Data Tidak ada.." << endl;
             }
-            cout << endl;
+            gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
+            cin>>key;
             break;
         case 11:
-            cout << "Masukkan ID member yang ingin di hapus: ";
+            gotoxy(38,7);cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
+            j = 0;
             P = findElmParent(LP, id);
             if (P != NULL)
             {
                 R = findElmRelasiByParent(LR, info(P).ID);
                 if (R != NULL)
                 {
-                    cout << "ID akan menggunakan Motor pada:" << endl;
-                    printDate(info(P).waktucheckIn, i);
-                    cout << "Dengan menghapus data peminjam maka akan menghapus data peminjaman motor" << endl;
-                    cout << "Apakah anda ingin menghapusnya(Y/N)?";
+                    gotoxy(38,8);cout << "ID akan menggunakan Motor pada:" << endl;
+                    printDate(info(P).waktucheckIn, 9, j);
+                    gotoxy(38,11);cout << "Dengan menghapus data peminjam maka akan menghapus data peminjaman motor" << endl;
+                    gotoxy(38,12);cout << "Apakah anda ingin menghapusnya(Y/N)?";
                     char penentuDelete;
                     cin >> penentuDelete;
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(P).ID);
                         deleteByIDparent(LP, id);
-                        cout << "Penghapusan Data Berhasil..." << endl;
+                        gotoxy(38,14);cout << "Penghapusan Data Berhasil..." << endl;
+                    }else {
+                        gotoxy(38,14);cout << "Data Batal Dihapus..." << endl;
                     }
+                }else {
+                    deleteByIDparent(LP, id);
+                    gotoxy(38,9);cout << "Penghapusan Data Berhasil..." << endl;
                 }
             }
             else
             {
-                cout << "Data Tidak ada.." << endl;
+                gotoxy(55,15);cout << "Data Tidak ada.." << endl;
             }
-            cout << endl;
+            gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
+            cin>>key;
             break;
 
         case 12:
+            gotoxy(54,7);cout<<"DATA PEMINJAM";
             printInfoTerbaru(LR);
+            gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
+            cin>>key;
             break;
         case 13:
             int i;
@@ -276,21 +305,25 @@ void mainMenu()
                     i--;
                 }
             }
-            cout<<"Reset Data Berhasil..."<<endl;
+            gotoxy(54,15);cout<<"Reset Data Berhasil..."<<endl;
+            gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
+            cin>>key;
             break;
         case 14:
             int Id;
-            cout << "Masukkan ID peminjaman yang ingin dirubah datanya:";
+            gotoxy(38,7);cout << "Masukkan ID peminjaman yang ingin dirubah datanya:";
             cin >> Id;
             R = findElmRelasiByParent(LR, Id);
             if (R == NULL)
             {
-                cout << "Data tidak ditemukan" << endl;
+                gotoxy(54,15);cout << "Data tidak ditemukan" << endl;
             }
             else
             {
                 inputDataPeminjam(LR, info(parent(R)));
             }
+            gotoxy(54,31);cout<<"Press w and Enter to Continue : ";
+            cin>>key;
             break;
         }
         if (choice == 0)
