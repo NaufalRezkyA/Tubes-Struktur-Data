@@ -204,10 +204,8 @@ void insertAndsortParent(List_parent &L, address_parent R){
                 P = first(L);
                 while (P != NULL && R->info.ID > info(next(P)).ID)
                 {
-                    cout<<info(P).ID<<endl;
                     P = P->next;
                 }
-                cout<<info(P).ID<<"->"<<info(R).ID;
                 insertAfterParent(L, P, R);
             }
         }

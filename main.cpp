@@ -130,7 +130,7 @@ void mainMenu()
             cin>>key;
             break;
         case 5:
-            gotoxy(55, 7); cout << "Proses Peminjaman Motor";
+            gotoxy(55,7); cout << "Proses Peminjaman Motor";
             gotoxy(38,9); cout << "ID peminjam:";
             cin >> x.ID;
             P = findElmParent(LP, x.ID);
@@ -138,7 +138,7 @@ void mainMenu()
                 checkin(LR,LC, info(P), y);
                 connect(LR, LP, LC, x, y);
             }else{
-                gotoxy(54, 31);
+                gotoxy(54, 15);
                 cout << "Data tidak tidak ada..." << endl;
             }
             gotoxy(54, 31);
@@ -146,9 +146,9 @@ void mainMenu()
             cin >> key;
             break;
         case 6:
-            cout<<"Masukkan ID peminjam: ";
+            gotoxy(38,7);cout<<"Masukkan ID peminjam: ";
             cin>>x.ID;
-            cout<<"Masukkan ID motor: ";
+            gotoxy(38,8);cout<<"Masukkan ID motor: ";
             cin>>y.ID;
             P = findElmParent(LP, x.ID);
             Q = findElmChild(LC, y.ID);
@@ -156,16 +156,19 @@ void mainMenu()
                 R = findElmRelasiByParent(LR, info(P).ID);
                 S = findElmRelasiByChild(LR, info(Q).ID);
                 if(R!=NULL & S!=NULL){
-                    cout<<"Data telah terhubung"<<endl;
+                    gotoxy(38,10);cout<<"Data telah terhubung"<<endl;
                 } else{
-                    cout<<"Data belum terhubung"<<endl;
+                    gotoxy(38,10);cout<<"Data belum terhubung"<<endl;
                 }
             }else{
-                cout<<"Data yang anda cari tidak ada..."<<endl;
+                gotoxy(38,10);cout<<"Data yang anda cari tidak ada..."<<endl;
             }
+            gotoxy(54, 31);
+            cout << "Press w and Enter to Continue : ";
+            cin >> key;
             break;
         case 7:
-            cout << "Masukkan ID member yang ingin di hapus: ";
+            gotoxy(38,7);cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
             if (P != NULL)
