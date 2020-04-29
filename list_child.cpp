@@ -1,11 +1,20 @@
+/*Nama  : Naufal Rezky Ananda
+  Nim   : 1301190478
+  Nama  : Hassan Rizky Putra
+  Nim   : 1301190328*/
 #include "list_child.h"
-int randomIntChild()
-{
+int randomIntChild(){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     int random = rand() % 90000 + 10000;
     return random;
-}
 
+}
 void inputDataMotor(List_child L,infotype_child &x){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     gotoxy(55,7);cout << "Formulir Data Motor Baru ";
     gotoxy(40,9);cout<<"Nama Motor           : ";
     cin>>x.NamaMotor;
@@ -22,24 +31,28 @@ void inputDataMotor(List_child L,infotype_child &x){
         mark = checkDuplicateIDChild(L, x.ID);
     }
 }
-
 void createListChild(List_child &L) {
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     first(L) = NULL;
 }
-
 address_child alokasiChild(infotype_child x) {
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_child P = new elmlist_child;
     info(P) = x;
     next(P) = NULL;
     prev(P) = NULL;
     return P;
 }
-
 void dealokasiChild(address_child &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     delete P;
 }
-
 void insertFirstChild(List_child &L, address_child P) {
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     if (first(L) != NULL)
     {
         next(P) = first(L);
@@ -55,8 +68,9 @@ void insertFirstChild(List_child &L, address_child P) {
         prev(first(L)) = P;
     }
 }
-
 void insertLastChild(List_child &L, address_child P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     if (first(L) != NULL)
     {
         next(P) = first(L);
@@ -71,9 +85,9 @@ void insertLastChild(List_child &L, address_child P){
         prev(first(L)) = P;
     }
 }
-
-void insertAfterChild(List_child &L, address_child Prec, address_child P)
-{
+void insertAfterChild(List_child &L, address_child Prec, address_child P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     if (first(L) == NULL)
     {
         insertFirstChild(L, P);
@@ -86,8 +100,9 @@ void insertAfterChild(List_child &L, address_child Prec, address_child P)
         next(Prec) = P;
     }
 }
-
 void deleteFirstChild(List_child &L, address_child &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     P = first(L);
     if (next(first(L)) != P)
     {
@@ -104,8 +119,9 @@ void deleteFirstChild(List_child &L, address_child &P){
         first(L) = NULL;
     }
 }
-
 void deleteLastChild(List_child &L, address_child &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     P=first(L);
     if(next(first(L)!=P)){
         P = prev(first(L));
@@ -120,8 +136,9 @@ void deleteLastChild(List_child &L, address_child &P){
     }
 
 }
-
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     P = next(Prec);
     if (next(Prec) != first(L))
     {
@@ -138,6 +155,8 @@ void deleteAfterChild(List_child &L, address_child Prec, address_child &P){
     }
 }
 void deleteByIDChild(List_child &L, int ID){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_child P, R;
     P = L.first;
     if (L.first == NULL)
@@ -169,8 +188,9 @@ void deleteByIDChild(List_child &L, int ID){
         }
     }
 }
-
 int CountChild(List_child L){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_child P = first(L);
     int i=0;
     do
@@ -180,8 +200,11 @@ int CountChild(List_child L){
     } while (P != first(L));
     return i;
 }
-
 void printInfoChild(List_child L) {
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_child P = first(L);
     int i,j;
     i = 9;
@@ -207,9 +230,9 @@ void printInfoChild(List_child L) {
         gotoxy(45,7);cout<<"Data motor Tidak Ada..."<<endl;
     }
 }
-
-
 address_child findElmChild(List_child L, int ID) {
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_child P = first(L);
     do{
         if(info(P).ID==ID) {
@@ -219,9 +242,9 @@ address_child findElmChild(List_child L, int ID) {
     } while (P != first(L));
     return NULL;
 }
-
-void insertAndsortChild(List_child &L, address_child R)
-{
+void insertAndsortChild(List_child &L, address_child R){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     if (L.first != NULL)
     {
         if (findElmChild(L, info(R).ID) == NULL)
@@ -248,7 +271,7 @@ void insertAndsortChild(List_child &L, address_child R)
         }
         else
         {
-            cout << "Peminjam telah meminjam motor..." << endl;
+            gotoxy(55,20);cout << "Peminjam telah meminjam motor..." << endl;
         }
     }
     else
@@ -256,17 +279,18 @@ void insertAndsortChild(List_child &L, address_child R)
         insertFirstChild(L, R);
     }
 }
-
 bool checkDuplicateIDChild(List_child L, int ID){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     if (findElmChild(L, ID) == NULL)
     {
         return false;
     }
     return true;
 }
-
-void DataM(List_child &LC)
-{
+void DataM(List_child &LC){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     infotype_child x;
     x.ID = 19231;
     x.NamaMotor = "BEAT F1";
@@ -289,4 +313,3 @@ void DataM(List_child &LC)
     x.Harga = 11000;
     insertAndsortChild(LC, alokasiChild(x));
 }
-

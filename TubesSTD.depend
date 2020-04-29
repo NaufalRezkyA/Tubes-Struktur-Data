@@ -116,10 +116,10 @@
 	"list_parent.h"
 	"list_relasi.h"
 
-1588000686 source:e:\github\tubes-struktur-data-1\list_child.cpp
+1588132747 source:e:\github\tubes-struktur-data-1\list_child.cpp
 	"list_child.h"
 
-1588000686 e:\github\tubes-struktur-data-1\list_child.h
+1588132743 e:\github\tubes-struktur-data-1\list_child.h
 	<iostream>
 	<stdlib.h>
 	<stdio.h>
@@ -127,10 +127,10 @@
 	<windows.h>
 	"list_parent.h"
 
-1588000686 source:e:\github\tubes-struktur-data-1\list_parent.cpp
+1588132746 source:e:\github\tubes-struktur-data-1\list_parent.cpp
 	"list_parent.h"
 
-1588000686 e:\github\tubes-struktur-data-1\list_parent.h
+1588132742 e:\github\tubes-struktur-data-1\list_parent.h
 	<stdlib.h>
 	<iostream>
 	<ctime>
@@ -138,10 +138,10 @@
 	<conio.h>
 	<windows.h>
 
-1588000686 source:e:\github\tubes-struktur-data-1\list_relasi.cpp
+1588130800 source:e:\github\tubes-struktur-data-1\list_relasi.cpp
 	"list_relasi.h"
 
-1588000686 e:\github\tubes-struktur-data-1\list_relasi.h
+1588132744 e:\github\tubes-struktur-data-1\list_relasi.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"
@@ -150,11 +150,12 @@
 	<windows.h>
 	<iostream>
 
-1588063373 source:e:\github\tubes-struktur-data-1\main.cpp
+1588132455 source:e:\github\tubes-struktur-data-1\main.cpp
 	<stdio.h>
 	<conio.h>
 	<windows.h>
 	<iostream>
+	<cstdlib>
 	"list_child.h"
 	"list_parent.h"
 	"list_relasi.h"

@@ -1,35 +1,46 @@
+/*Nama  : Naufal Rezky Ananda
+  Nim   : 1301190478
+  Nama  : Hassan Rizky Putra
+  Nim   : 1301190328*/
 #include "list_parent.h"
-
-int randomIntParent()
-{
+int randomIntParent(){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     int random = rand() % 90000 + 10000;
     return random;
 }
-
 void printDate(Date x,int i, int j){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     gotoxy(38+j,i);cout<<"Tanggal   : "<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
     gotoxy(38+j,i+1);cout<<"Jam       : "<<x.jam<<":"<<x.menit<<endl;
     cout<<endl;
 }
-
 void createListParent(List_parent &L) {
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     first(L) = NULL;
     last(L)=NULL;
 }
-
 address_parent alokasiParent(infotype_parent x) {
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_parent P;
     P = new elmlist_parent;
     info(P) = x;
     next(P) = NULL;
     return P;
 }
-
 void dealokasiParent(address_parent &P){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     delete P;
 }
-
 void insertFirstParent(List_parent &L, address_parent P) {
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     if (first(L) == NULL)
     {
         first(L) = P;
@@ -41,8 +52,9 @@ void insertFirstParent(List_parent &L, address_parent P) {
         first(L) = P;
     }
 }
-
 void insertAfterParent(List_parent &L, address_parent Prec, address_parent P){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     if (Prec == NULL)
     {
         insertFirstParent(L, P);
@@ -53,13 +65,15 @@ void insertAfterParent(List_parent &L, address_parent Prec, address_parent P){
         Prec->next = P;
     }
 }
-
 void insertLastParent(List_parent &L, address_parent P){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     next(last(L)) = P;
     last(L) = P;
 }
-
 void deleteFirstParent(List_parent &L, address_parent &P){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     P = first(L);
     if (first(L) == last(L))
     {
@@ -72,8 +86,9 @@ void deleteFirstParent(List_parent &L, address_parent &P){
         next(P) = NULL;
     }
 }
-
 void deleteLastParent(List_parent &L, address_parent &P){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     P = last(L);
     address_parent Q = first(L);
     while (next(Q) != last(L))
@@ -83,15 +98,16 @@ void deleteLastParent(List_parent &L, address_parent &P){
     last(L) = Q;
     next(Q) = NULL;
 }
-
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     P = next(Prec);
     next(Prec) = next(P);
     next(P) = NULL;
 }
-
-int CountParent(List_parent L)
-{
+int CountParent(List_parent L){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_parent P = first(L);
     int i = 0;
     while (P != NULL)
@@ -101,8 +117,11 @@ int CountParent(List_parent L)
     }
     return i;
 }
-
 void printInfoParent(List_parent L) {
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_parent P = first(L);
     int i,j;
     i = 9;
@@ -137,9 +156,9 @@ void printInfoParent(List_parent L) {
          gotoxy(38+j,20);cout<<"Tidak ada data peminjaman"<<endl;
     }
 }
-
 address_parent findElmParent(List_parent L, int ID) {
-
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_parent P = first(L);
     while (P != NULL)
     {
@@ -150,8 +169,9 @@ address_parent findElmParent(List_parent L, int ID) {
     }
     return NULL;
 }
-
 void deleteByIDparent(List_parent &L, int ID){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_parent P, R,Q;
     P = L.first;
 
@@ -184,8 +204,9 @@ void deleteByIDparent(List_parent &L, int ID){
         }
     }
 }
-
 void insertAndsortParent(List_parent &L, address_parent R){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     if (L.first != NULL)
     {
         if (findElmParent(L,info(R).ID) == NULL)
@@ -211,7 +232,7 @@ void insertAndsortParent(List_parent &L, address_parent R){
         }
         else
         {
-            cout << "peminjaman sudah terdaftar" << endl;
+            gotoxy(55,20);cout << "peminjaman sudah terdaftar" << endl;
         }
     }
     else
@@ -219,21 +240,24 @@ void insertAndsortParent(List_parent &L, address_parent R){
         insertFirstParent(L, R);
     }
 }
-
-bool checkDuplicateIDParent(List_parent L, int ID)
-{
+bool checkDuplicateIDParent(List_parent L, int ID){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     if (findElmParent(L, ID) == NULL)
     {
         return false;
     }
     return true;
 }
-
 void SetColor(unsigned short color) {
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     HANDLE hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsoleOutput,color);
 }
 void gotoxy(int x, int y){
-   COORD k = {x,y};
-   SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), k);
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
+    COORD k = {x,y};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), k);
 }
