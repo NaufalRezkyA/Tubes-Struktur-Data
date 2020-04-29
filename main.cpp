@@ -1,9 +1,76 @@
+/*Nama  : Naufal Rezky Ananda
+  Nim   : 1301190478
+  Nama  : Hassan Rizky Putra
+  Nim   : 1301190328*/
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 #include "list_child.h"
 #include "list_parent.h"
 #include "list_relasi.h"
+
+void bg();
+void bg(){
+    gotoxy(1,1);SetColor(17);cout << "                                                                                                      " << endl;
+    gotoxy(1,2);SetColor(17);cout << "                                 ";SetColor(112);cout << "   Selamat Datang di Tel-U  Rent   ";SetColor(17);cout << "                                  " << endl;
+    gotoxy(1,3);SetColor(17);cout << "                                 ";SetColor(112);cout << "    Jasa Penyewaan Sepeda Motor    ";SetColor(17);cout << "                                  " << endl;
+    gotoxy(1,4);SetColor(17);cout << "                                 ";SetColor(112);cout << " Kawasan Sekitar Telkom University ";SetColor(17);cout << "                                  " << endl;
+    gotoxy(1,5);SetColor(17);cout << "                                                                                                      " << endl;
+    gotoxy(1,6);SetColor(17);cout << " ";SetColor(119);cout << "                                   ";gotoxy(36,6);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,7);SetColor(17);cout << " ";SetColor(119);cout << "                                   ";gotoxy(36,7);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,8);SetColor(17);cout << " ";SetColor(119);cout << "                                   ";gotoxy(36,8);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,9);SetColor(17);cout << " ";SetColor(119);cout << "                                   ";gotoxy(36,9);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,10);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,10);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,11);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,11);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,12);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,12);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,13);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,13);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,14);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,14);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,15);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,15);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,16);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,16);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,17);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,17);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,18);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,18);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,19);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,19);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,20);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,20);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,21);SetColor(17);cout << " ";SetColor(119);cout << "                                  ";gotoxy(36,21);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,22);SetColor(17);cout << " ";SetColor(17);cout << "                                  ";gotoxy(36,22);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,23);SetColor(17);cout << "        ";SetColor(119);cout << "                   ";gotoxy(28,23);SetColor(17);cout << "         ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,24);SetColor(17);cout << " ";SetColor(17);cout << "                                  ";gotoxy(36,24);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,25);SetColor(17);cout << " ";SetColor(112);cout << "                                  ";gotoxy(36,25);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,26);SetColor(17);cout << " ";SetColor(112);cout << "        Telkom University         ";gotoxy(36,26);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,27);SetColor(17);cout << " ";SetColor(112);cout << "             Bandung              ";gotoxy(36,27);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,28);SetColor(17);cout << " ";SetColor(112);cout << " Author by:                       ";gotoxy(36,28);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,29);SetColor(17);cout << " ";SetColor(112);cout << "    > Hassan Rizky P (1301190328) ";gotoxy(36,29);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,30);SetColor(17);cout << " ";SetColor(112);cout << "    > Naufal Rezky A (1301190478) ";gotoxy(36,30);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,31);SetColor(17);cout << " ";SetColor(112);cout << "             IF-43-05             ";gotoxy(36,31);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,32);SetColor(17);cout << " ";SetColor(112);cout << "            INFORMATIKA           ";gotoxy(36,32);SetColor(17);cout << " ";SetColor(119);cout << "                                                                 ";SetColor(17);cout << " " << endl;
+    gotoxy(1,33);SetColor(17);cout << "                                                                                                      " << endl;
+}
+
+void note();
+void note(){
+
+    gotoxy(110,3);SetColor(204);cout << "                                  " << endl;
+    gotoxy(110,4);SetColor(204);cout << " ";SetColor(121);cout << " NOTED Function :               ";SetColor(204);cout << " ";
+    gotoxy(110,5);SetColor(204);cout << " ";SetColor(121);cout << "   1. Insert Parent             ";SetColor(204);cout << " ";
+    gotoxy(110,6);SetColor(204);cout << " ";SetColor(121);cout << "   2. Display List parent only  ";SetColor(204);cout << " ";
+    gotoxy(110,7);SetColor(204);cout << " ";SetColor(121);cout << "   3. Insert Child              ";SetColor(204);cout << " ";
+    gotoxy(110,8);SetColor(204);cout << " ";SetColor(121);cout << "   4. Display List child only   ";SetColor(204);cout << " ";
+    gotoxy(110,9);SetColor(204);cout << " ";SetColor(121);cout << "   5. Connect                   ";SetColor(204);cout << " ";
+    gotoxy(110,10);SetColor(204);cout << " ";SetColor(121);cout << "   6. Check Connection          ";SetColor(204);cout << " ";
+    gotoxy(110,11);SetColor(204);cout << " ";SetColor(121);cout << "   7. Disconnect                ";SetColor(204);cout << " ";
+    gotoxy(110,12);SetColor(204);cout << " ";SetColor(121);cout << "   8. Print All                 ";SetColor(204);cout << " ";
+    gotoxy(110,13);SetColor(204);cout << " ";SetColor(121);cout << "   9. Print child of a parent   ";SetColor(204);cout << " ";
+    gotoxy(110,14);SetColor(204);cout << " ";SetColor(121);cout << "   10. Delete child             ";SetColor(204);cout << " ";
+    gotoxy(110,15);SetColor(204);cout << " ";SetColor(121);cout << "   11. Delete Parent            ";SetColor(204);cout << " ";
+    gotoxy(110,16);SetColor(204);cout << " ";SetColor(121);cout << "   12. 3 Data Transaksi terbaru ";SetColor(204);cout << " ";
+    gotoxy(110,17);SetColor(204);cout << " ";SetColor(121);cout << "   13. Reset Data               ";SetColor(204);cout << " ";
+    gotoxy(110,18);SetColor(204);cout << " ";SetColor(121);cout << "   14. Total Pendapatan         ";SetColor(204);cout << " ";
+    gotoxy(110,19);SetColor(204);cout << "                                  " << endl;
+}
 
 void mainMenu();
 void currentTime();
@@ -11,11 +78,10 @@ void currentTime();
 void currentTime(){
     time_t now = time(0);
     char *dt = ctime(&now);
-    cout << "The local date and time is: " << dt << endl;
+    gotoxy(3,3);cout << "The local date and time is: ";
+    gotoxy(5,4);cout << dt <<endl;
 }
-
-void mainMenu()
-{
+void mainMenu(){
     int choice;
     List_parent LP;
     List_child LC;
@@ -35,24 +101,27 @@ void mainMenu()
     infotype_child y;
     do
     {
+        bg();
+        note();
+        SetColor(112);
         currentTime();
-        cout << "Menu Penyewaan Motor" << endl;
-        cout << "1. Masukkan data Member" << endl;
-        cout << "2. Menampilkan data member" << endl;
-        cout << "3. Masukkan data Motor"<<endl;
-        cout << "4. Menampilkan data motor" << endl;
-        cout << "5. Penyewaan Motor" << endl;
-        cout << "6. Cek Penyewaan Motor" << endl;
-        cout << "7. Hapus Data Penyewaan Motor" << endl;
-        cout << "8. Menampilkan Data Penyewaan" << endl;
-        cout << "9. Menampilkan motor yang disewa" << endl;
-        cout << "10. Menghapus Data Motor" << endl;
-        cout << "11. Menghapus Data Member" << endl;
-        cout << "12. Menampilkan 3 Data Transaksi Terbaru" << endl;
-        cout << "13. Reset Semua Data" << endl;
-        cout << "14. Total Pendapatan" << endl;
-        cout << "0. Quit" << endl;
-        cout << "Masukan angka:";
+        gotoxy(3,6);cout << "Menu Peminjaman Motor" << endl;
+        gotoxy(4,7);cout << "1. Masukkan Data Member" << endl;
+        gotoxy(4,8);cout << "2. Menampilkan Biodata Peminjam" << endl;
+        gotoxy(4,9);cout << "3. Masukkan Data Motor"<<endl;
+        gotoxy(4,10);cout << "4. Menampilkan Data Motor" << endl;
+        gotoxy(4,11);cout << "5. Penyewaan Motor" << endl;
+        gotoxy(4,12);cout << "6. Cek Penyewaan Motor" << endl;
+        gotoxy(4,13);cout << "7. Menghapus Data Penyewaan" << endl;
+        gotoxy(4,14);cout << "8. Menampilkan Data Penyewaan" << endl;
+        gotoxy(4,15);cout << "9. Menampilkan Motor yang disewa" << endl;
+        gotoxy(4,16);cout << "10. Menghapus Data Motor" << endl;
+        gotoxy(4,17);cout << "11. Menghapus Data Member" << endl;
+        gotoxy(4,18);cout << "12. 3 Data Transaksi Terbaru" << endl;
+        gotoxy(4,19);cout << "13. Reset Semua Data" << endl;
+        gotoxy(4,20);cout << "14. Total Pendapatan" << endl;
+        gotoxy(4,21);cout << "00. QUIT"<< endl;
+        gotoxy(10,23);cout << "Masukan angka:";
         cin >> choice;
         switch (choice)
         {
@@ -119,7 +188,6 @@ void mainMenu()
             {
                 cout << "Data peminjam Tidak ada..." << endl;
             }
-            cout << endl;
             break;
         case 8:
             if (first(LR) != NULL)
@@ -135,23 +203,33 @@ void mainMenu()
         case 9:
             cout << "Masukkan ID peminjam:";
             cin >> x.ID;
+            i= 9;
+            j = 0;
+            bool found;
+            found = false;
             R = first(LR);
             if(R!=NULL){
                 while (R != NULL)
                 {
-                    if(info(parent(R)).ID==x.ID){
-                        cout << info(parent(R)).namaPeminjam << endl;
-                        cout << info(parent(R)).ID << endl;
-                        cout << info(child(R)).NamaMotor << endl;
-                        cout << "Waktu checkin:" << endl;
-                        printDate(info(parent(R)).waktucheckIn);
-                        cout << "Waktu checkout:" << endl;
-                        printDate(info(parent(R)).waktucheckOut);
+                    if(i+6 >= 30){
+                        i = 9;
+                        j = 29;
+                    }
+                    if(info(parent(R)).ID == x.ID){
+                        gotoxy(38,i);cout << "Nama Peminjam       : "<<info(parent(R)).namaPeminjam << endl;
+                        gotoxy(38,i+1);cout << "ID Peminjam         : "<<info(parent(R)).ID << endl;
+                        gotoxy(38,i+2);cout << "Motor yang dipinjam : "<<info(child(R)).NamaMotor << endl;
+                        gotoxy(38,i+3);cout << "Waktu checkin:" << endl;
+                        printDate(info(parent(R)).waktucheckIn, i+4, j);
+                        gotoxy(38,i+6);cout << "Waktu checkout:" << endl;
+                        printDate(info(parent(R)).waktucheckOut, i+7, j);
+                        found = true;
                     }
                     R=next(R);
+                    i= i +10;
                 }
-            }else{
-                cout<<"ID peminjam tidak ditemukan..."<<endl;
+            }if(found == false) {
+                gotoxy(55,15);cout << "ID peminjam tidak ditemukan";
             }
             break;
         case 10:
@@ -181,7 +259,6 @@ void mainMenu()
             {
                 cout << "Data Tidak ada.." << endl;
             }
-            cout << endl;
             break;
         case 11:
             cout << "Masukkan ID member yang ingin di hapus: ";
@@ -210,7 +287,6 @@ void mainMenu()
             {
                 cout << "Data Tidak ada.." << endl;
             }
-            cout << endl;
             break;
 
         case 12:
@@ -251,13 +327,15 @@ void mainMenu()
                     i--;
                 }
             }
-            cout<<"Reset Data Berhasil..."<<endl;
+            gotoxy(54,15);cout<<"Reset Data Berhasil..."<<endl;
             break;
         case 14:
-            cout<<"Total Pendapatan: ";
-            cout<<totalIncome(LR)<<endl;
+            gotoxy(38,7);cout << "Total Pendapatan Tel-U Rent :";
+            cout << totalIncome(LR)<<endl;
+            break;
         }
-        if (choice == 0)
+        gotoxy(54,32);system("pause");
+        if (choice == 00)
         {
             break;
         }
@@ -265,8 +343,7 @@ void mainMenu()
 
 }
 
-int main()
-{
+int main(){
     mainMenu();
 
     return 0;

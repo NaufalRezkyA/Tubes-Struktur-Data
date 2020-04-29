@@ -1,13 +1,17 @@
+/*Nama  : Naufal Rezky Ananda
+  Nim   : 1301190478
+  Nama  : Hassan Rizky Putra
+  Nim   : 1301190328*/
 #include "list_relasi.h"
-
-void createListRelasi(List_relasi &L)
-{
+void createListRelasi(List_relasi &L){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     first(L) = NULL;
     last(L) = NULL;
 }
-
-address_relasi alokasiRelasi(address_parent P, address_child C)
-{
+address_relasi alokasiRelasi(address_parent P, address_child C){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_relasi Q = new elmlist_relasi;
     child(Q) = C;
     parent(Q) = P;
@@ -15,14 +19,14 @@ address_relasi alokasiRelasi(address_parent P, address_child C)
     prev(Q) = NULL;
     return Q;
 }
-
-void dealokasiRelasi(address_relasi &P)
-{
+void dealokasiRelasi(address_relasi &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     delete P;
 }
-
-void insertLastRelasi(List_relasi &L, address_relasi P)
-{
+void insertLastRelasi(List_relasi &L, address_relasi P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     if (L.first == NULL)
     {
         L.first = P;
@@ -35,9 +39,9 @@ void insertLastRelasi(List_relasi &L, address_relasi P)
         L.last = P;
     }
 }
-
-void deleteFirstRelasi(List_relasi &L, address_relasi &P)
-{
+void deleteFirstRelasi(List_relasi &L, address_relasi &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     P = first(L);
     parent(P)=NULL;
     child(P)=NULL;
@@ -53,9 +57,9 @@ void deleteFirstRelasi(List_relasi &L, address_relasi &P)
         next(P) = NULL;
     }
 }
-
-void deleteLastRelasi(List_relasi &L, address_relasi &P)
-{
+void deleteLastRelasi(List_relasi &L, address_relasi &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     P = last(L);
     parent(P) = NULL;
     child(P) = NULL;
@@ -71,9 +75,9 @@ void deleteLastRelasi(List_relasi &L, address_relasi &P)
         prev(P) = NULL;
     }
 }
-
-void deleteAfterRelasi(List_relasi &L, address_relasi Prec, address_relasi &P)
-{
+void deleteAfterRelasi(List_relasi &L, address_relasi Prec, address_relasi &P){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     if (L.first == L.last && Prec != NULL)
     {
         deleteFirstRelasi(L, P);
@@ -91,9 +95,9 @@ void deleteAfterRelasi(List_relasi &L, address_relasi Prec, address_relasi &P)
         deleteLastRelasi(L, P);
     }
 }
-
-int CountRelasi(List_relasi L)
-{
+int CountRelasi(List_relasi L){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_relasi P = first(L);
     int i = 0;
     while (P != NULL)
@@ -103,9 +107,11 @@ int CountRelasi(List_relasi L)
     }
     return i;
 }
-
-void printInfoRelasi(List_relasi L)
-{
+void printInfoRelasi(List_relasi L){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_relasi P = first(L);
     if(P!=NULL){
         while (P != NULL)
@@ -126,14 +132,17 @@ void printInfoRelasi(List_relasi L)
         cout<< "Tidak ada data peminjaman..."<<endl;
     }
 }
-
-void printInfoTerbaru(List_relasi L)
-{
+void printInfoTerbaru(List_relasi L){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_relasi P = last(L);
     int i = 1;
     if (P != NULL)
     {
-        while (P != NULL || i <= CountRelasi(L))
+        gotoxy(54,7);cout<<"DATA PEMINJAM";
+        while (P != NULL || k <= CountRelasi(L))
         {
             cout << info(parent(P)).namaPeminjam << endl;
             cout << info(parent(P)).ID << endl;
@@ -152,9 +161,9 @@ void printInfoTerbaru(List_relasi L)
         cout << "Tidak ada data peminjaman motor" << endl;
     }
 }
-
-address_relasi findElmRelasiByParent(List_relasi L, int ID)
-{
+address_relasi findElmRelasiByParent(List_relasi L, int ID){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_relasi Q = first(L);
     while (Q != NULL)
     {
@@ -166,9 +175,9 @@ address_relasi findElmRelasiByParent(List_relasi L, int ID)
     }
     return NULL;
 }
-
-address_relasi findElmRelasiByChild(List_relasi L, int ID)
-{
+address_relasi findElmRelasiByChild(List_relasi L, int ID){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478*/
     address_relasi Q = first(L);
     while (Q != NULL)
     {
@@ -180,10 +189,11 @@ address_relasi findElmRelasiByChild(List_relasi L, int ID)
     }
     return NULL;
 }
-
-
-void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
-{
+void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_relasi P = findElmRelasiByChild(LR, datapeminjam.IDMotor);
     mark = false;
     if (P != NULL)
@@ -212,9 +222,13 @@ void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
     }
     cout << mark;
 }
-void dataIdentitas(List_parent L, infotype_parent &x)
-{
-    cout << "Masukkan Nomor identitas anda: ";
+void dataIdentitas(List_parent L, infotype_parent &x){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
+    gotoxy(55,7);cout << "Formulir Data Diri Peminjam ";
+    gotoxy(38,9);cout << "Masukkan Nomor identitas          : ";
     cin >> x.nomorIdentitas;
     bool mark = true;
     while (mark != false)
@@ -235,9 +249,12 @@ void dataIdentitas(List_parent L, infotype_parent &x)
     x.waktuPeminjaman.jam = ltm->tm_hour;
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
 }
-
-void checkin(List_relasi &LR, List_child &LC, infotype_parent &x, infotype_child &y)
-{
+void checkin(List_relasi LR,List_child LC, infotype_parent &x, infotype_child &y){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
+    int i, j;
     bool mark = false;
     while (mark != true)
     {
@@ -356,9 +373,13 @@ void checkin(List_relasi &LR, List_child &LC, infotype_parent &x, infotype_child
     printDate(x.waktucheckOut);
     y.ID = x.IDMotor;
 }
-
-void inputDataPeminjam(List_relasi &LR, infotype_parent &x)
-{
+void inputDataPeminjam(List_relasi LR, infotype_parent &x){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
+    int i;
+    int j = 0;
     string waktu;
     cout << "durasi peminjaman(ex: 8 jam/hari):";
     cin >> x.durasiPeminjaman >> waktu;
@@ -372,17 +393,22 @@ void inputDataPeminjam(List_relasi &LR, infotype_parent &x)
     int harga;
     x.harga = 0;
 }
-
 void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Datapeminjam, infotype_child datachild){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_parent P = findElmParent(LP, Datapeminjam.ID);
     address_child Q = findElmChild(LC, datachild.ID);
     insertLastRelasi(LR, alokasiRelasi(P, Q));
     address_relasi R = findElmRelasiByParent(LR, Datapeminjam.ID);
     info(parent(R)).harga = info(parent(R)).durasiPeminjaman * info(child(R)).Harga;
 }
-
-void disconnected(List_relasi &L, int ID)
-{
+void disconnected(List_relasi &L, int ID){
+    /*Nama  : Naufal Rezky Ananda
+      Nim   : 1301190478
+      Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_relasi P, R;
     P = L.first;
 
@@ -408,13 +434,13 @@ void disconnected(List_relasi &L, int ID)
     }
 
 }
-
 int totalIncome(List_relasi LR){
+    /*Nama  : Hassan Rizky Putra
+      Nim   : 1301190328*/
     address_relasi P = first(LR);
     int x = 0;
-    while (P != NULL)
-    {
-        x = x + info(parent(P)).harga;
+    while (P!=NULL){
+        x = x+info(parent(P)).harga;
         P = next(P);
     }
     return x;

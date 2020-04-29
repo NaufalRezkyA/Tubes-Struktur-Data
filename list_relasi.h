@@ -1,3 +1,7 @@
+/*Nama  : Naufal Rezky Ananda
+  Nim   : 1301190478
+  Nama  : Hassan Rizky Putra
+  Nim   : 1301190328*/
 #ifndef LIST_RELASI_H_INCLUDED
 #define LIST_RELASI_H_INCLUDED
 
@@ -50,6 +54,7 @@ void checkin(List_relasi &LR,List_child &LC, infotype_parent &x, infotype_child 
 void insertAndsort(List_relasi L, address_relasi x);
 void CheckInputanCheckin(List_relasi LR, List_child LC, DataPeminjam datapeminjam, bool &mark);
 void dataIdentitas(List_parent L,infotype_parent &x);
-void inputDataPeminjam(List_relasi &LR, infotype_parent &x);
+void inputDataPeminjam(List_relasi LR, infotype_parent &x);
 int totalIncome(List_relasi LR);
+
 #endif // LIST_RELASI_H_INCLUDED
