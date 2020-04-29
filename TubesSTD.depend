@@ -116,3 +116,63 @@
 	"list_parent.h"
 	"list_relasi.h"
 
+1587983053 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.cpp
+	"list_child.h"
+
+1587983053 c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.h
+	<iostream>
+	<stdlib.h>
+
+1587983053 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.cpp
+	"list_parent.h"
+
+1587983053 c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.h
+	<stdlib.h>
+	<iostream>
+	<ctime>
+
+1587983053 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.cpp
+	"list_relasi.h"
+
+1587983053 c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1587983053 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+
+1587983053 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.cpp
+	"list_child.h"
+
+1587983053 d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.h
+	<iostream>
+	<stdlib.h>
+
+1587983053 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.cpp
+	"list_parent.h"
+
+1587983053 d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.h
+	<stdlib.h>
+	<iostream>
+	<ctime>
+
+1588127482 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.cpp
+	"list_relasi.h"
+
+1588127460 d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1588128496 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\main.cpp
+	<iostream>
+	"list_child.h"
+	"list_parent.h"
+	"list_relasi.h"
+

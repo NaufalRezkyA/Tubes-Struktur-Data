@@ -1,4 +1,5 @@
 #include "list_child.h"
+
 int randomIntChild()
 {
     int random = rand() % 90000 + 10000;
@@ -6,14 +7,13 @@ int randomIntChild()
 }
 
 void inputDataMotor(List_child L,infotype_child &x){
-    gotoxy(55,7);cout << "Formulir Data Motor Baru ";
-    gotoxy(40,9);cout<<"Nama Motor           : ";
+    cout<<"Nama Motor: ";
     cin>>x.NamaMotor;
-    gotoxy(40,10);cout<<"Tahun Motor          : ";
+    cout<<"Tahun Motor: ";
     cin>>x.tahunMotor;
-    gotoxy(40,11);cout<<"Tipe (Matic/Manual)  : ";
+    cout<<"Tipe: ";
     cin>>x.Tipe;
-    gotoxy(40,12);cout<<"Harga Sewa motor     : ";
+    cout<<"Harga sewa(jam): ";
     cin>>x.Harga;
 
     bool mark = true;
@@ -183,28 +183,18 @@ int CountChild(List_child L){
 
 void printInfoChild(List_child L) {
     address_child P = first(L);
-    int i,j;
-    i = 9;
-    j = 0;
     if(P!=NULL){
         do{
-            if(i+6 >= 30){
-                i = 9;
-                j = 29;
-
-            }
-            gotoxy(45,7);cout<<"DAFTAR MOTOR";
-            gotoxy(38+j,i);cout << "Nama Motor      : " << info(P).NamaMotor << endl;
-            gotoxy(38+j,i+1);cout << "ID Motor        : " << info(P).ID << endl;
-            gotoxy(38+j,i+2);cout << "Tahun Motor     : " << info(P).tahunMotor << endl;
-            gotoxy(38+j,i+3);cout << "Tipe Motor      : " << info(P).Tipe << endl;
-            gotoxy(38+j,i+4);cout << "Harga sewa(jam) : " << info(P).Harga << endl;
+            cout << "Nama Motor: " << info(P).NamaMotor << endl;
+            cout << "ID Motor: " << info(P).ID << endl;
+            cout << "Tahun Motor: " << info(P).tahunMotor << endl;
+            cout << "Tipe Motor: " << info(P).Tipe << endl;
+            cout << "Harga sewa(jam): " << info(P).Harga << endl;
             cout<<endl;
-            i=i+6;
             P = next(P);
         }while (P != first(L));
     }else{
-        gotoxy(45,7);cout<<"Data motor Tidak Ada..."<<endl;
+        cout<<"Data motor Tidak Ada..."<<endl;
     }
 }
 
@@ -238,8 +228,9 @@ void insertAndsortChild(List_child &L, address_child R)
             {
                 address_child P;
                 P = first(L);
-
+                
                 do{
+                    cout << info(P).ID << endl;
                     P = P->next;
                 }
                 while (P != first(L) && R->info.ID > info(next(P)).ID);
@@ -289,4 +280,3 @@ void DataM(List_child &LC)
     x.Harga = 11000;
     insertAndsortChild(LC, alokasiChild(x));
 }
-

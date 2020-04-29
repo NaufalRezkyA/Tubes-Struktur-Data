@@ -1,13 +1,9 @@
 #ifndef LIST_PARENT_H_INCLUDED
 #define LIST_PARENT_H_INCLUDED
 
-
 #include <stdlib.h>
 #include <iostream>
 #include <ctime>
-#include <stdio.h>
-#include <conio.h>
-#include <windows.h>
 
 using namespace std;
 
@@ -49,7 +45,7 @@ void insertLastParent(List_parent &L, address_parent P);
 void deleteFirstParent(List_parent &L, address_parent &P);
 void deleteLastParent(List_parent &L, address_parent &P);
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
-void printDate(Date x, int i, int j);
+void printDate(Date x);
 
 int CountParent(List_parent L);
 void deleteByIDparent(List_parent &L, int ID);
@@ -62,7 +58,4 @@ void printInfoParent(List_parent L);
 
 void insertAndsortParent(List_parent &L, address_parent R);
 bool checkDuplicateIDParent(List_parent L, int ID);
-
-void SetColor(unsigned short);
-void gotoxy(int x, int y);
 #endif // LIST_PARENT_H_INCLUDED

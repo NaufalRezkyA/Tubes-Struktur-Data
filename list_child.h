@@ -1,13 +1,8 @@
 #ifndef LIST_CHILD_H_INCLUDED
 #define LIST_CHILD_H_INCLUDED
 
-
 #include <iostream>
 #include <stdlib.h>
-#include <stdio.h>
-#include <conio.h>
-#include <windows.h>
-#include "list_parent.h"
 using namespace std;
 
 #define next(P) P->next
