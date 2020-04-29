@@ -50,28 +50,6 @@ void bg(){
     gotoxy(1,33);SetColor(17);cout << "                                                                                                      " << endl;
 }
 
-void note();
-void note(){
-
-    gotoxy(110,3);SetColor(204);cout << "                                  " << endl;
-    gotoxy(110,4);SetColor(204);cout << " ";SetColor(121);cout << " NOTED Function :               ";SetColor(204);cout << " ";
-    gotoxy(110,5);SetColor(204);cout << " ";SetColor(121);cout << "   1. Insert Parent             ";SetColor(204);cout << " ";
-    gotoxy(110,6);SetColor(204);cout << " ";SetColor(121);cout << "   2. Display List parent only  ";SetColor(204);cout << " ";
-    gotoxy(110,7);SetColor(204);cout << " ";SetColor(121);cout << "   3. Insert Child              ";SetColor(204);cout << " ";
-    gotoxy(110,8);SetColor(204);cout << " ";SetColor(121);cout << "   4. Display List child only   ";SetColor(204);cout << " ";
-    gotoxy(110,9);SetColor(204);cout << " ";SetColor(121);cout << "   5. Connect                   ";SetColor(204);cout << " ";
-    gotoxy(110,10);SetColor(204);cout << " ";SetColor(121);cout << "   6. Check Connection          ";SetColor(204);cout << " ";
-    gotoxy(110,11);SetColor(204);cout << " ";SetColor(121);cout << "   7. Disconnect                ";SetColor(204);cout << " ";
-    gotoxy(110,12);SetColor(204);cout << " ";SetColor(121);cout << "   8. Print All                 ";SetColor(204);cout << " ";
-    gotoxy(110,13);SetColor(204);cout << " ";SetColor(121);cout << "   9. Print child of a parent   ";SetColor(204);cout << " ";
-    gotoxy(110,14);SetColor(204);cout << " ";SetColor(121);cout << "   10. Delete child             ";SetColor(204);cout << " ";
-    gotoxy(110,15);SetColor(204);cout << " ";SetColor(121);cout << "   11. Delete Parent            ";SetColor(204);cout << " ";
-    gotoxy(110,16);SetColor(204);cout << " ";SetColor(121);cout << "   12. 3 Data Transaksi terbaru ";SetColor(204);cout << " ";
-    gotoxy(110,17);SetColor(204);cout << " ";SetColor(121);cout << "   13. Reset Data               ";SetColor(204);cout << " ";
-    gotoxy(110,18);SetColor(204);cout << " ";SetColor(121);cout << "   14. Total Pendapatan         ";SetColor(204);cout << " ";
-    gotoxy(110,19);SetColor(204);cout << "                                  " << endl;
-}
-
 void mainMenu();
 void currentTime();
 
@@ -96,13 +74,13 @@ void mainMenu(){
     createListRelasi(LR);
     DataM(LC);
     int id;
-    int idmotor;
+    int i,j;
+    i = 7;
     infotype_parent x;
     infotype_child y;
     do
     {
         bg();
-        note();
         SetColor(112);
         currentTime();
         gotoxy(3,6);cout << "Menu Peminjaman Motor" << endl;
@@ -142,20 +120,22 @@ void mainMenu(){
             printInfoChild(LC);
             break;
         case 5:
-            cout << "ID peminjam:";
+            gotoxy(55,7); cout << "Proses Peminjaman Motor";
+            gotoxy(38,9); cout << "ID peminjam:";
             cin >> x.ID;
             P = findElmParent(LP, x.ID);
             if(P!=NULL){
                 checkin(LR,LC, info(P), y);
                 connect(LR, LP, LC, x, y);
             }else{
-                cout<<"Data tidak tidak ada..."<<endl;
+                gotoxy(54, 15);
+                cout << "Data tidak tidak ada..." << endl;
             }
             break;
         case 6:
-            cout<<"Masukkan ID peminjam: ";
+            gotoxy(38,7);cout<<"Masukkan ID peminjam: ";
             cin>>x.ID;
-            cout<<"Masukkan ID motor: ";
+            gotoxy(38,8);cout<<"Masukkan ID motor: ";
             cin>>y.ID;
             P = findElmParent(LP, x.ID);
             Q = findElmChild(LC, y.ID);
@@ -163,16 +143,16 @@ void mainMenu(){
                 R = findElmRelasiByParent(LR, info(P).ID);
                 S = findElmRelasiByChild(LR, info(Q).ID);
                 if(R!=NULL & S!=NULL){
-                    cout<<"Data telah terhubung"<<endl;
+                    gotoxy(38,10);cout<<"Data telah terhubung"<<endl;
                 } else{
-                    cout<<"Data belum terhubung"<<endl;
+                    gotoxy(38,10);cout<<"Data belum terhubung"<<endl;
                 }
             }else{
-                cout<<"Data yang anda cari tidak ada..."<<endl;
+                gotoxy(38,10);cout<<"Data yang anda cari tidak ada..."<<endl;
             }
             break;
         case 7:
-            cout << "Masukkan ID member yang ingin di hapus: ";
+            gotoxy(38,7);cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
             P = findElmParent(LP, id);
             if (P != NULL)
@@ -181,12 +161,12 @@ void mainMenu(){
                 if (R != NULL)
                 {
                     disconnected(LR, info(P).ID);
-                    cout << "Penghapusan Data berhasil...";
+                    gotoxy(38,9);cout << "Penghapusan Data berhasil...";
                 }
             }
             else
             {
-                cout << "Data peminjam Tidak ada..." << endl;
+                gotoxy(38,9);cout << "Data Tidak ada..." << endl;
             }
             break;
         case 8:
@@ -196,12 +176,12 @@ void mainMenu(){
             }
             else
             {
-                cout << "kosong" << endl;
+                gotoxy(44,15);cout << "kosong" << endl;
             }
             break;
 
         case 9:
-            cout << "Masukkan ID peminjam:";
+            gotoxy(38,7);cout << "Masukkan ID peminjam:";
             cin >> x.ID;
             i= 9;
             j = 0;
@@ -233,59 +213,71 @@ void mainMenu(){
             }
             break;
         case 10:
-            cout << "Masukkan ID motor yang ingin di hapus: ";
+            gotoxy(38,7);cout << "Masukkan ID motor yang ingin di hapus : ";
             cin >> id;
+            j = 0;
             Q = findElmChild(LC, id);
             if (Q != NULL)
             {
                 R = findElmRelasiByChild(LR, info(Q).ID);
                 if (R != NULL)
                 {
-                    cout << "ID akan menggunakan Motor pada:" << endl;
-                    printDate(info(parent(R)).waktucheckIn);
-                    cout << "Dengan menghapus data motor maka akan menghapus data Penyewaan motor" << endl;
-                    cout << "Apakah anda ingin menghapusnya(Y/N)?";
+                    gotoxy(38,8);cout << "ID akan menggunakan Motor pada :" << endl;
+                    printDate(info(parent(R)).waktucheckIn, 9, j);
+                    gotoxy(38,11);cout << "Dengan menghapus data motor maka akan menghapus data peminjaman" << endl;
+                    gotoxy(38,12);cout << "Apakah anda ingin menghapusnya(Y/N)?";
                     char penentuDelete;
                     cin >> penentuDelete;
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(parent(R)).ID);
                         deleteByIDChild(LC, id);
-                        cout << "Penghapusan Data Berhasil..." << endl;
+                        gotoxy(38,14);cout << "Penghapusan Data Berhasil..." << endl;
+                    }else {
+                        gotoxy(38,14);cout << "Data Batal Dihapus..." << endl;
                     }
+                }else {
+                    deleteByIDChild(LC, id);
+                    gotoxy(38,9);cout << "Penghapusan Data Berhasil..." << endl;
                 }
             }
             else
             {
-                cout << "Data Tidak ada.." << endl;
+                gotoxy(55,15);cout << "Data Tidak ada.." << endl;
             }
             break;
         case 11:
-            cout << "Masukkan ID member yang ingin di hapus: ";
+            gotoxy(38,7);cout << "Masukkan ID member yang ingin di hapus: ";
             cin >> id;
+            j = 0;
             P = findElmParent(LP, id);
             if (P != NULL)
             {
                 R = findElmRelasiByParent(LR, info(P).ID);
                 if (R != NULL)
                 {
-                    cout << "ID akan menggunakan Motor pada:" << endl;
-                    printDate(info(P).waktucheckIn);
-                    cout << "Dengan menghapus data peminjam maka akan menghapus data Penyewaan motor" << endl;
-                    cout << "Apakah anda ingin menghapusnya(Y/N)?";
+                    gotoxy(38,8);cout << "ID akan menggunakan Motor pada:" << endl;
+                    printDate(info(P).waktucheckIn, 9, j);
+                    gotoxy(38,11);cout << "Dengan menghapus data peminjam maka akan menghapus data peminjaman motor" << endl;
+                    gotoxy(38,12);cout << "Apakah anda ingin menghapusnya(Y/N)?";
                     char penentuDelete;
                     cin >> penentuDelete;
                     if (penentuDelete == 'Y')
                     {
                         disconnected(LR, info(P).ID);
                         deleteByIDparent(LP, id);
-                        cout << "Penghapusan Data Berhasil..." << endl;
+                        gotoxy(38,14);cout << "Penghapusan Data Berhasil..." << endl;
+                    }else {
+                        gotoxy(38,14);cout << "Data Batal Dihapus..." << endl;
                     }
+                }else {
+                    deleteByIDparent(LP, id);
+                    gotoxy(38,9);cout << "Penghapusan Data Berhasil..." << endl;
                 }
             }
             else
             {
-                cout << "Data Tidak ada.." << endl;
+                gotoxy(55,15);cout << "Data Tidak ada.." << endl;
             }
             break;
 

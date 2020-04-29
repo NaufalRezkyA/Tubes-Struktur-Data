@@ -26,32 +26,46 @@
 	"list_parent.h"
 	"list_relasi.h"
 
-1587879930 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
+1588132894 source:d:\kuliah\semester 2\tubes-struktur-data\list_child.cpp
 	"list_child.h"
 
-1587862053 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
+1588132894 d:\kuliah\semester 2\tubes-struktur-data\list_child.h
 	<iostream>
 	<stdlib.h>
-
-1587865848 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 	"list_parent.h"
 
-1587862053 d:\kuliah\semester 2\tubes-struktur-data\list_parent.h
+1588132894 source:d:\kuliah\semester 2\tubes-struktur-data\list_parent.cpp
+	"list_parent.h"
+
+1588132894 d:\kuliah\semester 2\tubes-struktur-data\list_parent.h
 	<stdlib.h>
 	<iostream>
 	<ctime>
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 
-1587982823 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
+1588169384 source:d:\kuliah\semester 2\tubes-struktur-data\list_relasi.cpp
 	"list_relasi.h"
 
-1587982939 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
+1588132894 d:\kuliah\semester 2\tubes-struktur-data\list_relasi.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 	<iostream>
 
-1587982154 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+1588169044 source:d:\kuliah\semester 2\tubes-struktur-data\main.cpp
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 	<iostream>
+	<cstdlib>
 	"list_child.h"
 	"list_parent.h"
 	"list_relasi.h"
@@ -146,32 +160,46 @@
 	"list_parent.h"
 	"list_relasi.h"
 
-1587983053 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.cpp
+1588132894 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767 - copy\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.cpp
 	"list_child.h"
 
-1587983053 d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.h
+1588132894 c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767 - copy\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_child.h
 	<iostream>
 	<stdlib.h>
-
-1587983053 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.cpp
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 	"list_parent.h"
 
-1587983053 d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.h
+1588132894 c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767 - copy\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.h
 	<stdlib.h>
 	<iostream>
 	<ctime>
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 
-1588127482 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.cpp
+1588132894 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767 - copy\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_parent.cpp
+	"list_parent.h"
+
+1588132894 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767 - copy\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.cpp
 	"list_relasi.h"
 
-1588127460 d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.h
+1588132894 c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767 - copy\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\list_relasi.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 	<iostream>
 
-1588128496 source:d:\kuliah\semester 2\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\main.cpp
+1588169044 source:c:\users\naufa\downloads\compressed\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767 - copy\tubes-struktur-data-58a4894b0cdf2b513a2dc33381ea7ad900ff8767\main.cpp
+	<stdio.h>
+	<conio.h>
+	<windows.h>
 	<iostream>
+	<cstdlib>
 	"list_child.h"
 	"list_parent.h"
 	"list_relasi.h"

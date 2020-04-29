@@ -123,26 +123,37 @@ void printInfoParent(List_parent L) {
       Nama  : Hassan Rizky Putra
       Nim   : 1301190328*/
     address_parent P = first(L);
+    int i,j;
+    i = 9;
+    j = 0;
     if(first(L)!=NULL) {
         while (P != NULL)
         {
-            cout<<"ID Peminjam: "<<info(P).ID<<endl;
-            cout<<"Nama: "<<info(P).namaPeminjam<<endl;
-            cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
-            cout<<"Harga Sewa: "<<info(P).harga<<endl;
+            if(i+6 >= 30){
+                i = 9;
+                j = 29;
+            }
+            gotoxy(55,7);cout<<"DATA DIRI PEMINJAM";
+            gotoxy(38+j,i);cout<<"ID Peminjam: "<<info(P).ID<<endl;
+            gotoxy(38+j,i+1);cout<<"Nama: "<<info(P).namaPeminjam<<endl;
+            gotoxy(38+j,i+2);cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
+            gotoxy(38+j,i+3);cout<<"Harga Sewa: "<<info(P).harga<<endl;
             if (info(P).waktucheckIn.tanggal<=31){
-                cout << "Waktu Checkin: " << endl;
-                printDate(info(P).waktucheckIn);
-                cout<<"Waktu Checkout: "<<endl;
-                printDate(info(P).waktucheckOut);
-                cout<<"Waktu transaksi: "<<endl;
-                printDate(info(P).waktuPeminjaman);
+                gotoxy(38+j,i+4);cout << "Waktu Checkin: " << endl;
+                printDate(info(P).waktucheckIn, i+5, j);
+                gotoxy(38+j,i+7);cout<<"Waktu Checkout: "<<endl;
+                printDate(info(P).waktucheckOut, i+8, j);
+                gotoxy(38+j,i+10);cout<<"Waktu transaksi:"<<endl;
+                printDate(info(P).waktuPeminjaman, i+11, j);
+                i=i+14;
+            }else {
+                i= i +5;
             }
             cout<<endl;
             P = next(P);
         }
     }else{
-        cout<<"Tidak ada data peminjaman"<<endl;
+         gotoxy(38+j,20);cout<<"Tidak ada data peminjaman"<<endl;
     }
 }
 address_parent findElmParent(List_parent L, int ID) {
@@ -214,10 +225,8 @@ void insertAndsortParent(List_parent &L, address_parent R){
                 P = first(L);
                 while (P != NULL && R->info.ID > info(next(P)).ID)
                 {
-                    cout<<info(P).ID<<endl;
                     P = P->next;
                 }
-                cout<<info(P).ID<<"->"<<info(R).ID;
                 insertAfterParent(L, P, R);
             }
         }

@@ -5,9 +5,13 @@
 #ifndef LIST_RELASI_H_INCLUDED
 #define LIST_RELASI_H_INCLUDED
 
+
 #include "list_relasi.h"
 #include "list_child.h"
 #include "list_parent.h"
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
 
 #include <iostream>
 using namespace std;
@@ -50,7 +54,7 @@ int CountRelasi(List_relasi L);
 void printInfoRelasi(List_relasi L);
 void printInfoTerbaru(List_relasi L);
 
-void checkin(List_relasi &LR,List_child &LC, infotype_parent &x, infotype_child &y);
+void checkin(List_relasi LR,List_child LC, infotype_parent &x, infotype_child &y);
 void insertAndsort(List_relasi L, address_relasi x);
 void CheckInputanCheckin(List_relasi LR, List_child LC, DataPeminjam datapeminjam, bool &mark);
 void dataIdentitas(List_parent L,infotype_parent &x);

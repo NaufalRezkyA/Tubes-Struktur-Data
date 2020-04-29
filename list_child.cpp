@@ -18,11 +18,11 @@ void inputDataMotor(List_child L,infotype_child &x){
     gotoxy(55,7);cout << "Formulir Data Motor Baru ";
     gotoxy(40,9);cout<<"Nama Motor           : ";
     cin>>x.NamaMotor;
-    cout<<"Tahun Motor: ";
+    gotoxy(40,10);cout<<"Tahun Motor          : ";
     cin>>x.tahunMotor;
-    cout<<"Tipe: ";
+    gotoxy(40,11);cout<<"Tipe (Matic/Manual)  : ";
     cin>>x.Tipe;
-    cout<<"Harga sewa(jam): ";
+    gotoxy(40,12);cout<<"Harga Sewa motor     : ";
     cin>>x.Harga;
 
     bool mark = true;
@@ -206,18 +206,28 @@ void printInfoChild(List_child L) {
       Nama  : Hassan Rizky Putra
       Nim   : 1301190328*/
     address_child P = first(L);
+    int i,j;
+    i = 9;
+    j = 0;
     if(P!=NULL){
         do{
-            cout << "Nama Motor: " << info(P).NamaMotor << endl;
-            cout << "ID Motor: " << info(P).ID << endl;
-            cout << "Tahun Motor: " << info(P).tahunMotor << endl;
-            cout << "Tipe Motor: " << info(P).Tipe << endl;
-            cout << "Harga sewa(jam): " << info(P).Harga << endl;
+            if(i+6 >= 30){
+                i = 9;
+                j = 29;
+
+            }
+            gotoxy(45,7);cout<<"DAFTAR MOTOR";
+            gotoxy(38+j,i);cout << "Nama Motor      : " << info(P).NamaMotor << endl;
+            gotoxy(38+j,i+1);cout << "ID Motor        : " << info(P).ID << endl;
+            gotoxy(38+j,i+2);cout << "Tahun Motor     : " << info(P).tahunMotor << endl;
+            gotoxy(38+j,i+3);cout << "Tipe Motor      : " << info(P).Tipe << endl;
+            gotoxy(38+j,i+4);cout << "Harga sewa(jam) : " << info(P).Harga << endl;
             cout<<endl;
+            i=i+6;
             P = next(P);
         }while (P != first(L));
     }else{
-        cout<<"Data motor Tidak Ada..."<<endl;
+        gotoxy(45,7);cout<<"Data motor Tidak Ada..."<<endl;
     }
 }
 address_child findElmChild(List_child L, int ID) {
@@ -251,9 +261,8 @@ void insertAndsortChild(List_child &L, address_child R){
             {
                 address_child P;
                 P = first(L);
-                
+
                 do{
-                    cout << info(P).ID << endl;
                     P = P->next;
                 }
                 while (P != first(L) && R->info.ID > info(next(P)).ID);
