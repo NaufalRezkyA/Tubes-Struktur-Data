@@ -1,21 +1,20 @@
 #include "list_parent.h"
 
-int randomInt(int ID)
+int randomIntParent()
 {
-    int random = rand() % ID;
+    int random = rand() % 90000 + 10000;
     return random;
 }
 
-<<<<<<< Updated upstream
 void printDate(Date x){
     cout<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
     cout<<x.jam<<":"<<x.menit<<endl;
+    cout<<endl;
 }
 
-=======
->>>>>>> Stashed changes
 void createListParent(List_parent &L) {
     first(L) = NULL;
+    last(L)=NULL;
 }
 
 address_parent alokasiParent(infotype_parent x) {
@@ -31,24 +30,20 @@ void dealokasiParent(address_parent &P){
 }
 
 void insertFirstParent(List_parent &L, address_parent P) {
-
-    address_parent Q;
-    if(first(L) == NULL) {
+    if (first(L) == NULL)
+    {
         first(L) = P;
-        next(P) = P;
-    } else {
-        Q = first(L);
-        while(next(Q) != first(L)) {
-            Q = next(Q);
-        }
+        last(L) = P;
+    }
+    else
+    {
         next(P) = first(L);
-        next(Q) = P;
         first(L) = P;
     }
 }
 
 void insertAfterParent(List_parent &L, address_parent Prec, address_parent P){
-    if (first(L) == NULL)
+    if (Prec == NULL)
     {
         insertFirstParent(L, P);
     }
@@ -60,90 +55,71 @@ void insertAfterParent(List_parent &L, address_parent Prec, address_parent P){
 }
 
 void insertLastParent(List_parent &L, address_parent P){
-    address_parent Q;
-    Q = L.first;
-    if(first(L)==NULL){
-        first(L) = P;
-    }else{
-        while (Q->next != NULL)
-        {
-            Q = Q->next;
-        }
-        Q->next = P;
-        
-    }
+    next(last(L)) = P;
+    last(L) = P;
 }
 
 void deleteFirstParent(List_parent &L, address_parent &P){
-    if (L.first != NULL)
+    P = first(L);
+    if (first(L) == last(L))
     {
-        P = L.first;
-        L.first = P->next;
-        P->next = NULL;
+        first(L) = NULL;
+        last(L) = NULL;
+    }
+    else
+    {
+        first(L) = next(P);
+        next(P) = NULL;
     }
 }
 
 void deleteLastParent(List_parent &L, address_parent &P){
-    address_parent Q;
-    Q = L.first;
-    if (Q->next == NULL)
+    P = last(L);
+    address_parent Q = first(L);
+    while (next(Q) != last(L))
     {
-        deleteFirstParent(L, Q);
+        Q = next(Q);
     }
-    else
-    {
-        while ((Q->next)->next != NULL)
-        {
-            Q = Q->next;
-        }
-        P = Q->next;
-        Q->next = NULL;
-    }
+    last(L) = Q;
+    next(Q) = NULL;
 }
 
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P){
-    P = Prec->next;
-    Prec->next = P->next;
-    P->next = NULL;
+    P = next(Prec);
+    next(Prec) = next(P);
+    next(P) = NULL;
 }
 
 int CountParent(List_parent L)
 {
     address_parent P = first(L);
     int i = 0;
-    if (P != NULL )
+    while (P != NULL)
     {
-        while (P != NULL)
-        {
-            i++;
-            P = next(P);
-        }
+        i++;
+        P = next(P);
     }
     return i;
 }
 
 void printInfoParent(List_parent L) {
     address_parent P = first(L);
-
     if(first(L)!=NULL) {
-        while ((P) != first(L))
+        while (P != NULL)
         {
-<<<<<<< Updated upstream
-            cout<<info(P).ID<<endl;
-            cout<<info(P).namaPeminjam<<endl;
-            cout<<info(P).nomorIdentitas<<endl;
-            cout<<info(P).harga<<endl;
-            printDate(info(P).waktucheckIn);
-            printDate(info(P).waktucheckOut);
-            printDate(info(P).waktuPeminjaman);
-=======
             cout<<"ID Peminjam: "<<info(P).ID<<endl;
             cout<<"Nama: "<<info(P).namaPeminjam<<endl;
             cout<<"No. Identitas: "<<info(P).nomorIdentitas<<endl;
-            cout<<"ID Motor: "<<info(P).IDMotor<<endl;
             cout<<"Harga Sewa: "<<info(P).harga<<endl;
+            if (info(P).waktucheckIn.tanggal<=31){
+                cout << "Waktu Checkin: " << endl;
+                printDate(info(P).waktucheckIn);
+                cout<<"Waktu Checkout: "<<endl;
+                printDate(info(P).waktucheckOut);
+                cout<<"Waktu transaksi: "<<endl;
+                printDate(info(P).waktuPeminjaman);
+            }
             cout<<endl;
->>>>>>> Stashed changes
             P = next(P);
         }
     }else{
@@ -164,29 +140,9 @@ address_parent findElmParent(List_parent L, int ID) {
     return NULL;
 }
 
-address_parent findElmParentbyIdentitas(List_parent L, string ID) {
-    address_parent P = first(L);
-    while (P != NULL)
-    {
-        if(info(P).nomorIdentitas == ID) {
-            return P;
-        }
-        P = next(P);
-    }
-    return NULL;
-}
-
 void deleteByIDparent(List_parent &L, int ID){
-    address_parent P, R;
+    address_parent P, R,Q;
     P = L.first;
-
-    address_parent Q,last;
-    Q = first(L);
-    while (Q->next != NULL)
-    {
-        Q = Q->next;
-    }
-    last = Q;
 
     if (L.first == NULL)
     {
@@ -200,53 +156,66 @@ void deleteByIDparent(List_parent &L, int ID){
             deleteFirstParent(L, R);
             dealokasiParent(R);
         }
-        else if (info(last).ID == ID)
+        else if (info(last(L)).ID == ID)
         {
             deleteLastParent(L, R);
             dealokasiParent(R);
         }
         else
         {
-            while (P != NULL && P->info.ID != ID)
+            while (P != NULL && P->info.ID < ID)
             {
+                Q = P;
                 P = P->next;
             }
-            P = prev(P);
-            deleteAfterParent(L, P, R);
+            deleteAfterParent(L, Q, R);
             dealokasiParent(R);
         }
     }
 }
 
-void insertAndsortParent(List_parent L, address_parent x){
-    address_parent P, Q;
-    P = L.first;
-
-    address_parent R, last;
-    R = first(L);
-    while (R->next != NULL)
+void insertAndsortParent(List_parent &L, address_parent R){
+    if (L.first != NULL)
     {
-        R = R->next;
-    }
-    last = R;
-
-    if (P == NULL || P->info.ID >= info(x).ID)
-    {
-        insertFirstParent(L, x);
-    }
-    else if (info(R).ID <= info(x).ID)
-    {
-        insertLastParent(L, x);
+        if (findElmParent(L,info(R).ID) == NULL)
+        {
+            if (info(R).ID < info(first(L)).ID)
+            {
+                insertFirstParent(L, R);
+            }
+            else if (info(R).ID > info(last(L)).ID)
+            {
+                insertLastParent(L, R);
+            }
+            else
+            {
+                address_parent P;
+                P = first(L);
+                while (P != NULL && R->info.ID > info(next(P)).ID)
+                {
+                    cout<<info(P).ID<<endl;
+                    P = P->next;
+                }
+                cout<<info(P).ID<<"->"<<info(R).ID;
+                insertAfterParent(L, P, R);
+            }
+        }
+        else
+        {
+            cout << "peminjaman sudah terdaftar" << endl;
+        }
     }
     else
     {
-        while (P != NULL && P->info.ID < info(x).ID)
-        {
-            P = P->next;
-        }
-        P = prev(P);
-        insertAfterParent(L, P, x);
+        insertFirstParent(L, R);
     }
 }
 
-
+bool checkDuplicateIDParent(List_parent L, int ID)
+{
+    if (findElmParent(L, ID) == NULL)
+    {
+        return false;
+    }
+    return true;
+}

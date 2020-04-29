@@ -4,25 +4,24 @@
 #include <stdlib.h>
 #include <iostream>
 #include <ctime>
-#include <stdlib.h>
+
 using namespace std;
 
 #define first(L) L.first
+#define last(L) L.last
 #define next(P) P->next
 #define info(P) P->info
 
+struct Date{
+    int tanggal,bulan,tahun,jam,menit;
+};
+
 struct DataPeminjam
 {
-<<<<<<< Updated upstream
-    int ID, harga,nomorIdentitas, durasiPeminjaman;
-    string namaPeminjam, IDMotor;
+    int ID, harga,IDMotor, durasiPeminjaman;
+    string namaPeminjam, nomorIdentitas;
     Date waktuPeminjaman;
     Date waktucheckIn,waktucheckOut;
-=======
-    int ID, harga, IDMotor;
-    string namaPeminjam, nomorIdentitas;
-    
->>>>>>> Stashed changes
 };
 
 typedef DataPeminjam infotype_parent;
@@ -35,6 +34,7 @@ struct elmlist_parent {
 
 struct List_parent {
     address_parent first;
+    address_parent last;
 };
 
 
@@ -45,16 +45,17 @@ void insertLastParent(List_parent &L, address_parent P);
 void deleteFirstParent(List_parent &L, address_parent &P);
 void deleteLastParent(List_parent &L, address_parent &P);
 void deleteAfterParent(List_parent &L, address_parent Prec, address_parent &P);
+void printDate(Date x);
+
 int CountParent(List_parent L);
 void deleteByIDparent(List_parent &L, int ID);
 
-int randomInt(int ID);
+int randomIntParent();
 address_parent alokasiParent(infotype_parent x);
 void dealokasiParent(address_parent &P);
 address_parent findElmParent(List_parent L, int ID);
-address_parent findElmParentbyIdentitas(List_parent L, string ID);
 void printInfoParent(List_parent L);
 
-void insertAndsortParent(List_parent L, address_parent x);
-
+void insertAndsortParent(List_parent &L, address_parent R);
+bool checkDuplicateIDParent(List_parent L, int ID);
 #endif // LIST_PARENT_H_INCLUDED

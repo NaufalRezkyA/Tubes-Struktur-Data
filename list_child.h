@@ -2,6 +2,7 @@
 #define LIST_CHILD_H_INCLUDED
 
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 #define next(P) P->next
@@ -10,21 +11,10 @@ using namespace std;
 #define last(L) L.last
 #define info(P) P->info
 
-struct Date
-{
-    int tanggal, bulan, tahun, jam, menit;
-};
 struct DataMotor
 {
-<<<<<<< Updated upstream
-    int tahunMotor;
-    string NamaMotor, ID;
-=======
-    int tahunMotor, ID, Harga, durasiPeminjaman;
+    int tahunMotor,ID,Harga;
     string NamaMotor, Tipe;
-    Date waktuPeminjaman;
-    Date waktucheckIn, waktucheckOut;
->>>>>>> Stashed changes
 };
 
 
@@ -49,21 +39,18 @@ void insertAfterChild(List_child &L, address_child Prec, address_child P);
 void deleteFirstChild(List_child &L, address_child &P);
 void deleteLastChild(List_child &L, address_child &P);
 void deleteAfterChild(List_child &L, address_child Prec, address_child &P);
-void deleteByIDChild(List_child &L, string ID);
-void inputDataMotor(infotype_child &x);
+void deleteByIDChild(List_child &L, int ID);
+void inputDataMotor(List_child L, infotype_child &x);
 
+int randomIntChild();
 address_child alokasiChild(infotype_child x);
 void dealokasiChild(address_child &P);
-address_child findElmChild(List_child L, string x);
+address_child findElmChild(List_child L, int ID);
 int CountChild(List_child L);
 void printInfoChild(List_child L);
 
-void insertAndsortChild(List_child L, address_child x);
+void insertAndsortChild(List_child &L, address_child R);
 void DataM(List_child &LC);
-<<<<<<< Updated upstream
-=======
 bool checkDuplicateIDChild(List_child L, int ID);
-void printDate(Date x);
->>>>>>> Stashed changes
 
 #endif // LIST_CHILD_H_INCLUDED

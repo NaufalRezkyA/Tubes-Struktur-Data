@@ -1,11 +1,13 @@
 #include "list_relasi.h"
 
-void createListRelasi(List_relasi &L) {
+void createListRelasi(List_relasi &L)
+{
     first(L) = NULL;
     last(L) = NULL;
 }
 
-address_relasi alokasiRelasi(address_parent P, address_child C) {
+address_relasi alokasiRelasi(address_parent P, address_child C)
+{
     address_relasi Q = new elmlist_relasi;
     child(Q) = C;
     parent(Q) = P;
@@ -14,114 +16,97 @@ address_relasi alokasiRelasi(address_parent P, address_child C) {
     return Q;
 }
 
-void dealokasiRelasi(address_relasi &P){
+void dealokasiRelasi(address_relasi &P)
+{
     delete P;
 }
 
-void insertFirstRelasi(List_relasi &L, address_relasi P) {
-    if (L.first != NULL)
-    {
-        P->next = L.first;
-        prev(L.first) = P;
-        L.first = P;
-    }
-    else
-    {
-        L.first = P;
-        L.last = P;
-    }
-}
-
-void insertAfterRelasi(address_relasi Prec, address_relasi P)
+void insertLastRelasi(List_relasi &L, address_relasi P)
 {
-    P->next = Prec->next;
-    P->prev = Prec;
-    prev(next(Prec)) = P;
-    Prec->next = P;
-}
-
-void insertLastRelasi(List_relasi &L, address_relasi P){
-    if (L.first != NULL)
+    if (L.first == NULL)
     {
-        P->prev = L.last;
-        next(L.last) = P;
-        L.last = P;
-    }
-    else
-    {
-        L.last = P;
         L.first = P;
-    }
-}
-
-void deleteFirstRelasi(List_relasi &L, address_relasi &P){
-    if (L.first->next == NULL)
-    {
-        cout<<"delete";
-        P = L.first;
-        parent(P) = NULL;
-        child(P) = NULL;
-        P = NULL;
-        L.last = NULL;
-
+        L.last = P;
     }
     else
     {
-        P = L.first;
-        L.first = P->next;
-        P->next = NULL;
-        L.first->prev = NULL;
+        L.last->next = P;
+        prev(P)=last(L);
+        L.last = P;
     }
 }
 
-void deleteLastRelasi(List_relasi &L, address_relasi &P){
-    P = L.last;
-    if (L.last != first(L))
+void deleteFirstRelasi(List_relasi &L, address_relasi &P)
+{
+    P = first(L);
+    parent(P)=NULL;
+    child(P)=NULL;
+    if (first(L) == last(L))
     {
-        L.last = prev(P);
+        first(L) = NULL;
+        last(L) = NULL;
+    }
+    else
+    {
+        first(L) = next(P);
+        prev(first(L)) = NULL;
+        next(P) = NULL;
+    }
+}
+
+void deleteLastRelasi(List_relasi &L, address_relasi &P)
+{
+    P = last(L);
+    parent(P) = NULL;
+    child(P) = NULL;
+    if (first(L) == last(L))
+    {
+        first(L) = NULL;
+        last(L) = NULL;
+    }
+    else
+    {
+        last(L)=prev(P);
+        next(last(L))=NULL;
         prev(P) = NULL;
-        next(L.last) = NULL;
     }
-    else
+}
+
+void deleteAfterRelasi(List_relasi &L, address_relasi Prec, address_relasi &P)
+{
+    if (L.first == L.last && Prec != NULL)
     {
-        L.first = NULL;
-        L.last = NULL;
+        deleteFirstRelasi(L, P);
+    }
+    else if (Prec->next != L.last && Prec != NULL)
+    {
+        P = Prec->next;
+        Prec->next = P->next;
+        P->next->prev = Prec;
+        P->next = NULL;
+        P->prev = NULL;
+    }
+    else if (Prec != NULL)
+    {
+        deleteLastRelasi(L, P);
     }
 }
 
-void deleteAfterRelasi(address_relasi Prec, address_relasi &P){
-    P = next(Prec);
-    next(Prec) = next(P);
-    prev(next(P)) = Prec;
-    next(P) = NULL;
-    prev(P) = NULL;
-}
-
-int CountRelasi(List_relasi L){
+int CountRelasi(List_relasi L)
+{
     address_relasi P = first(L);
     int i = 0;
-    if(parent(P)!=NULL || child(P)!=NULL){
-        while(P!=NULL){
-            i++;
-            P=next(P);
-        }
+    while (P != NULL)
+    {
+        i++;
+        P = next(P);
     }
     return i;
 }
 
-void printInfoRelasi(List_relasi L) {
+void printInfoRelasi(List_relasi L)
+{
     address_relasi P = first(L);
-<<<<<<< Updated upstream
-    if (P==NULL){
-        cout<<"Kosong"<<endl;
-    }else{
-        cout<<"list";
-        while(P !=NULL) {
-            cout<<info(parent(P)).namaPeminjam<<endl;
-            cout<<info(parent(P)).ID<<endl;
-            cout<<info(parent(P)).durasiPeminjaman<<endl;
-            cout<<info(child(P)).ID<<endl;
-=======
     if(P!=NULL){
         while (P != NULL)
         {
@@ -130,226 +115,117 @@ void printInfoRelasi(List_relasi L) {
                 cout << info(parent(P)).ID << endl;
                 cout << info(child(P)).NamaMotor << endl;
                 cout << "Waktu checkin:"<<endl;
-                printDate(info(child(P)).waktucheckIn);
+                printDate(info(parent(P)).waktucheckIn);
                 cout << "Waktu checkout:" << endl;
-                printDate(info(child(P)).waktucheckOut);
+                printDate(info(parent(P)).waktucheckOut);
             }
             cout<<endl;
->>>>>>> Stashed changes
             P = next(P);
         }
+    }else{
+        cout<< "Tidak ada data peminjaman..."<<endl;
     }
 }
 
-void printInfoTerbaru(List_relasi L){
+void printInfoTerbaru(List_relasi L)
+{
     address_relasi P = last(L);
-    int i = 0;
-    if(P!=NULL){
-        while (P != NULL || i<=3)
+    int i = 1;
+    if (P != NULL)
+    {
+        while (P != NULL || i <= CountRelasi(L))
         {
-<<<<<<< Updated upstream
-            cout << info(parent(P)).namaPeminjam;
-            cout << info(parent(P)).durasiPeminjaman;
-            cout << info(child(P)).ID;
-=======
-            cout <<"Nama: "<< info(parent(P)).namaPeminjam << endl;
-            cout <<"ID: "<< info(parent(P)).ID << endl;
-            cout <<"Nama motor: "<< info(child(P)).NamaMotor << endl;
-            cout <<"Harga sewa: "<< info(child(P)).Harga * info(child(P)).durasiPeminjaman<<endl;
+            cout << info(parent(P)).namaPeminjam << endl;
+            cout << info(parent(P)).ID << endl;
+            cout << info(child(P)).NamaMotor << endl;
             cout << "Waktu checkin:" << endl;
-            printDate(info(child(P)).waktucheckIn);
+            printDate(info(parent(P)).waktucheckIn);
             cout << "Waktu checkout:" << endl;
-            printDate(info(child(P)).waktucheckOut);
+            printDate(info(parent(P)).waktucheckOut);
             cout<<endl;
->>>>>>> Stashed changes
             P = prev(P);
             i++;
         }
-    }else{
-        cout<<"Tidak ada data peminjaman motor"<<endl;
-    }
-}
-
-address_relasi findElmRelasiByParent(List_relasi L, int ID) {
-    address_relasi Q = first(L);
-    while(Q != NULL) {
-        if(info(parent(Q)).ID==ID) {
-            return Q;
-        }
-        Q = next(Q);
-    }
-    return NULL;
-}
-
-address_relasi findElmRelasiByChild(List_relasi L,string ID) {
-    address_relasi Q = first(L);
-    while(Q != NULL) {
-        if(info(child(Q)).ID == ID) {
-            return Q;
-        }
-        Q = next(Q);
-    }
-    return NULL;
-}
-
-void disconnected(List_relasi L, int ID)
-{
-    address_relasi P, R;
-    P = L.first;
-
-    if (L.first == NULL)
-    {
-        cout<<"masuk";
-        deleteFirstRelasi(L, R);
-        dealokasiRelasi(R);
     }
     else
     {
-
-        if (info(parent(P)).ID == ID)
-        {
-            cout<<"masuk2";
-            deleteFirstRelasi(L, R);
-            dealokasiRelasi(R);
-        }
-        else if (info(parent(last(L))).ID == ID)
-        {
-            deleteLastRelasi(L, R);
-            dealokasiRelasi(R);
-        }
-        else
-        {
-            while (P != NULL && info(parent(P)).ID != ID)
-            {
-<<<<<<< Updated upstream
-                P = P->next;
-=======
-
->>>>>>> Stashed changes
-            }
-            P = prev(P);
-            deleteAfterRelasi(P, R);
-            dealokasiRelasi(R);
-        }
+        cout << "Tidak ada data peminjaman motor" << endl;
     }
 }
 
-<<<<<<< Updated upstream
-void MotorYangTersedia(List_relasi LR, List_child LC){
-    address_child R = first(LC);
-    do
-    {
-        if (findElmRelasiByChild(LR, info(R).ID) == NULL)
-=======
-void CheckInputanCheckin(List_relasi LR, List_parent LP ,infotype_child datapeminjam,infotype_parent parent, bool &mark)
+address_relasi findElmRelasiByParent(List_relasi L, int ID)
 {
-    cout<<"masuk"<<parent.ID;
-    address_parent Q = findElmParent(LP, parent.ID);
-    if(Q==NULL){
-        cout<<"null";
+    address_relasi Q = first(L);
+    while (Q != NULL)
+    {
+        if (info(parent(Q)).ID == ID)
+        {
+            return Q;
+        }
+        Q = next(Q);
     }
+    return NULL;
+}
 
-    address_relasi P = findElmRelasiByChild(LR, info(Q).IDMotor);
-    cout<<"child";
+address_relasi findElmRelasiByChild(List_relasi L, int ID)
+{
+    address_relasi Q = first(L);
+    while (Q != NULL)
+    {
+        if (info(child(Q)).ID == ID)
+        {
+            return Q;
+        }
+        Q = next(Q);
+    }
+    return NULL;
+}
+
+
+void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark)
+{
+    address_relasi P = findElmRelasiByChild(LR, datapeminjam.IDMotor);
     mark = false;
     if (P != NULL)
     {
-        if (info(child(P)).waktucheckIn.tahun <= datapeminjam.waktucheckIn.tahun &&
-            datapeminjam.waktucheckIn.tahun <= info(child(P)).waktucheckOut.tahun &&
-            info(child(P)).waktucheckIn.bulan <= datapeminjam.waktucheckIn.bulan &&
-            datapeminjam.waktucheckIn.bulan <= info(child(P)).waktucheckOut.bulan &&
-            info(child(P)).waktucheckIn.tanggal <= datapeminjam.waktucheckIn.tanggal &&
-            datapeminjam.waktucheckIn.tanggal <= info(child(P)).waktucheckOut.tanggal &&
-            info(child(P)).waktucheckIn.jam <= datapeminjam.waktucheckIn.jam &&
-            datapeminjam.waktucheckIn.jam <= info(child(P)).waktucheckOut.jam &&
-            info(child(P)).waktucheckIn.menit <= datapeminjam.waktucheckIn.menit &&
-            datapeminjam.waktucheckIn.menit <= info(child(P)).waktucheckOut.menit)
->>>>>>> Stashed changes
-        {
-            cout << "->" << info(R).NamaMotor << endl;
-        }
-        R = next(R);
-    } while (R != first(LC));
-}
-
-void CheckInputanCheckin(List_relasi LR, DataPeminjam datapeminjam, bool &mark){
-    address_relasi P = findElmRelasiByChild(LR, datapeminjam.IDMotor);
-    mark = false;
-    if(P==NULL){
-        cout<<"Data tidak valid"<<endl;
-    }else{
-        if (info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.tahun &&
+        if (info(parent(P)).waktucheckIn.tahun <= datapeminjam.waktucheckIn.tahun &&
             datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tahun &&
-            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.bulan &&
-            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.bulan &&
-            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.tanggal &&
-            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.tanggal &&
-            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.jam &&
-            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.jam &&
-            info(parent(P)).waktucheckIn.tahun >= datapeminjam.waktucheckIn.menit &&
-            datapeminjam.waktucheckIn.tahun <= info(parent(P)).waktucheckOut.menit)
+            info(parent(P)).waktucheckIn.bulan <= datapeminjam.waktucheckIn.bulan &&
+            datapeminjam.waktucheckIn.bulan <= info(parent(P)).waktucheckOut.bulan &&
+            info(parent(P)).waktucheckIn.tanggal <= datapeminjam.waktucheckIn.tanggal &&
+            datapeminjam.waktucheckIn.tanggal <= info(parent(P)).waktucheckOut.tanggal &&
+            info(parent(P)).waktucheckIn.jam <= datapeminjam.waktucheckIn.jam &&
+            datapeminjam.waktucheckIn.jam <= info(parent(P)).waktucheckOut.jam &&
+            info(parent(P)).waktucheckIn.menit <= datapeminjam.waktucheckIn.menit &&
+            datapeminjam.waktucheckIn.menit <= info(parent(P)).waktucheckOut.menit)
         {
-            cout<<"Motor telah di pesan pengguna yang lain"<<endl;
+            cout << "Motor telah di pesan pengguna yang lain" << endl;
+        }
+        else
+        {
             mark = true;
         }
     }
+    else
+    {
+        mark = true;
+    }
+    cout << mark;
 }
-<<<<<<< Updated upstream
-void dataIdentitas(infotype_parent &x){
-    cout << "Masukkan Nomor identitas anda: ";
-    x.nomorIdentitas = 1301190478;
-    cout << endl;
-    x.ID = randomInt(x.nomorIdentitas);
-
-=======
-void dataIdentitas(List_parent LP,List_relasi LR, infotype_parent &x)
+void dataIdentitas(List_parent L, infotype_parent &x)
 {
     cout << "Masukkan Nomor identitas anda: ";
     cin >> x.nomorIdentitas;
-    cout<<endl;
     bool mark = true;
     while (mark != false)
     {
         x.ID = randomIntParent();
-        mark = checkDuplicateIDParent(LP, x.ID);
+        cout<<x.ID<<endl;
+        mark = checkDuplicateIDParent(L, x.ID);
+        cout<<mark<<endl;
     }
->>>>>>> Stashed changes
     cout << "Masukkan Nama: ";
-    x.namaPeminjam = "Naufal";
-    cout << endl;
-
-    mark = false;
-    while (mark != true)
-    {
-        cout << "masukan id motor yang akan dipinjam:" << endl;
-        cin >> x.IDMotor;
-        address_relasi R = (findElmRelasiByChild(LR, x.IDMotor));
-        if (R != NULL)
-        {
-            //x.harga = x.durasiPeminjaman * info(child(R)).Harga;
-            CheckInputanCheckin(LR, LP, info(child(R)),info(parent(R)), mark);
-        }
-        else
-        {
-            mark = true;
-        }
-    }
-}
-
-void inputDataPeminjam(List_relasi LR, List_parent &LP, List_child LC, infotype_parent &x, address_parent &P)
-{
-    P = findElmParentbyIdentitas(LP, x.nomorIdentitas);
-    if (P==NULL){
-        x.harga=0;
-        P = alokasiParent(x);
-        insertAndsortParent(LP, P);
-    }else{
-        cout<<"Data peminjam ada..."<<endl;
-    }
-}
-
-void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Datapeminjam, infotype_child &x){
-
+    cin>>x.namaPeminjam;
     time_t now = time(0);
     tm *ltm = localtime(&now);
 
@@ -358,38 +234,33 @@ void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Dat
     x.waktuPeminjaman.tahun = 1900 + ltm->tm_year;
     x.waktuPeminjaman.jam = ltm->tm_hour;
     x.waktuPeminjaman.menit = 1 + ltm->tm_min;
+}
 
-    address_parent P = findElmParent(LP, Datapeminjam.ID);
-    address_child Q = findElmChild(LC, Datapeminjam.IDMotor);
-
-    string waktu;
-    cout << "durasi peminjaman(jam/hari):" << endl;
-    x.durasiPeminjaman = 8;
-    waktu = "hari";
-    if (waktu == "hari")
+void checkin(List_relasi &LR, List_child &LC, infotype_parent &x, infotype_child &y)
+{
+    bool mark = false;
+    while (mark != true)
     {
-        x.durasiPeminjaman = x.durasiPeminjaman * 24;
+        cout << "Masukan ID motor yang akan dipinjam: " << endl;
+        cin >> x.IDMotor;
+        address_child R = findElmChild(LC, x.IDMotor);
+        if(R!=NULL){
+            address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
+            if (P != NULL)
+            {
+                cout<<"Motor dipakai orang lain pada :"<<endl;
+            }
+            else
+            {
+                mark = true;
+            }
+        }else{
+            cout<<"Data motor tidak ada..."<<endl;
+        }
+
     }
-    cout << x.durasiPeminjaman << endl;
-    printDate(x.waktuPeminjaman);
 
-    int harga;
-<<<<<<< Updated upstream
-    x.harga = x.durasiPeminjaman * 10000;
-    cout << "Harga: " << x.harga << endl;
-
-    cout << "masukan id motor yang akan dipinjam:" << endl;
-    x.IDMotor = "BT20";
-
-    bool mark = false;
-    while(mark!=true){
-        while (mark != true)
-        {
-            cout << "waktu checin:" << endl;
-=======
-
-
-    bool mark = false;
+    mark = false;
     while (mark != true)
     {
         while (mark != true)
@@ -397,21 +268,26 @@ void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Dat
             cout << "Waktu checkin: " << endl;
             cout << "Format pengisian tanggal bulan tahun jam menit" << endl;
             cout << "Yang dipisahkan dengan 1 space.." << endl;
+            cout << "Ex: 23 9 2000 10 30" << endl;
             cout << "Silahkan input waktu : " << endl;
->>>>>>> Stashed changes
             cin >> x.waktucheckIn.tanggal >> x.waktucheckIn.bulan >> x.waktucheckIn.tahun >> x.waktucheckIn.jam >> x.waktucheckIn.menit;
+            printDate(x.waktuPeminjaman);
             if (x.waktucheckIn.tahun < x.waktuPeminjaman.tahun)
             {
                 cout << "Inputan tidak valid" << endl;
-            }else if(x.waktucheckIn.tahun > x.waktuPeminjaman.tahun){
+            }
+            else if (x.waktucheckIn.tahun > x.waktuPeminjaman.tahun)
+            {
                 mark = true;
             }
             else
             {
-                if (x.waktucheckIn.bulan < x.waktucheckIn.bulan)
+                if (x.waktucheckIn.bulan < x.waktuPeminjaman.bulan)
                 {
                     cout << "Inputan tidak valid" << endl;
-                }else if(x.waktucheckIn.bulan > x.waktucheckIn.bulan){
+                }
+                else if (x.waktucheckIn.bulan > x.waktuPeminjaman.bulan)
+                {
                     mark = true;
                 }
                 else
@@ -419,15 +295,19 @@ void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Dat
                     if (x.waktucheckIn.tanggal < x.waktuPeminjaman.tanggal)
                     {
                         cout << "Inputan tidak valid" << endl;
-                    }else if(x.waktucheckIn.tanggal > x.waktuPeminjaman.tanggal){
+                    }
+                    else if (x.waktucheckIn.tanggal > x.waktuPeminjaman.tanggal)
+                    {
                         mark = true;
                     }
                     else
                     {
-                        if (x.waktucheckIn.jam < x.waktucheckIn.jam)
+                        if (x.waktucheckIn.jam < x.waktuPeminjaman.jam)
                         {
                             cout << "Inputan tidak valid" << endl;
-                        }else if(x.waktucheckIn.jam > x.waktucheckIn.jam){
+                        }
+                        else if (x.waktucheckIn.jam > x.waktuPeminjaman.jam)
+                        {
                             mark = true;
                         }
                         else
@@ -435,7 +315,9 @@ void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Dat
                             if (x.waktucheckIn.menit < x.waktuPeminjaman.menit)
                             {
                                 cout << "Inputan tidak valid" << endl;
-                            }else{
+                            }
+                            else
+                            {
                                 mark = true;
                             }
                         }
@@ -443,11 +325,11 @@ void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Dat
                 }
             }
         }
-        CheckInputanCheckin(LR, LP, x, info(P), mark);
+        CheckInputanCheckin(LR, x, mark);
     }
     printDate(x.waktucheckIn);
 
-    cout << "waktu checkout" << endl;
+    cout << "Waktu checkout:" << endl;
     x.waktucheckOut.tanggal = x.waktucheckIn.tanggal;
     x.waktucheckOut.bulan = x.waktucheckIn.bulan;
     x.waktucheckOut.tahun = x.waktucheckIn.tahun;
@@ -472,9 +354,31 @@ void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Dat
     }
     x.waktucheckOut.menit = x.waktucheckIn.menit;
     printDate(x.waktucheckOut);
+    y.ID = x.IDMotor;
+}
 
-<<<<<<< Updated upstream
-=======
+void inputDataPeminjam(List_relasi &LR, infotype_parent &x)
+{
+    string waktu;
+    cout << "durasi peminjaman(ex: 8 jam/hari):";
+    cin >> x.durasiPeminjaman >> waktu;
+    if (waktu == "hari")
+    {
+        x.durasiPeminjaman = x.durasiPeminjaman * 24;
+    }
+    cout << x.durasiPeminjaman << endl;
+    printDate(x.waktuPeminjaman);
+
+    int harga;
+    x.harga = 0;
+}
+
+void connect(List_relasi &LR, List_parent LP, List_child LC, infotype_parent Datapeminjam, infotype_child datachild){
+    address_parent P = findElmParent(LP, Datapeminjam.ID);
+    address_child Q = findElmChild(LC, datachild.ID);
+    insertLastRelasi(LR, alokasiRelasi(P, Q));
+    address_relasi R = findElmRelasiByParent(LR, Datapeminjam.ID);
+    info(parent(R)).harga = info(parent(R)).durasiPeminjaman * info(child(R)).Harga;
 }
 
 void disconnected(List_relasi &L, int ID)
@@ -505,25 +409,13 @@ void disconnected(List_relasi &L, int ID)
 
 }
 
-void inputDataMotor(List_relasi LR, List_child LC, List_parent LP, infotype_child &x, address_parent P)
-{
-    cout << "Nama Motor: ";
-    cin >> x.NamaMotor;
-    cout << "Tahun Motor: ";
-    cin >> x.tahunMotor;
-    cout << "Tipe: ";
-    cin >> x.Tipe;
-
-    bool mark = true;
-    while (mark != false)
+int totalIncome(List_relasi LR){
+    address_relasi P = first(LR);
+    int x = 0;
+    while (P != NULL)
     {
-        x.ID = randomIntChild();
-        mark = checkDuplicateIDChild(LC, x.ID);
+        x = x + info(parent(P)).harga;
+        P = next(P);
     }
-
-
-    address_child Q = alokasiChild(x);
-    insertAndsortChild(LC, Q);
-
+    return x;
 }
->>>>>>> Stashed changes
