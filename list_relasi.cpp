@@ -253,23 +253,23 @@ void checkin(List_relasi LR,List_child LC, infotype_parent &x, infotype_child &y
     while (mark != true)
     {
         gotoxy(38, 10);
-        cout << "Masukan ID motor yang akan dipinjam: " << endl;
+        cout << "Masukan ID motor yang akan dipinjam: ";
         cin >> x.IDMotor;
         address_child R = findElmChild(LC, x.IDMotor);
         if(R!=NULL){
             address_relasi P = (findElmRelasiByChild(LR, x.IDMotor));
             if (P != NULL)
             {
-                cout<<"Motor dipakai orang lain pada :"<<endl;
+                gotoxy(38, 11);cout<<"Motor dipakai orang lain pada :"<<endl;
             }
             else
             {
                 mark = true;
             }
         }else{
-            cout<<"Data motor tidak ada..."<<endl;
+            gotoxy(38, 11);cout<<"Data motor tidak ada..."<<endl;
         }
-        
+
     }
 
     mark = false;
