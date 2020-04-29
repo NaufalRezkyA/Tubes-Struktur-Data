@@ -125,7 +125,7 @@ void printInfoRelasi(List_relasi L){
                     j = 29;
                 }
                 gotoxy(38,i);cout << "Nama Peminjam   : "<<info(parent(P)).namaPeminjam << endl;
-                gotoxy(38,i+1);cout << "ID Peminjam     : "<<info(parent(P)).ID << endl;
+                gotoxy(38, i + 1);cout << "Harga sewa      : " << info(parent(P)).harga << endl;
                 gotoxy(38,i+2);cout << "Nama Motor      :"<<info(child(P)).NamaMotor << endl;
                 gotoxy(38,i+3);cout << "Waktu checkin   : "<<endl;
                 printDate(info(parent(P)).waktucheckIn, i+4, j);
@@ -153,17 +153,27 @@ void printInfoTerbaru(List_relasi L){
         gotoxy(54,7);cout<<"DATA PEMINJAM";
         while (P != NULL || k <= CountRelasi(L))
         {
-            if(i+6 >= 30){
-                i = 9;
-                j = 29;
+            if (parent(P) != NULL && child(P) != NULL)
+            {
+                if (i + 6 >= 30)
+                {
+                    i = 9;
+                    j = 29;
+                }
+                gotoxy(38, i);
+                cout << "Nama Peminjam   : " << info(parent(P)).namaPeminjam << endl;
+                gotoxy(38, i + 1);
+                cout << "Harga sewa      : " << info(parent(P)).harga << endl;
+                gotoxy(38, i + 2);
+                cout << "Nama Motor      :" << info(child(P)).NamaMotor << endl;
+                gotoxy(38, i + 3);
+                cout << "Waktu checkin   : " << endl;
+                printDate(info(parent(P)).waktucheckIn, i + 4, j);
+                gotoxy(38, i + 6);
+                cout << "Waktu checkout  : " << endl;
+                printDate(info(parent(P)).waktucheckOut, i + 7, j);
             }
-            gotoxy(38,i);cout << "Nama Peminjam   : "<<info(parent(P)).namaPeminjam << endl;
-            gotoxy(38,i+1);cout << "ID Peminjam     : "<<info(parent(P)).ID << endl;
-            gotoxy(38,i+2);cout << "Nama Motor      :"<<info(child(P)).NamaMotor << endl;
-            gotoxy(38,i+3);cout << "Waktu checkin   : "<<endl;
-            printDate(info(parent(P)).waktucheckIn, i+4, j);
-            gotoxy(38,i+6);cout << "Waktu checkout  : " << endl;
-            printDate(info(parent(P)).waktucheckOut, i+7, j);
+            i = i + 10;
             P = prev(P);
             k++;
         }

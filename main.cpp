@@ -170,14 +170,7 @@ void mainMenu(){
             }
             break;
         case 8:
-            if (first(LR) != NULL)
-            {
-                printInfoRelasi(LR);
-            }
-            else
-            {
-                gotoxy(44,15);cout << "kosong" << endl;
-            }
+            printInfoRelasi(LR);
             break;
 
         case 9:
@@ -322,7 +315,7 @@ void mainMenu(){
             gotoxy(54,15);cout<<"Reset Data Berhasil..."<<endl;
             break;
         case 14:
-            gotoxy(38,7);cout << "Total Pendapatan Tel-U Rent :";
+            gotoxy(38,7);cout << "Total Pendapatan Tel-U Rent : Rp.";
             cout << totalIncome(LR)<<endl;
             break;
         }

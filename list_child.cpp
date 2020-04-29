@@ -22,7 +22,9 @@ void inputDataMotor(List_child L,infotype_child &x){
     cin>>x.tahunMotor;
     gotoxy(40,11);cout<<"Tipe (Matic/Manual)  : ";
     cin>>x.Tipe;
-    gotoxy(40,12);cout<<"Harga Sewa motor     : ";
+    gotoxy(40,12);cout<<"Tenaga motor(cc)     : ";
+    cin>>x.CCMotor;
+    gotoxy(40,13);cout<<"Harga Sewa motor     : ";
     cin>>x.Harga;
 
     bool mark = true;
@@ -217,13 +219,14 @@ void printInfoChild(List_child L) {
 
             }
             gotoxy(45,7);cout<<"DAFTAR MOTOR";
-            gotoxy(38+j,i);cout << "Nama Motor      : " << info(P).NamaMotor << endl;
+            gotoxy(38+j,i);cout <<   "Nama Motor      : " << info(P).NamaMotor << endl;
             gotoxy(38+j,i+1);cout << "ID Motor        : " << info(P).ID << endl;
             gotoxy(38+j,i+2);cout << "Tahun Motor     : " << info(P).tahunMotor << endl;
-            gotoxy(38+j,i+3);cout << "Tipe Motor      : " << info(P).Tipe << endl;
-            gotoxy(38+j,i+4);cout << "Harga sewa(jam) : " << info(P).Harga << endl;
+            gotoxy(38+j,i+3);cout << "Tenaga motor    : " << info(P).CCMotor<<" cc"<< endl;
+            gotoxy(38+j,i+4);cout << "Tipe Motor      : " << info(P).Tipe << endl;
+            gotoxy(38+j,i+5);cout << "Harga sewa(jam) : Rp." << info(P).Harga << endl;
             cout<<endl;
-            i=i+6;
+            i=i+7;
             P = next(P);
         }while (P != first(L));
     }else{
@@ -295,21 +298,24 @@ void DataM(List_child &LC){
     x.ID = 19231;
     x.NamaMotor = "BEAT F1";
     x.tahunMotor = 2012;
-    x.Tipe = "Manual";
+    x.Tipe = "Matic";
+    x.CCMotor = 150;
     x.Harga = 12000;
     insertAndsortChild(LC, alokasiChild(x));
 
     x.ID = 92132;
-    x.NamaMotor = "BEAT A1";
+    x.NamaMotor = "YAMAHA";
     x.tahunMotor = 2010;
-    x.Tipe = "Automatic";
+    x.Tipe = "Manual";
+    x.CCMotor = 350;
     x.Harga = 10000;
     insertAndsortChild(LC, alokasiChild(x));
 
     x.ID = 12345;
-    x.NamaMotor = "BEAT A0";
+    x.NamaMotor = "MIO";
     x.tahunMotor = 2020;
-    x.Tipe = "Manual";
+    x.Tipe = "Matic";
+    x.CCMotor = 200;
     x.Harga = 11000;
     insertAndsortChild(LC, alokasiChild(x));
 }

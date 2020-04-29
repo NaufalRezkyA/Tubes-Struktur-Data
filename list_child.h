@@ -22,7 +22,7 @@ using namespace std;
 
 struct DataMotor
 {
-    int tahunMotor,ID,Harga;
+    int tahunMotor,ID,Harga, CCMotor;
     string NamaMotor, Tipe;
 };
 

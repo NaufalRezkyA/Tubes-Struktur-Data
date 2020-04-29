@@ -15,7 +15,7 @@ void printDate(Date x,int i, int j){
       Nama  : Hassan Rizky Putra
       Nim   : 1301190328*/
     gotoxy(38+j,i);cout<<"Tanggal   : "<<x.tanggal<<"/"<<x.bulan<<"/"<<x.tahun<<endl;
-    gotoxy(38+j,i+1);cout<<"Jam       : "<<x.jam<<":"<<x.menit<<endl;
+    gotoxy(38+j,i+1);cout<<"Pukul     : "<<x.jam<<":"<<x.menit<<endl;
     cout<<endl;
 }
 void createListParent(List_parent &L) {
